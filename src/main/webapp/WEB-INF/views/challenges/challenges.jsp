@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,9 +44,31 @@
         </div>
     </nav>
     <div id="container">
-        <h3> 미션 정하는 페이지입니다!</h3>
-        <a class="btn btn-primary btn-xl" href="/challenges/form">새로운 미션 등록하기</a>
-        <div>
+        <c:choose>
+            <c:when test="${not empty sessionScope.user and sessionScope.user.role == '관리자'}">
+                <a class="btn btn-primary btn-xl" href="/challenges/form">새로운 미션 등록하기</a>
+            </c:when>
+        </c:choose>
+        <div class="challenge-container">
+            <c:choose>
+                <c:when test="${empty challenges}">
+                    <p>미션이 존재하지 않습니다.</p>
+                </c:when>
+                <c:otherwise>
+                    <c:forEach var="challenge" items="${challenges}">
+                        <div class="challenge-label">
+                            <span>
+                                <p><c:out value="${challenge.challenges_id}"/></p>
+                                <p><c:out value="${challenge.title}"/></p>
+                                <p><c:out value="${challenge.content}"/></p>
+                                <p><c:out value="${challenge.start_date}"/></p>
+                                <p><c:out value="${challenge.end_date}"/></p>
+                            </span>
+                            <a class="btn btn-primary btn-xl">미션 선택</a>
+                        </div>
+                    </c:forEach>
+                </c:otherwise>
+            </c:choose>
         </div>
     </div>
 

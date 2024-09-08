@@ -35,6 +35,14 @@
     </nav>
     <div id="container">
         <h3> 미션 등록 페이지입니다!</h3>
+        <form action="/challenges/add" method="post">
+            <input type="text" name="title">
+            <textarea name="content" max-length="200"></textarea>
+            <input type="date" name="start_date">
+            <input type="date" name="end_date">
+            <input type="submit" value="등록하기">
+            <input type="reset" value="취소">
+        </form>
     </div>
 <!-- Bootstrap Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
