@@ -23,6 +23,5 @@ public class NoticeController {
     public Notice createNotice(@RequestBody Notice notice) {
         return noticeService.createNotice(notice);
     }
-
 }
-
+//오잉 다시 커밋

@@ -77,3 +77,4 @@ public class Notice{
         this.editDate = editDate;
     }
 }
+//오잉 다시 커밋
