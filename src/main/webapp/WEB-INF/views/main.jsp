@@ -31,6 +31,7 @@
                         <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                         <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
                         <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/challenges">challenges</a></li>
                         <% if (session.getAttribute("user") != null) { %>
                         <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
                         <% } else { %>
