@@ -1,0 +1,197 @@
+/* 공통 스타일 */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa; /* 전체 배경색: 연한 회색 */
+    color: #333; /* 기본 텍스트 색상: 어두운 회색 */
+}
+
+/* 페이지 이름 */
+.page-name {
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    background-color: #f4623a; /* 메인 컬러 */
+    color: #ffffff; /* 텍스트 색상: 흰색 */
+    text-decoration: none;
+}
+
+/* 서브메뉴 래퍼 */
+.submenu-wrap {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+/* 서브메뉴 */
+#submenu {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+}
+
+/* 연락처 */
+.contact {
+    margin-left: 100px;
+}
+
+/* 전체 레이아웃 설정 */
+.container-fluid {
+    padding: 20px;
+}
+
+/* row를 flexbox로 설정 */
+.row {
+    display: flex;
+}
+
+/* 사이드바 스타일 */
+.sidebar {
+    background-color: #ffffff; /* 사이드바 배경색: 흰색 */
+    padding: 20px;
+    width: 250px; /* 사이드바의 너비 설정 */
+    border-right: 1px solid #dee2e6; /* 구분선 색상: 연한 회색 */
+    height: 100vh; /* 화면 전체 높이 */
+    position: fixed; /* 고정된 위치 */
+}
+
+/* 카테고리 제목 스타일 */
+.catagory {
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-size: 18px;
+    color: #333; /* 제목 색상: 어두운 회색 */
+}
+
+/* 사이드바의 링크 스타일 */
+.sidebar p {
+    font-size: 16px;
+    margin: 10px 0;
+    color: #333; /* 링크 색상: 어두운 회색 */
+}
+
+/* 콘텐츠 영역 스타일 */
+.content {
+    margin-left: 270px; /* 사이드바 너비만큼 여백 설정 */
+    padding: 20px;
+    width: calc(100% - 270px); /* 사이드바를 제외한 나머지 영역 */
+    background-color: #ffffff; /* 콘텐츠 영역 배경색: 흰색 */
+}
+
+/* 공지사항 목록 테이블 스타일 */
+.table-bordered {
+    width: 100%;
+    border: 1px solid #dee2e6;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+/* 테이블 헤더 스타일 */
+.table-bordered th {
+    background-color: #f8f9fa; /* 테이블 헤더 배경색: 연한 회색 */
+    text-align: left;
+    padding: 10px;
+    border: 1px solid #dee2e6;
+}
+
+/* 테이블 본문 스타일 */
+.table-bordered td {
+    padding: 10px;
+    border: 1px solid #dee2e6;
+}
+
+/* 공지사항 작성 버튼 스타일 */
+.btn-primary {
+    background-color: #f4623a; /* 버튼 배경색: 메인 컬러 */
+    color: #ffffff; /* 버튼 텍스트 색상: 흰색 */
+    border: none; /* 버튼 테두리 없음 */
+    padding: 10px 20px; /* 버튼 패딩 */
+    border-radius: 4px; /* 버튼 모서리 둥글게 */
+    font-size: 16px; /* 버튼 텍스트 크기 */
+    margin-top: 20px; /* 상단 여백 */
+}
+
+.btn-primary:hover {
+    background-color: #e04e2c; /* 버튼 호버 색상: 메인 컬러보다 약간 어두운 색상 */
+    cursor: pointer; /* 마우스 커서 모양 */
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+
+/* 버튼 스타일 */
+button[type="submit"] {
+    background-color: #f4623a; /* 버튼 배경색: 메인 컬러 */
+    color: #ffffff; /* 버튼 텍스트 색상: 흰색 */
+    border: none; /* 버튼 테두리 없음 */
+    padding: 10px 20px; /* 버튼 패딩 */
+    border-radius: 4px; /* 버튼 모서리 둥글게 */
+    font-size: 16px; /* 버튼 텍스트 크기 */
+    cursor: pointer; /* 마우스 커서 모양 */
+}
+
+button[type="submit"]:hover {
+    background-color: #cf5331; /* 버튼 호버 색상: 메인 컬러보다 약간 어두운 색상 */
+}
+
+/* 돌아가기 버튼 스타일 */
+a.btn-primary {
+    display: inline-block;
+    background-color: #f4623a; /* 버튼 배경색: 메인 컬러 */
+    color: #ffffff; /* 버튼 텍스트 색상: 흰색 */
+    border: none; /* 버튼 테두리 없음 */
+    padding: 10px 20px; /* 버튼 패딩 */
+    border-radius: 4px; /* 버튼 모서리 둥글게 */
+    font-size: 16px; /* 버튼 텍스트 크기 */
+    text-decoration: none; /* 링크의 기본 밑줄 제거 */
+    cursor: pointer; /* 마우스 커서 모양 */
+    margin-top: 20px; /* 상단 여백 */
+}
+
+a.btn-primary:hover {
+    background-color: #cf5331; /* 버튼 호버 색상: 메인 컬러보다 약간 어두운 색상 */
+}
+
+/* 공지사항 작성 폼 컨테이너 스타일 */
+.notice-form {
+    max-width: 600px; /* 폼 최대 너비 설정 */
+    margin: 0 auto; /* 중앙 정렬 */
+    padding: 20px;
+    background-color: #ffffff !important; /* 폼 배경색: 흰색 */
+    border: 1px solid #dee2e6 !important; /* 폼 테두리: 연한 회색 */
+    border-radius: 8px; /* 테두리 둥글게 */
+}
+
+/* 폼 제목 스타일 */
+.notice-title h1 {
+    font-size: 24px; /* 제목 텍스트 크기 */
+    color: #333; /* 제목 색상: 어두운 회색 */
+    margin-bottom: 20px; /* 제목과 폼 사이 여백 */
+}
+
+/* 입력 필드 및 텍스트 영역 스타일 */
+input[type="text"], textarea {
+    width: 100%; /* 너비 100%로 설정 */
+    padding: 10px;
+    border: 1px solid #ced4da; /* 입력 필드 테두리: 연한 회색 */
+    border-radius: 4px; /* 입력 필드 모서리 둥글게 */
+    font-size: 16px; /* 텍스트 크기 */
+    margin-bottom: 15px; /* 입력 필드 사이 여백 */
+    box-sizing: border-box; /* 패딩과 테두리 포함 너비 설정 */
+}
+
+/* 텍스트 영역 높이 설정 */
+textarea {
+    height: 150px; /* 기본 높이 설정 */
+    resize: vertical; /* 세로로만 크기 조절 가능 */
+}
+
