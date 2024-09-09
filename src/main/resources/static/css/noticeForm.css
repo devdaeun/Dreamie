@@ -1,0 +1,33 @@
+/* 공지사항 작성 폼 컨테이너 스타일 */
+.notice-form {
+    max-width: 600px; /* 폼 최대 너비 설정 */
+    margin: 0 auto; /* 중앙 정렬 */
+    padding: 20px;
+    background-color: #ffffff !important; /* 폼 배경색: 흰색 */
+    border: 1px solid #dee2e6 !important; /* 폼 테두리: 연한 회색 */
+    border-radius: 8px; /* 테두리 둥글게 */
+}
+
+/* 폼 제목 스타일 */
+.notice-title h1 {
+    font-size: 24px; /* 제목 텍스트 크기 */
+    color: #333; /* 제목 색상: 어두운 회색 */
+    margin-bottom: 20px; /* 제목과 폼 사이 여백 */
+}
+
+/* 입력 필드 및 텍스트 영역 스타일 */
+input[type="text"], textarea {
+    width: 100%; /* 너비 100%로 설정 */
+    padding: 10px;
+    border: 1px solid #ced4da; /* 입력 필드 테두리: 연한 회색 */
+    border-radius: 4px; /* 입력 필드 모서리 둥글게 */
+    font-size: 16px; /* 텍스트 크기 */
+    margin-bottom: 15px; /* 입력 필드 사이 여백 */
+    box-sizing: border-box; /* 패딩과 테두리 포함 너비 설정 */
+}
+
+/* 텍스트 영역 높이 설정 */
+textarea {
+    height: 150px; /* 기본 높이 설정 */
+    resize: vertical; /* 세로로만 크기 조절 가능 */
+}
