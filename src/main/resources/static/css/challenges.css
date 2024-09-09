@@ -18,9 +18,10 @@
     justify-content: space-between;
     align-items: center;
 }
-.challenge-label > span {
+.challenge-label  >span >a {
     font-size: 18px;
     display: flex;
+    text-decoration: none;
     gap: 10px;
     align-items: center;
 }
@@ -36,4 +37,8 @@
 
 .challenge-container {
     margin-top: 50px;
+}
+
+#modify_btn {
+    display: none;
 }
