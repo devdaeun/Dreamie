@@ -58,11 +58,13 @@
                     <c:forEach var="challenge" items="${challenges}">
                         <div class="challenge-label">
                             <span>
-                                <p><c:out value="${challenge.challenges_id}"/></p>
-                                <p><c:out value="${challenge.title}"/></p>
-                                <p><c:out value="${challenge.content}"/></p>
-                                <p><c:out value="${challenge.start_date}"/></p>
-                                <p><c:out value="${challenge.end_date}"/></p>
+                                <a href="/challenges/info?challenges_id=${challenge.challenges_id}">
+                                    <p><c:out value="${challenge.challenges_id}"/></p>
+                                    <p><c:out value="${challenge.title}"/></p>
+                                    <p><c:out value="${challenge.content}"/></p>
+                                    <p><c:out value="${challenge.start_date}"/></p>
+                                    <p><c:out value="${challenge.end_date}"/></p>
+                                </a>
                             </span>
                             <a class="btn btn-primary btn-xl">미션 선택</a>
                         </div>

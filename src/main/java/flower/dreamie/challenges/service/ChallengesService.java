@@ -24,4 +24,9 @@ public class ChallengesService {
     public List<Challenges> getAllChallenges(){
         return challengesRepository.findAll();//전체 데이터 출력 메소드
     }
+
+    public void RemoveChallenges(long challengesId){
+        challengesRepository.deleteById(challengesId);
+    }
+
 }
