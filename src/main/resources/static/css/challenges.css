@@ -1,0 +1,39 @@
+#container {
+    height: 900px;
+    padding: 90px;
+    background-color: #D9D9D9;
+    border: 1px solid;
+}
+#mainNav {
+    background-color: #af3d1e;
+}
+
+.challenge-label {
+    background-color: white;
+    display: flex;
+    width: 700px;
+    margin: 0 auto;
+    padding: 10px 20px;
+    border-radius: 8px;
+    justify-content: space-between;
+    align-items: center;
+}
+.challenge-label > span {
+    font-size: 18px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.challenge-label p {
+    margin: 0;
+}
+
+.challenge-label .btn, .challenge-label .btn-primary, .challenge-label .btn-xl {
+    font-size: 20px;
+    padding: 20px 25px;
+}
+
+.challenge-container {
+    margin-top: 50px;
+}
