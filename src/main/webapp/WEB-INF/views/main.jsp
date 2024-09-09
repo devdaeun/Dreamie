@@ -47,11 +47,11 @@
             <div class="container px-4 px-lg-5 h-100">
                 <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
                     <div class="col-lg-8 align-self-end">
-                        <h1 class="text-white font-weight-bold">Your Favorite Place for Free Bootstrap Themes</h1>
+                        <h1 class="text-white font-weight-bold">"Mission Tracker for Self-Development and Goal Achievement"</h1>
                         <hr class="divider" />
                     </div>
                     <div class="col-lg-8 align-self-baseline">
-                        <p class="text-white-75 mb-5">Start Bootstrap can help you build better websites using the Bootstrap framework! Just download a theme and start customizing, no strings attached!</p>
+                        <p class="text-white-75 mb-5">"꿈꾸리"는 사용자가 개인 미션을 설정하고 목표를 관리하며,진행 상황을 시각적으로 확인할 수 있는 웹사이트입니다.</p>
                         <a class="btn btn-primary btn-xl" href="#about">Find Out More</a>
                     </div>
                 </div>
@@ -62,9 +62,9 @@
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-lg-8 text-center">
-                        <h2 class="text-white mt-0">We've got what you need!</h2>
+                        <h2 class="text-white mt-0">Dream big and dare to fail!</h2>
                         <hr class="divider divider-light" />
-                        <p class="text-white-75 mb-4">Start Bootstrap has everything you need to get your new website up and running in no time! Choose one of our open source, free to download, and easy to use themes! No strings attached!</p>
+                        <p class="text-white-75 mb-4">크게 꿈꾸고, 실패를 두려워하지 마라. -  Norman Vaughan </p>
                         <a class="btn btn-light btn-xl" href="#services">Get Started!</a>
                     </div>
                 </div>
@@ -167,6 +167,11 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <!-- Notice -->
+        <div id="Noitce">
+
         </div>
 
         <!-- Footer-->
