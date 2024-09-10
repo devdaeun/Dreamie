@@ -45,4 +45,15 @@ public class UserController {
             return "redirect:/loginForm?error=true"; // 로그인 실패 시 error 파라미터 추가
         }
     }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session){
+        session.invalidate();
+        return "redirect:/";
+    }
+
+    @GetMapping("/mypage")
+    public String myPage(){
+        return "mypage/mypage";
+    }
 }

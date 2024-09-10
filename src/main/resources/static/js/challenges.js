@@ -65,3 +65,25 @@ function delete_challenge(challenges_id) {
         });
     }
 }
+
+function missionSelect(challenges_id){
+    if (confirm('미션을 추가하시겠습니까?')) {
+        fetch('/mission/add', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: new URLSearchParams({
+                challenges_id: challenges_id
+            })
+        })
+        .then(response => {
+            if (response.ok) {
+                alert('추가되었습니다');
+                window.location.href= '/challenges';
+            } else {
+                throw new Error('등록 실패.');
+            }
+        })
+    }
+}
