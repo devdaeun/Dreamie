@@ -22,10 +22,14 @@
                 <ul class="navbar-nav ms-auto my-2 my-lg-0">
                     <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/challenges">challenges</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a>
+                    <li class="nav-item"><a class="nav-link" href="/notices">Notice</a>
+                    <li class="nav-item"><a class="nav-link" href="/challenges">challenges</a>
+                    <!-- 문의사항 페이지로 이동하는 링크 -->
+                    <li class="nav-item"><a class="nav-link" href="/qna">문의사항</a></li>
                     <% if (session.getAttribute("user") != null) { %>
                     <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/mypage">mypage</a></li>
                     <% } else { %>
                     <li class="nav-item"><a class="nav-link" href="/loginForm">Login</a></li>
                     <% } %>
@@ -46,5 +50,6 @@
     </div>
 <!-- Bootstrap Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="../js/challenges.js"></script>
 </body>
 </html>

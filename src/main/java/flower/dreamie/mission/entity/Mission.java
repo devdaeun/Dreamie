@@ -14,22 +14,23 @@ public class Mission {
     private long mission_id;
 
     @Column(nullable = false)
-    private long challanges_id;
+    private long challenges_id;
 
     @Column(name = "user_id", nullable = false)
     private long userId;
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private Succese succese;
 
     public enum Succese{
         진행중,
         완료
     }
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
+    private Succese succese = Succese.진행중;//기본값 설정하는법!
+
+    @Column(nullable = true)
     private Date succese_at;
+
 
     public long getMission_id() {
         return mission_id;
@@ -39,12 +40,12 @@ public class Mission {
         this.mission_id = mission_id;
     }
 
-    public long getChallanges_id() {
-        return challanges_id;
+    public long getChallenges_id() {
+        return challenges_id;
     }
 
-    public void setChallanges_id(long challanges_id) {
-        this.challanges_id = challanges_id;
+    public void setChallanges_id(long challenges_id) {
+        this.challenges_id = challenges_id;
     }
 
     public long getUser_id() {
