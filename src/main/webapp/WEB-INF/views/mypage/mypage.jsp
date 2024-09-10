@@ -77,7 +77,7 @@
             </div>
         </div>
         <div class="mypage-content">
-            <p>머선내영</p>
+            <p>머선내용이징</p>
         </div>
     </div>
 
