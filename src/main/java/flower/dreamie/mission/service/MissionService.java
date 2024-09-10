@@ -14,7 +14,10 @@ public class MissionService {
     @Autowired
     private MissionRepository missionRepository;
 
-    public void SaveMission(Mission mission){
+    public void saveMission(long challengesId, long user_id){
+        Mission mission = new Mission();
+        mission.setUser_id(user_id);
+        mission.setChallanges_id(challengesId);
         missionRepository.save(mission);
     }
 

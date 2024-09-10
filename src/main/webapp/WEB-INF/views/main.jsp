@@ -37,6 +37,7 @@
                         <li class="nav-item"><a class="nav-link" href="/qna">문의사항</a></li>
                         <% if (session.getAttribute("user") != null) { %>
                         <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/mypage">mypage</a></li>
                         <% } else { %>
                         <li class="nav-item"><a class="nav-link" href="/loginForm">Login</a></li>
                         <% } %>
