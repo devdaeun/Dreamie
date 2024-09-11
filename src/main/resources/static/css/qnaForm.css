@@ -1,0 +1,30 @@
+#container-qna {
+    height: 900px;
+    min-height: 40rem;
+    padding-top: 5.5rem;
+    padding-bottom: 0;
+}
+#mainNav {
+    background-color: #F46239;
+}
+/* 타이틀 */
+.title {
+    height: 170px;
+    text-align: right;
+    border-bottom: 3px solid #F46239;
+}
+.title h1 {
+    padding: 100px 20px 0 0;
+}
+/* 작성하기 */
+.board {
+    margin: 10px;
+}
+.btn_area {
+    display: flex;
+    justify-content: center;
+}
+.btn_area .btn {
+    padding: 10px 50px;
+    margin: 10px;
+}

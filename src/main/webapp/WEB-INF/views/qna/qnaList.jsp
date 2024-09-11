@@ -28,7 +28,7 @@
     <!-- Navigation-->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
         <div class="container px-4 px-lg-5">
-            <a class="navbar-brand" href="#page-top">Study</a>
+            <a class="navbar-brand" href="/">Dreamie</a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto my-2 my-lg-0">
@@ -49,33 +49,51 @@
         </div>
     </nav>
     <div id="container-qna" class="container">
-        <h1>문의사항</h1>
-        <div class="list-group list-group-flush">
-            <a href="#" class="list-group-item">공지사항</a>
-            <a href="#" class="list-group-item active" aria-current="true">문의사항</a>
-            <a href="#" class="list-group-item">설정</a>
+        <div class="title">
+            <h1>문의사항</h1>
         </div>
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>번호</th>
-                <th>회원 번호</th>
-                <th>제목</th>
-                <th>작성일</th>
-            </tr>
-            </thead>
-            <tbody>
-                <!-- qnaList를 반복하며 각 문의사항을 출력 -->
-                <c:forEach var="qna" items="${qnaList}">
+
+        <div class="grid text-center" style="--bs-columns: 10; --bs-gap: 1rem;">
+
+            <div class="category">
+                <h3>카테고리</h3>
+                <div class="list-group list-group-flush">
+                    <a href="#" class="list-group-item">공지사항</a>
+                    <a href="#" class="list-group-item active" aria-current="true">문의사항</a>
+                    <a href="#" class="list-group-item">설정</a>
+                </div>
+            </div>
+
+            <div class="board">
+<%--                <h3>문의사항</h3>--%>
+                <table class="table table-striped">
+                    <thead>
                     <tr>
-                        <td>${qna.question_id}</td>      <!-- 문의 번호 -->
-                        <td>${qna.title}</td>           <!-- 제목 -->
-                        <td>${qna.user_id}</td>          <!-- 작성자 -->
-                        <td>${qna.write_at}</td>        <!-- 작성일 -->
+                        <th>글번호</th>
+                        <th>제목</th>
+                        <th>회원</th>
+                        <th>작성일</th>
                     </tr>
-                </c:forEach>
-            </tbody>
-        </table>
+                    </thead>
+                    <tbody>
+                        <!-- qnaList를 반복하며 각 문의사항을 출력 -->
+                        <c:forEach var="qna" items="${qnaList}">
+                            <tr>
+<%--                                <a href="#">--%>
+                                    <td>${qna.question_id}</td>      <!-- 문의 번호 -->
+                                    <td>${qna.title}</td>           <!-- 제목 -->
+                                    <td>${qna.user_id}</td>          <!-- 작성자 -->
+                                    <td>${qna.write_at}</td>        <!-- 작성일 -->
+<%--                                </a>--%>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
+                <a href="/qnaForm">
+                    <button type="button" class="btn btn-outline-secondary">문의하기</button>
+                </a>
+            </div>
+        </div>
     </div>
 
     <!-- Footer-->

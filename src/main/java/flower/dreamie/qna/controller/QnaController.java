@@ -19,4 +19,9 @@ public class QnaController {
         model.addAttribute("qnaList", qnaService.getAllQnaList());
         return "qna/qnaList";
     }
+
+    @RequestMapping("/qnaForm")
+    public String qnaForm(Model model) {
+        return "qna/qnaForm";
+    }
 }
