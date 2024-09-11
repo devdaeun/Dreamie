@@ -1,0 +1,9 @@
+#container-qna {
+    height: 900px;
+    min-height: 40rem;
+    padding-top: 5.5rem;
+    padding-bottom: 0;
+}
+#mainNav {
+    background-color: #af3d1e;
+}
