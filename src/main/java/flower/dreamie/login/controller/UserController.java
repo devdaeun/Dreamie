@@ -40,6 +40,7 @@ public class UserController {
         User user = userService.findById(id);
         if (user != null && user.getPassword().equals(pwd)) {
             session.setAttribute("user", user);
+            session.setAttribute("id", id); // id를 세션에 저장
             return "redirect:/"; // 로그인 후 이동할 페이지
         } else {
             return "redirect:/loginForm?error=true"; // 로그인 실패 시 error 파라미터 추가
