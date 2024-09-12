@@ -53,32 +53,42 @@
         <h1>문의사항 작성하기</h1>
     </div>
 
-    <div class="board">
-        <div class="mb-3 row">
-            <label for="user_id" class="col-sm-1 col-form-label">아이디</label>
-            <div class="col-sm-3">
-                <input type="text" readonly class="form-control-plaintext" id="user_id" value="user">
+    <form action="/qnaSave" method="post">
+        <div class="board">
+            <div class="mb-3 row">
+                <label for="user_id" class="col-sm-1 col-form-label">아이디</label>
+                <div class="col-sm-3">
+                    <input type="text" readonly class="form-control-plaintext" id="user_id" value="${sessionScope.user.id}">
+                </div>
+            </div>
+            <!-- show_type을 사용자가 선택하도록 할 경우 (기본 값 True로 설정됨) -->
+            <div class="mb-3">
+                <label for="show_type" class="form-label">공개 여부</label>
+                <select class="form-control" id="show_type" name="show_type">
+                    <option value="True">공개</option>
+                    <option value="False">비공개</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="title" class="form-label">제목</label>
+                <input type="text" class="form-control" id="title">
+            </div>
+            <div class="mb-3">
+                <label for="content" class="form-label">문의 내용</label>
+                <textarea class="form-control" id="content" rows="3"></textarea>
+            </div>
+    <%--        <div class="input-group">--%>
+    <%--            <span class="input-group-text">문의 내용</span>--%>
+    <%--            <textarea class="form-control" aria-label="With textarea"></textarea>--%>
+    <%--        </div>--%>
+            <div class="btn_area">
+                <button type="submit" class="btn btn-warning">저장</button>
+                <a href="/qna">
+                    <button type="button" class="btn btn-outline-warning">취소</button>
+                </a>
             </div>
         </div>
-        <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">제목</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1">
-        </div>
-        <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label">문의 내용</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-        </div>
-<%--        <div class="input-group">--%>
-<%--            <span class="input-group-text">문의 내용</span>--%>
-<%--            <textarea class="form-control" aria-label="With textarea"></textarea>--%>
-<%--        </div>--%>
-        <div class="btn_area">
-            <button type="button" class="btn btn-warning">저장</button>
-            <a href="/qna">
-                <button type="button" class="btn btn-outline-warning">취소</button>
-            </a>
-        </div>
-    </div>
+    </form>
 </div>
 
 <!-- Footer-->
