@@ -19,4 +19,9 @@ public class QnaService {
     public List<QnaList> getAllQnaList() {
         return qnaRepository.findAll();
     }
+
+    // 새로운 문의사항 저장
+    public void saveQna(QnaList qnaList) {
+        qnaRepository.save(qnaList);  // DB에 문의사항 저장
+    }
 }
