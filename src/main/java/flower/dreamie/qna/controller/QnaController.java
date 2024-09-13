@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -46,11 +47,6 @@ public class QnaController {
         // 세션에서 로그인된 사용자 정보 가져오기
         User user = (User) session.getAttribute("user");
 
-//        // 로그인된 사용자 정보가 없는 경우 로그인 페이지로 리다이렉트
-//        if (user == null) {
-//            return "redirect:/loginForm";
-//        }
-
         // QnaList에 로그인된 사용자의 user_id 설정
         qnaList.setUser_id(user.getUser_id());
 
@@ -62,5 +58,19 @@ public class QnaController {
 
         // 저장 후 문의사항 목록 페이지로 리다이렉트
         return "redirect:/qna";
+    }
+
+    //문의사항 상세조회
+    @RequestMapping("/qna/{question_id}")
+    public String detail(@PathVariable("question_id") Long question_id, Model model, HttpSession session) {
+        QnaList qna = qnaService.getQnaById(question_id); // 해당 아이디로 문의사항 가져오기
+        User user = (User) session.getAttribute("user");    //현재 로그인된 사용자 정보
+
+        model.addAttribute("qna", qna);  // 글 정보를 뷰로 전달
+        if (user != null) {
+            model.addAttribute("user", user);  // 사용자 정보를 뷰로 전달
+        }
+
+        return "qna/qnaDetail";  // 상세 페이지로 이동
     }
 }

@@ -5,6 +5,7 @@ import flower.dreamie.qna.repository.QnaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class QnaService {
@@ -20,8 +21,14 @@ public class QnaService {
         return qnaRepository.findAll();
     }
 
-    // 새로운 문의사항 저장
+    //새로운 문의사항 저장
     public void saveQna(QnaList qnaList) {
         qnaRepository.save(qnaList);  // DB에 문의사항 저장
+    }
+
+    //id로 문의사항 조회
+    public QnaList getQnaById(Long qusetion_id) {
+        Optional<QnaList> qna = qnaRepository.findById(qusetion_id);  // DB에서 ID로 문의사항을 찾음
+        return qna.orElseThrow(() -> new IllegalArgumentException("해당 문의사항이 존재하지 않습니다."));
     }
 }
