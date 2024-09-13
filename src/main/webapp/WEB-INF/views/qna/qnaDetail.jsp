@@ -53,9 +53,9 @@
             <h1>문의사항</h1>
         </div>
 
-        <div class="grid text-center" style="--bs-columns: 10; --bs-gap: 1rem;">
+        <div class="grid" style="--bs-columns: 10; --bs-gap: 1rem;">
 
-            <div class="category">
+            <div class="category text-center">
                 <h3>카테고리</h3>
                 <div class="list-group list-group-flush">
                     <a href="#" class="list-group-item">공지사항</a>
@@ -66,14 +66,14 @@
 
             <div class="board">
 
-                <div class="content">
-                    <div class="contentTitle"><h5>제목 : ${qna.title}</h5></div>
-                    <div class="contentId"><p>작성자: ${qna.user_id}</p></div>
-                    <div class="contentAt"><p>작성일: ${qna.write_at}</p></div>
+                <div class="content row-gap-3">
+                    <div class="contentTitle"><h5>${qna.title}</h5></div>
+                    <div class="contentId"><p>작성자 | ${qna.user_id}</p></div>
+                    <div class="contentAt"><p>작성일 | ${qna.write_at}</p></div>
                     <div class="realContent"><p>${qna.content}</p></div>
                 </div>
 
-                <div class="more">
+                <div class="more text-center">
                     <a href="/qna" class="btn btn-secondary">목록으로 돌아가기</a>
 
                     <!-- 글 작성자이거나 관리자일 경우 수정 버튼 표시 -->
