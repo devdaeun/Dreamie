@@ -77,7 +77,19 @@
             </div>
         </div>
         <div class="mypage-content">
-            <p>머선내용이징</p>
+            <c:choose>
+                <c:when test ="${not empty sessionScope.user}">
+                    <c:forEach var="mission" items="${missions}">
+                        <div>
+                            <span>
+                                <c:out value="${mission.challenge.title}"></c:out>
+                                <c:out value="${mission.challenge.content}"></c:out>
+                                <c:out value="${mission.succese}"></c:out>
+                            </span>
+                        </div>
+                    </c:forEach>
+                </c:when>
+            </c:choose>
         </div>
     </div>
 
