@@ -22,7 +22,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
-    <link rel="stylesheet" href="../css/qnaList.css"/>
+    <link rel="stylesheet" href="../css/qnaDetail.css"/>
 </head>
 <body id="page-top">
     <!-- Navigation-->
@@ -53,9 +53,9 @@
             <h1>문의사항</h1>
         </div>
 
-        <div class="grid text-center" style="--bs-columns: 10; --bs-gap: 1rem;">
+        <div class="grid" style="--bs-columns: 10; --bs-gap: 1rem;">
 
-            <div class="category">
+            <div class="category text-center">
                 <h3>카테고리</h3>
                 <div class="list-group list-group-flush">
                     <a href="#" class="list-group-item">공지사항</a>
@@ -65,31 +65,29 @@
             </div>
 
             <div class="board">
-<%--                <h3>문의사항</h3>--%>
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th>글번호</th>
-                        <th>제목</th>
-                        <th>회원</th>
-                        <th>작성일</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        <!-- qnaList를 반복하며 각 문의사항을 출력 -->
-                        <c:forEach var="qna" items="${qnaList}">
-                            <tr>
-                                <td><a href="/qna/${qna.question_id}">${qna.question_id}</a></td>      <!-- 문의 번호 -->
-                                <td><a href="/qna/${qna.question_id}">${qna.title}</a></td>           <!-- 제목 -->
-                                <td>${qna.user_id}</td>          <!-- 작성자 -->
-                                <td>${qna.write_at}</td>        <!-- 작성일 -->
-                            </tr>
-                        </c:forEach>
-                    </tbody>
-                </table>
-                <a href="/qnaForm">
-                    <button type="button" class="btn btn-outline-secondary">문의하기</button>
-                </a>
+
+                <div class="content row-gap-3">
+                    <div class="contentTitle"><h5>${qna.title}</h5></div>
+                    <div class="contentId"><p>작성자 | ${qna.user_id}</p></div>
+                    <div class="contentAt"><p>작성일 | ${qna.write_at}</p></div>
+                    <div class="realContent"><p>${qna.content}</p></div>
+                </div>
+
+                <div class="more text-center">
+                    <a href="/qna" class="btn btn-secondary">목록으로 돌아가기</a>
+
+                    <!-- 글 작성자이거나 관리자일 경우 수정 버튼 표시 -->
+                    <c:if test="${user != null && (user.user_id == qna.user_id)}"> <!-- || user.role == 'admin' -->
+                        <a href="/qna/edit/${qna.question_id}">
+                            <button class="btn btn-outline-danger">수정</button>
+                        </a>
+                    </c:if>
+
+                    <!-- 비회원일 경우 안내 메시지 -->
+                    <c:if test="${user == null}">
+                        <p>로그인 후 사용 가능합니다. <a href="/loginForm">로그인하기</a></p>
+                    </c:if>
+                </div>
             </div>
         </div>
     </div>
