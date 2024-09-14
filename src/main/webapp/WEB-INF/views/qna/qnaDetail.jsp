@@ -67,9 +67,15 @@
             <div class="board">
 
                 <div class="content row-gap-3">
-                    <div class="contentTitle"><h5>${qna.title}</h5></div>
-                    <div class="contentId"><p>작성자 | ${qna.user_id}</p></div>
-                    <div class="contentAt"><p>작성일 | ${qna.write_at}</p></div>
+                    <div class="contentTitle"><h4>${qna.title}</h4></div>
+                    <div class="contentId">
+                        <h6>작성자</h6>
+                        <p>${qna.user_id}</p>
+                    </div>
+                    <div class="contentAt">
+                        <h6>작성일</h6>
+                        <p>${qna.write_at}</p>
+                    </div>
                     <div class="realContent"><p>${qna.content}</p></div>
                 </div>
 
@@ -84,9 +90,9 @@
                     </c:if>
 
                     <!-- 비회원일 경우 안내 메시지 -->
-                    <c:if test="${user == null}">
-                        <p>로그인 후 사용 가능합니다. <a href="/loginForm">로그인하기</a></p>
-                    </c:if>
+<%--                    <c:if test="${user == null}">--%>
+<%--                        <p>로그인 후 사용 가능합니다. <a href="/loginForm">로그인하기</a></p>--%>
+<%--                    </c:if>--%>
                 </div>
             </div>
         </div>
