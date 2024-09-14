@@ -1,5 +1,6 @@
 package flower.dreamie.mission.entity;
 
+import flower.dreamie.challenges.entity.Challenges;
 import jakarta.persistence.*;
 
 import java.sql.Date;
@@ -12,6 +13,10 @@ public class Mission {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "mission_id")
     private long mission_id;
+
+    @ManyToOne
+    @JoinColumn(name = "challenges_id", insertable = false, updatable = false)
+    private Challenges challenge;
 
     @Column(nullable = false)
     private long challenges_id;
@@ -70,5 +75,25 @@ public class Mission {
 
     public void setSuccese_at(Date succese_at) {
         this.succese_at = succese_at;
+    }
+
+    public Challenges getChallenge() {
+        return challenge;
+    }
+
+    public void setChallenge(Challenges challenge) {
+        this.challenge = challenge;
+    }
+
+    public void setChallenges_id(long challenges_id) {
+        this.challenges_id = challenges_id;
+    }
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
     }
 }

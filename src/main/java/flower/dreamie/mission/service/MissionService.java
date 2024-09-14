@@ -6,6 +6,7 @@ import flower.dreamie.mission.repository.MissionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -21,8 +22,8 @@ public class MissionService {
         missionRepository.save(mission);
     }
 
-    public Mission findByUserId(long userId){
-        return missionRepository.findByUserId(userId).orElse(null);
+    public List<Mission> findByUserId(long userId){
+        return missionRepository.findByUserChallenge(userId);
     }
 
 }
