@@ -88,5 +88,16 @@ public class NoticeController {
         return "FAIL";
     }
 
-
+    // 공지사항 삭제하기
+    @PostMapping("/notice/delete")
+    @ResponseBody
+    public String deleteNotice(@RequestParam("notice_id") Long notice_id) {
+        try {
+            noticeService.deleteNotice(notice_id);
+            return "OK";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "ERROR";
+        }
+    }
 }

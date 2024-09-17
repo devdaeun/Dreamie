@@ -80,10 +80,14 @@
                 <a href="/notice" class="btn btn-secondary">목록으로 돌아가기</a>
 
                 <!-- 글 작성자이거나 관리자일 경우 수정 버튼 표시 -->
-                <c:if test="${user != null && (user.user_id == notice.user.user_id || user.role == 'admin')}">
+                <c:if test="${sessionScope.user != null && sessionScope.user.role == '관리자'}">
                     <button id="editButton" class="btn btn-outline-danger">수정</button>
                     <button id="saveButton" class="btn btn-primary edit-mode">저장</button>
+                    <button id="deleteButton" class="btn btn-danger">삭제</button>
                 </c:if>
+
+                <!-- 공지사항 ID를 hidden input으로 포함 -->
+                <input type="hidden" id="noticeId" value="${notice.notice_id}">
 
             </div>
         </div>
@@ -101,7 +105,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
 <!-- Core theme JS -->
 <script src="js/scripts.js"></script>
-<script src="js/notice.js"></script>
+<script src="${pageContext.request.contextPath}/js/notice.js"></script>
+
 </body>
 </html>
-

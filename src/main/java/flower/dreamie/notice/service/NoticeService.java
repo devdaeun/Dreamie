@@ -28,7 +28,7 @@ public class NoticeService {
         return  notice.orElseThrow(() -> new IllegalArgumentException("해당 공지사항이 존재하지 않습니다."));
     }
 
-    // 공지사항수정
+    // 공지사항 수정
     public NoticeList updateNotice(Long notice_id, String content) {
         NoticeList notice = getNoticeById(notice_id);
         if (notice != null) {
@@ -36,5 +36,14 @@ public class NoticeService {
             saveNotice(notice);
         }
         return notice;
+    }
+
+    // 공지사항 삭제
+    public void deleteNotice(Long notice_id) throws Exception {
+        try {
+            noticeRepository.deleteById(notice_id);
+        } catch (Exception e) {
+            throw new Exception("삭제 중 오류 발생", e);
+        }
     }
 }
