@@ -93,19 +93,54 @@
                             </div>
                         </c:forEach>
                     </c:if>
-                    <c:forEach var="answer" items="${answer}">
-                        <div class="card mb-3">
-                            <div class="card-body">
-                                <p>${answer.content}</p>
-                            </div>
-                        </div>
-                    </c:forEach>
+
+<%--                    <c:forEach var="answer" items="${answer}">--%>
+<%--                        <div class="card mb-3">--%>
+<%--                            <div class="card-body">--%>
+<%--                                <p>${answer.content}</p>--%>
+
+<%--                                <!-- 관리자 또는 답변 작성자에게만 수정 버튼 표시 -->--%>
+<%--                                <c:if test="${user != null && (user.role == '관리자')}">--%>
+<%--                                    <a href="/qna/${answer.question_id}/answer/${answer.answer_id}/edit" class="btn btn-outline-danger">수정</a>--%>
+<%--                                </c:if>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </c:forEach>--%>
+
                     <!-- 관리자만 답변 작성 폼을 볼 수 있도록 -->
                     <c:if test="${user != null && user.role == '관리자'}">
+                        <!-- 답변이 없을 경우 -->
+<%--                        <c:if test="${answer == null}">--%>
+<%--                            <form action="/qna/${qna.question_id}/answer" method="post">--%>
+<%--                                <div class="mb-3">--%>
+<%--                                    <label for="answerContent"></label>--%>
+<%--                                    <textarea name="content" class="form-control" id="answerContent" rows="3" placeholder="답변을 입력해주세요"></textarea>--%>
+<%--                                </div>--%>
+<%--                                <button type="submit" class="btn btn-secondary">답변 작성</button>--%>
+<%--                            </form>--%>
+<%--                        </c:if>--%>
+                        <!-- 답변이 있을 경우 수정 버튼 표시 -->
+<%--                        <c:if test="${answer != null}">--%>
+<%--                            <!-- 기존 답변을 보여주고 수정 버튼 표시 -->--%>
+<%--                            <form action="/qna/${qna.question_id}/answer" method="post">--%>
+<%--                                <div class="mb-3">--%>
+<%--                                    <label for="answerContents"></label>--%>
+<%--                                    <textarea name="content" class="form-control" id="answerContents" rows="3">--%>
+<%--                                        ${answer.content} <!-- 답변이 있으면 답변 내용을 미리 보여줌 -->--%>
+<%--                                    </textarea>--%>
+<%--                                </div>--%>
+<%--                                <button type="submit" class="btn btn-secondary">답변 수정</button>--%>
+<%--                            </form>--%>
+<%--                        </c:if>--%>
                         <form action="/qna/${qna.question_id}/answer" method="post">
                             <div class="comment mb-3">
                                 <label for="answerContent"></label>
                                 <textarea name="content" class="form-control" id="answerContent" rows="3" placeholder="답변을 입력하세요" required></textarea>
+                                <c:if test="${answer != null}">
+                                    <c:forEach var="answer" items="${answer}">
+                                        ${answer.content}
+                                    </c:forEach>
+                                </c:if>
                             </div>
                             <button type="submit" class="btn btn-secondary">답변 완료</button>
                         </form>
