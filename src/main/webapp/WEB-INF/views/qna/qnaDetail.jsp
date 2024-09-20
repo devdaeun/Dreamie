@@ -25,26 +25,27 @@
     <link rel="stylesheet" href="../css/qnaDetail.css"/>
 </head>
 <body id="page-top">
-<!-- Navigation-->
-<nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
-    <div class="container px-4 px-lg-5">
-        <a class="navbar-brand" href="/">Dreamie</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ms-auto my-2 my-lg-0">
-                <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-                <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a>
-                <li class="nav-item"><a class="nav-link" href="/notices">Notice</a>
-                <li class="nav-item"><a class="nav-link" href="/challenges">challenges</a>
-                    <!-- 문의사항 페이지로 이동하는 링크 -->
-                <li class="nav-item"><a class="nav-link" href="/qna">문의사항</a></li>
-                <% if (session.getAttribute("user") != null) { %>
-                <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
-                <% } else { %>
-                <li class="nav-item"><a class="nav-link" href="/loginForm">Login</a></li>
-                <% } %>
-            </ul>
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand" href="/">Dreamie</a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto my-2 my-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a>
+                    <li class="nav-item"><a class="nav-link" href="/notice">Notice</a>
+                    <li class="nav-item"><a class="nav-link" href="/challenges">challenges</a>
+                        <!-- 문의사항 페이지로 이동하는 링크 -->
+                    <li class="nav-item"><a class="nav-link" href="/qna">문의사항</a></li>
+                    <% if (session.getAttribute("user") != null) { %>
+                    <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+                    <% } else { %>
+                    <li class="nav-item"><a class="nav-link" href="/loginForm">Login</a></li>
+                    <% } %>
+                </ul>
+            </div>
         </div>
     </div>
 </nav>
@@ -54,18 +55,13 @@
     </div>
 
     <div class="grid" style="--bs-columns: 10; --bs-gap: 1rem;">
-
-        <div class="category text-center">
-            <h3>카테고리</h3>
-            <div class="list-group list-group-flush">
-                <a href="#" class="list-group-item">공지사항</a>
-                <a href="#" class="list-group-item active" aria-current="true">문의사항</a>
-                <a href="#" class="list-group-item">설정</a>
-            </div>
-        </div>
-
         <div class="board">
-
+            <div class="category text-center">
+                <h3>카테고리</h3>
+                <div class="list-group list-group-flush">
+                    <a href="/notice" class="list-group-item">공지사항</a>
+                    <a href="/qna" class="list-group-item active" aria-current="true">문의사항</a>
+                    <a href="#" class="list-group-item">설정</a>
             <div class="content row-gap-3">
                 <div class="contentTitle"><h4>${qna.title}</h4></div>
                 <div class="contentId">

@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>공지사항 작성 폼</title>
+    <title>공지사항</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -25,9 +25,10 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <!-- 나의 스타일 추가 -->
     <link href="css/styles.css" rel="stylesheet" />
-    <link rel="stylesheet" href="css/noticeForm.css?v=1234">
+    <link rel="stylesheet" href="css/noticeList.css?v=1234">
+
 </head>
-<body id="page-top">
+<body  id="page-top">
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
     <div class="container px-4 px-lg-5">
@@ -37,10 +38,10 @@
             <ul class="navbar-nav ms-auto my-2 my-lg-0">
                 <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                 <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-                <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a>
-                <li class="nav-item"><a class="nav-link" href="/notice">Notice</a>
-                <li class="nav-item"><a class="nav-link" href="/challenges">challenges</a>
-                    <!-- 문의사항 페이지로 이동하는 링크 -->
+                <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
+                <li class="nav-item"><a class="nav-link" href="/notice">Notice</a></li>
+                <li class="nav-item"><a class="nav-link" href="/challenges">challenges</a></li>
+                <!-- 문의사항 페이지로 이동하는 링크 -->
                 <li class="nav-item"><a class="nav-link" href="/qna">문의사항</a></li>
                 <% if (session.getAttribute("user") != null) { %>
                 <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
@@ -53,34 +54,52 @@
 </nav>
 <div id="container-notice" class="container">
     <div class="title">
-        <h1>공지사항 작성하기</h1>
+        <h1>공지사항</h1>
     </div>
 
-    <form action="/noticeSave" method="post">
-        <div class="board">
-            <div class="mb-3 row">
-                <label for="user_id" class="col-sm-1 col-form-label">아이디</label>
-                <div class="col-sm-3">
-                    <input type="text" readonly class="form-control-plaintext" id="user_id" value="${sessionScope.user.id}">
-                </div>
-            </div>
-            <div class="mb-3">
-                <label for="title" class="form-label">제목</label>
-                <input type="text" class="form-control" id="title" name="title">
-            </div>
-            <div class="mb-3">
-                <label for="content" class="form-label">공지내용</label>
-                <textarea class="form-control" id="content" name="content" rows="3"></textarea>
-            </div>
-            <div class="btn_area">
-                <button type="submit" class="btn btn-warning">저장</button>
-                <a href="/notice">
-                    <button type="button" class="btn btn-outline-warning">취소</button>
-                </a>
+    <div class="grid text-center" style="--bs-columns: 10; --bs-gap: 1rem;">
+
+        <div class="category">
+            <h3>카테고리</h3>
+            <div class="list-group list-group-flush">
+                <a href="/notice" class="list-group-item active" aria-current="true">공지사항</a>
+                <a href="/qna" class="list-group-item">문의사항</a>
+                <a href="#" class="list-group-item">설정</a>
             </div>
         </div>
-    </form>
+
+        <div class="board">
+            <h1>공지사항 목록</h1>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>제목</th>
+                    <th>작성자</th>
+                    <th>내용</th>
+                    <th>작성일</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach var="notice" items="${noticeList}">
+                    <tr>
+                        <td><a href="/notice/${notice.notice_id}">${notice.title}</a></td>
+                        <td>${notice.user.name}</td>
+                        <td>${notice.content}</td>
+                        <td>${notice.write_at}</td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+            <c:if test="${sessionScope.user != null && (sessionScope.user.role == '관리자')}">
+                <a href="/noticeForm"> <!-- 수정된 링크 -->
+                    <button type="button" class="btn btn-primary">공지사항 작성하기</button>
+                </a>
+            </c:if>
+
+        </div>
+    </div>
 </div>
+
 <!-- Footer-->
 <footer class="bg-light py-5">
     <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; 2023 - Company Name</div></div>
