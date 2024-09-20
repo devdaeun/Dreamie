@@ -21,7 +21,7 @@
     <!-- SimpleLightbox plugin CSS-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="css/styles.css" rel="stylesheet" />
+    <link href="../css/styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="../css/qnaDetail.css"/>
 </head>
 <body id="page-top">
@@ -55,59 +55,65 @@
     </div>
 
     <div class="grid" style="--bs-columns: 10; --bs-gap: 1rem;">
+
+        <div class="category text-center">
+            <h3>카테고리</h3>
+            <div class="list-group list-group-flush">
+                <a href="/notice" class="list-group-item">공지사항</a>
+                <a href="/qna" class="list-group-item active" aria-current="true">문의사항</a>
+                <a href="#" class="list-group-item">설정</a>
+            </div>
+        </div>
+
         <div class="board">
-            <div class="category text-center">
-                <h3>카테고리</h3>
-                <div class="list-group list-group-flush">
-                    <a href="/notice" class="list-group-item">공지사항</a>
-                    <a href="/qna" class="list-group-item active" aria-current="true">문의사항</a>
-                    <a href="#" class="list-group-item">설정</a>
             <div class="content row-gap-3">
                 <div class="contentTitle"><h4>${qna.title}</h4></div>
                 <div class="contentId">
                     <h6>작성자</h6>
-                    <h2> | </h2>
                     <p>${qna.user_id}</p>
                 </div>
                 <div class="contentAt">
                     <h6>작성일</h6>
-                    <h2> | </h2>
                     <p>${qna.write_at}</p>
                 </div>
                 <div class="realContent"><p>${qna.content}</p></div>
+
+                <div id="answers-section" class="mt-5">
+                    <!-- 답변 리스트 -->
+                    <c:if test="${user == null || user.role != '관리자'}">
+                        <!-- 비회원 및 일반 회원은 답변 작성 불가 메시지 -->
+                        <c:if test="${answer == null}">
+                            <p>아직 작성된 답변이 없습니다.</p>
+                        </c:if>
+                        <c:forEach var="answer" items="${answer}">
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <p>${answer.content}</p>
+                                </div>
+                            </div>
+                        </c:forEach>
+                    </c:if>
+                    <c:forEach var="answer" items="${answer}">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <p>${answer.content}</p>
+                            </div>
+                        </div>
+                    </c:forEach>
+                    <!-- 관리자만 답변 작성 폼을 볼 수 있도록 -->
+                    <c:if test="${user != null && user.role == '관리자'}">
+                        <form action="/qna/${qna.question_id}/answer" method="post">
+                            <div class="comment mb-3">
+                                <label for="answerContent"></label>
+                                <textarea name="content" class="form-control" id="answerContent" rows="3" placeholder="답변을 입력하세요" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-secondary">답변 완료</button>
+                        </form>
+                    </c:if>
+                </div>
             </div>
 
-            <div id="answers-section" class="mt-5">
-                <h5>답변</h5>
-                <!-- 답변 리스트 -->
-                <c:forEach var="answer" items="${answer}">
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <p><strong>${answer.user_id}</strong> - ${answer.write_at}</p>
-                            <p>${answer.content}</p>
-                        </div>
-                    </div>
-                </c:forEach>
-
-                <!-- 관리자만 답변 작성 폼을 볼 수 있도록 -->
-                <c:if test="${user != null && user.role == '관리자'}">
-                    <h5>답변 작성</h5>
-                    <form action="/qna/${qna.question_id}/answer" method="post">
-                        <div class="mb-3">
-                            <label for="answerContent">내용</label>
-                            <textarea name="content" class="form-control" id="answerContent" rows="3" placeholder="답변을 입력하세요" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">답변 작성</button>
-                    </form>
-                </c:if>
-
-                <!-- 비회원 및 일반 회원은 답변 작성 불가 메시지 -->
-                <c:if test="${user == null || user.role != '관리자'}">
-                    <p>관리자만 답변을 작성할 수 있습니다.</p>
-                </c:if>
-            </div>
-
-            <div class="more text-center">
+            <div id="more" class="text-center">
                 <a href="/qna" class="btn btn-secondary">목록으로 돌아가기</a>
 
                 <!-- 글 작성자이거나 관리자일 경우 수정 버튼 표시 -->
@@ -135,7 +141,7 @@
 <!-- SimpleLightbox plugin JS-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
 <!-- Core theme JS-->
-<script src="js/scripts.js"></script>
+<script src="../js/scripts.js"></script>
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
 <!-- * *                               SB Forms JS                               * *-->
 <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
