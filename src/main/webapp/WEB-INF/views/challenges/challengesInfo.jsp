@@ -25,7 +25,6 @@
                     <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a>
                     <li class="nav-item"><a class="nav-link" href="/notice">Notice</a>
                     <li class="nav-item"><a class="nav-link" href="/challenges">challenges</a>
-                    <!-- 문의사항 페이지로 이동하는 링크 -->
                     <li class="nav-item"><a class="nav-link" href="/qna">문의사항</a></li>
                     <% if (session.getAttribute("user") != null) { %>
                     <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
@@ -38,7 +37,6 @@
         </div>
     </nav>
     <div id="container">
-        <h3> 미션 확인 페이지입니다!</h3>
         <form id="challenge_modify_form" >
             <input type="hidden" name="challenges_id" id="challenges_id" value="${challenges.challenges_id}">
             <input type="text" name="title" value="${challenges.title}" id="title" readonly>

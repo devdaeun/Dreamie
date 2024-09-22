@@ -88,9 +88,11 @@
                     </div>
                     <div class="col-lg-3 col-md-6 text-center">
                         <div class="mt-5">
-                            <div class="mb-2"><i class="bi-laptop fs-1 text-primary"></i></div>
-                            <h3 class="h4 mb-2">미션</h3>
-                            <p class="text-muted mb-0">All dependencies are kept current to keep things fresh.</p>
+                            <a href="/challenges">
+                                <div class="mb-2"><i class="bi-laptop fs-1 text-primary"></i></div>
+                                <h3 class="h4 mb-2">미션</h3>
+                                <p class="text-muted mb-0">All dependencies are kept current to keep things fresh.</p>
+                            </a>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 text-center">
