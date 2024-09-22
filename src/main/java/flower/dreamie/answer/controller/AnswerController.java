@@ -7,7 +7,10 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @Controller
 public class AnswerController {
@@ -25,14 +28,28 @@ public class AnswerController {
                             HttpSession session) {
         User user = (User) session.getAttribute("user");
 
-        // 관리자인 경우에만 답변 작성 가능
-        if (user != null && user.getRole().equals("관리자")) {
-            Answer answer = new Answer();
-            answer.setQuestion_id(question_id); // 질문 ID 설정
-            answer.setUser_id(user.getUser_id()); // 작성자 ID 설정
-            answer.setContent(content); // 답변 내용 설정
+//        System.out.println("User Role: " + user.getRole()); // 로그 출력
 
-            answerService.saveAnswer(answer); // 답변 저장
+        // 관리자인 경우에만 답변 작성 가능
+        if (user != null && user.getRole() == User.UserRole.관리자) { //user.getRole().equals("관리자")
+            // 이미 답변이 존재하는지 확인
+            Answer existingAnswer = (Answer) answerService.getAnswerByQuestionId(question_id);
+
+            if (existingAnswer != null) {
+                // 답변이 이미 존재하면 업데이트
+                existingAnswer.setContent(content);
+                answerService.saveAnswer(existingAnswer); // 수정된 답변 저장
+            }
+            else {
+                Answer answer = new Answer();
+                answer.setQuestion_id(question_id); // 질문 ID 설정
+                answer.setUser_id(user.getUser_id()); // 작성자 ID 설정
+                answer.setContent(content); // 답변 내용 설정
+
+                System.out.println("저장할 답변 내용: " + content); // 로그 확인
+
+                answerService.saveAnswer(answer); // 답변 저장
+            }
         }
 
         return "redirect:/qna/" + question_id; // 답변 작성 후 질문 상세 페이지로 리다이렉트

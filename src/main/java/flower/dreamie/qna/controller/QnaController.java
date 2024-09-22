@@ -1,5 +1,7 @@
 package flower.dreamie.qna.controller;
 
+import flower.dreamie.answer.entity.Answer;
+import flower.dreamie.answer.service.AnswerService;
 import flower.dreamie.login.entity.User;
 import flower.dreamie.qna.entity.QnaList;
 import flower.dreamie.qna.service.QnaService;
@@ -10,13 +12,17 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Controller
 public class QnaController {
 
     private final QnaService qnaService;    //의존성 주입
+    private final AnswerService answerService;
 
-    public QnaController(QnaService qnaService) {
+    public QnaController(QnaService qnaService, AnswerService answerService) {
         this.qnaService = qnaService;
+        this.answerService = answerService;
     }
 
     //문의사항 목록 조회
@@ -51,7 +57,7 @@ public class QnaController {
         qnaList.setUser_id(user.getUser_id());
 
         // 기본적으로 show_type을 True로 설정 (필요시 form에서 값 받아 설정 가능)
-        qnaList.setShow_type(QnaList.ShowType.True);  // show_type을 기본적으로 'True'로 설정
+        qnaList.setShow_type(QnaList.ShowType.valueOf(qnaList.getShow_type().name()));  // show_type을 기본적으로 'True'로 설정
 
         // 문의사항 저장
         qnaService.saveQna(qnaList);
@@ -66,7 +72,10 @@ public class QnaController {
         QnaList qna = qnaService.getQnaById(question_id); // 해당 아이디로 문의사항 가져오기
         User user = (User) session.getAttribute("user");    //현재 로그인된 사용자 정보
 
+        List<Answer> answer = answerService.getAnswerByQuestionId(question_id); // 해당 질문의 답변 리스트 가져오기
+
         model.addAttribute("qna", qna);  // 글 정보를 뷰로 전달
+        model.addAttribute("answer", answer);   // 답변 모델에 추가
         if (user != null) {
             model.addAttribute("user", user);  // 사용자 정보를 뷰로 전달
         }

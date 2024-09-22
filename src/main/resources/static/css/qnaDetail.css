@@ -1,5 +1,5 @@
 #container-qna {
-    height: 900px;
+    /*height: auto;*/
     min-height: 40rem;
     padding-top: 5.5rem;
     padding-bottom: 0;
@@ -33,13 +33,16 @@
     margin: 5px;
     padding-top: 45px;
     background-color: whitesmoke;
-    height: 600px;
+    height: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 .content {
     display: grid;
-    height: 450px;
+    height: 700px;
     padding: 20px;
-    grid-template-rows: 1fr 1fr 1fr 3fr;
+    grid-template-rows: 1fr 1fr 1fr 3fr 3fr;
     gap: 10px;
 }
 .content .contentTitle {
@@ -67,4 +70,13 @@
     border-radius: 10px;
     padding: 10px;
     background-color: #D9D9D9;
+}
+#answers-section {
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #D9D9D9;
+}
+#more {
+    bottom: 20px;
 }
