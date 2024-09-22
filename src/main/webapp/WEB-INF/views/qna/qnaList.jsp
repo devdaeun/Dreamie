@@ -79,10 +79,38 @@
                         <!-- qnaList를 반복하며 각 문의사항을 출력 -->
                         <c:forEach var="qna" items="${qnaList}">
                             <tr>
-                                <td><a href="/qna/${qna.question_id}">${qna.question_id}</a></td>      <!-- 문의 번호 -->
-                                <td><a href="/qna/${qna.question_id}">${qna.title}</a></td>           <!-- 제목 -->
-                                <td>${qna.user_id}</td>          <!-- 작성자 -->
-                                <td>${qna.write_at}</td>        <!-- 작성일 -->
+<%--                                <td>${qna.question_id}</td>      <!-- 문의 번호 -->--%>
+<%--                                <td><a href="/qna/${qna.question_id}">${qna.title}</a></td>       <!-- 제목 -->--%>
+<%--                                <td>${qna.user_id}</td>          <!-- 작성자 -->--%>
+<%--                                <td>${qna.write_at}</td>        <!-- 작성일 -->--%>
+                                <td>${qna.question_id}</td> <!-- 문의 번호 -->
+
+                                <!-- 비밀글인지 확인 -->
+                                <!-- 작성자거나 관리자인 경우 글 제목을 보여줌 -->
+                                <!-- 작성자도 아니고 관리자가 아닐 때는 '비밀글입니다' 표시 -->
+                                <c:choose>
+                                    <c:when test="${qna.show_type == 'False'}">
+
+                                        <c:if test="${sessionScope.user.user_id == qna.user_id || sessionScope.user.role == '관리자'}">
+                                            <td><a href="/qna/${qna.question_id}"><i class="bi bi-lock-fill"></i> ${qna.title}</a></td>
+                                            <td>${qna.user_id}</td>
+                                            <td>${qna.write_at}</td>
+                                        </c:if>
+
+                                        <c:if test="${sessionScope.user.user_id != qna.user_id && sessionScope.user.role != '관리자'}">
+                                            <td><i class="bi bi-lock-fill"></i> 비밀글입니다 </td>
+                                            <td></td>
+                                            <td></td>
+                                        </c:if>
+
+                                    </c:when>
+
+                                    <c:otherwise>
+                                        <td><a href="/qna/${qna.question_id}">${qna.title}</a></td>
+                                        <td>${qna.user_id}</td>
+                                        <td>${qna.write_at}</td>
+                                    </c:otherwise>
+                                </c:choose>
                             </tr>
                         </c:forEach>
                     </tbody>

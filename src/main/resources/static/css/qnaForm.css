@@ -17,6 +17,9 @@
     padding: 100px 20px 0 0;
 }
 /* 작성하기 */
+.qnaForm {
+    background-color: whitesmoke;
+}
 .board {
     margin: 10px;
 }

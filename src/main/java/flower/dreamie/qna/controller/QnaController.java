@@ -57,7 +57,7 @@ public class QnaController {
         qnaList.setUser_id(user.getUser_id());
 
         // 기본적으로 show_type을 True로 설정 (필요시 form에서 값 받아 설정 가능)
-        qnaList.setShow_type(QnaList.ShowType.True);  // show_type을 기본적으로 'True'로 설정
+        qnaList.setShow_type(QnaList.ShowType.valueOf(qnaList.getShow_type().name()));  // show_type을 기본적으로 'True'로 설정
 
         // 문의사항 저장
         qnaService.saveQna(qnaList);

@@ -53,7 +53,7 @@
             <h1>문의사항 작성하기</h1>
         </div>
 
-        <form action="/qnaSave" method="post">
+        <form class="qnaForm" action="/qnaSave" method="post">
             <div class="board">
                 <div class="mb-3 row">
                     <label for="user_id" class="col-sm-1 col-form-label">아이디</label>
