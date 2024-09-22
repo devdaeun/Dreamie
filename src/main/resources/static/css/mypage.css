@@ -1,15 +1,28 @@
 .mypage-name {
     text-align: left;
-    margin: 10px 50px;
+    padding: 10px 50px;
+    background-color: white;
+    margin: 0;
+}
+
+.mypage-name p {
+    display: inline-block;
+    margin-top: 40px;
+    margin-bottom: 0;
 }
 
 .mypage-list{
     display: inline-block;
     width: 230px;
+    margin: 0;
+    position: fixed;
+    left: 0;
+    background-color: white;
+    padding-top: 20px;
 }
 
 #container{
-    padding: 90px 0;
+    padding: 72px 0;
 }
 
 .list-set {

@@ -49,9 +49,11 @@
        </div>
     </nav>
     <div id="container">
-        <h2>마이페이지입니다!</h2>
-        <p class="mypage-name"><c:out value="${sessionScope.user.name}"/>님</p>
+        <div class="mypage-name">
+            <p><c:out value="${sessionScope.user.name}"/>님</p>
+        </div>
         <div class="mypage-list">
+            <h3>마이페이지</h3>
             <div class="list-set">
                 <label>미션</label>
                 <ul>
