@@ -95,9 +95,11 @@
                     </div>
                     <div class="col-lg-3 col-md-6 text-center">
                         <div class="mt-5">
+                            <a href="/chat">
                             <div class="mb-2"><i class="bi-globe fs-1 text-primary"></i></div>
                             <h3 class="h4 mb-2">1 : 1 매칭</h3>
                             <p class="text-muted mb-0">You can use this design as is, or you can make changes!</p>
+                            </a>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 text-center">
