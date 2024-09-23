@@ -34,6 +34,15 @@ public class MissionController {
         return "redirect:/challenges";
     }
 
+    @PostMapping("/mission/complete")
+    public String missionComplete(@RequestParam("mission_id") long missionId, HttpSession session){
+        User user = (User) session.getAttribute("user");
+        long user_id = user.getUser_id();
+        missionService.missionUpdate(missionId);
+        missionService.usermissionUpdate(user_id);
+        return "redirect:/challenges";
+    }
+
     @GetMapping("/mypage")
     public String myPage(Model model, HttpSession session) {
         User user = (User) session.getAttribute("user");

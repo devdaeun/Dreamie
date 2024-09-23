@@ -42,8 +42,8 @@
         <form action="/challenges/add" method="post">
             <input type="text" name="title">
             <textarea name="content" max-length="200"></textarea>
-            <input type="date" name="start_date">
-            <input type="date" name="end_date">
+            <input type="date" name="start_at">
+            <input type="date" name="end_at">
             <input type="submit" value="등록하기">
             <input type="reset" value="취소">
         </form>

@@ -41,8 +41,8 @@
             <input type="hidden" name="challenges_id" id="challenges_id" value="${challenges.challenges_id}">
             <input type="text" name="title" value="${challenges.title}" id="title" readonly>
             <textarea type="text" name="content" max-length="200" id="content" readonly>${challenges.content}</textarea>
-            <input type="date" name="start_date" value="${challenges.start_date}" id="start_date" readonly>
-            <input type="date" name="end_date" value="${challenges.end_date}" id="end_date" readonly>
+            <input type="date" name="start_at" value="${challenges.start_at}" id="start_at" readonly>
+            <input type="date" name="end_at" value="${challenges.end_at}" id="end_at" readonly>
             <div id="modify_btn">
                 <input type="button" value="수정반영하기" onclick="modify_challenge()">
                 <input type="button" value="취소" onclick="cancle_btn()">

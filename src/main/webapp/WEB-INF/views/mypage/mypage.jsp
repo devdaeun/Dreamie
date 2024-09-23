@@ -78,24 +78,30 @@
                 </ul>
             </div>
         </div>
-        <div class="mypage-content">
+        <div class="missions">
             <c:choose>
                 <c:when test ="${not empty sessionScope.user}">
                     <c:forEach var="mission" items="${missions}">
-                        <div>
+                        <div class="mission-contents">
                             <span>
-                                <c:out value="${mission.challenge.title}"></c:out>
-                                <c:out value="${mission.challenge.content}"></c:out>
-                                <c:out value="${mission.succese}"></c:out>
+                                <a class="mission-info" href="/challenges/info?challenges_id=${mission.challenge.challenges_id}">
+                                    <p><c:out value="${mission.challenge.title}"></c:out></p>
+                                    <div class="challenge-period">
+                                        <p><c:out value="${mission.challenge.start_at}"/></p>
+                                        <p>~</p>
+                                        <p><c:out value="${mission.challenge.end_at}"/></p>
+                                    </div>
+                                </a>
                             </span>
+                            <a class="btn btn-primary btn-xl" onclick="missionComplete(${mission.mission_id})">미션 완료</a>
                         </div>
                     </c:forEach>
                 </c:when>
             </c:choose>
         </div>
     </div>
-
-<!-- Bootstrap Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="../js/mypage.js"></script>
 </body>
 </html>

@@ -62,8 +62,26 @@
     background-color: #af3d1e;
 }
 
-.mypage-content {
-    display: inline-block;
-    width: 75%;
-    background-color: white;
+.missions {
+    margin-left: 200px;
+}
+
+.mission-contents {
+   display: flex;
+   align-items: center;
+   width: 600px;
+   margin: 10px auto;
+   background-color: white;
+   padding: 10px;
+   justify-content: space-between;
+   border-radius: 10px;
+}
+
+.mission-info {
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.mission-info > p {
+    margin: 10px;
 }
