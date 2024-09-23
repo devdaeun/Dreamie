@@ -31,4 +31,9 @@ public class QnaService {
         Optional<QnaList> qna = qnaRepository.findById(qusetion_id);  // DB에서 ID로 문의사항을 찾음
         return qna.orElseThrow(() -> new IllegalArgumentException("해당 문의사항이 존재하지 않습니다."));
     }
+
+    //문의사항 삭제
+    public void deleteQna(Long question_id) {
+        qnaRepository.deleteById(question_id);  //해당 id의 문의사항 삭제
+    }
 }
