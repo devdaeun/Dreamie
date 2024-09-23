@@ -4,8 +4,8 @@ function challenge_btn(){
 
     document.getElementById('title').removeAttribute('readonly');
     document.getElementById('content').removeAttribute('readonly');
-    document.getElementById('start_date').removeAttribute('readonly');
-    document.getElementById('end_date').removeAttribute('readonly');
+    document.getElementById('start_at').removeAttribute('readonly');
+    document.getElementById('end_at').removeAttribute('readonly');
 }
 
 function modify_challenge() {

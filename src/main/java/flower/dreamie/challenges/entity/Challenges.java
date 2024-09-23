@@ -20,25 +20,25 @@ public class Challenges {
     private String content;
 
     @Column(nullable = false)
-    private Date start_date;
+    private Date start_at;
 
     @Column(nullable = false)
-    private Date end_date;
+    private Date end_at;
 
-    public Date getEnd_date() {
-        return end_date;
+    public Date getStart_at() {
+        return start_at;
     }
 
-    public void setEnd_date(Date end_date) {
-        this.end_date = end_date;
+    public void setStart_at(Date start_at) {
+        this.start_at = start_at;
     }
 
-    public Date getStart_date() {
-        return start_date;
+    public Date getEnd_at() {
+        return end_at;
     }
 
-    public void setStart_date(Date start_date) {
-        this.start_date = start_date;
+    public void setEnd_at(Date end_at) {
+        this.end_at = end_at;
     }
 
     public String getContent() {
