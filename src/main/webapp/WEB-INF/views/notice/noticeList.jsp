@@ -90,11 +90,10 @@
                 </c:forEach>
                 </tbody>
             </table>
-            <c:if test="${sessionScope.user != null && (sessionScope.user.role == '관리자')}">
-                <a href="/noticeForm"> <!-- 수정된 링크 -->
-                    <button type="button" class="btn btn-primary">공지사항 작성하기</button>
-                </a>
+            <c:if test="${sessionScope.user != null && sessionScope.user.role == '관리자'}">
+                <a href="/noticeForm" class="btn btn-primary">공지사항 작성하기</a>
             </c:if>
+
 
         </div>
     </div>
