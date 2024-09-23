@@ -1,7 +1,6 @@
 package flower.dreamie.notice.entity;
 
 import flower.dreamie.login.entity.User;
-import flower.dreamie.qna.entity.QnaList;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -26,10 +25,6 @@ public class NoticeList{
     @Column(length = 200, nullable = false)
     private String content;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private ShowType show_type;
-
     @Column(nullable = false)
     private LocalDateTime write_at;
 
@@ -47,10 +42,6 @@ public class NoticeList{
         this.edit_at = LocalDateTime.now();
     }
 
-    public enum ShowType {
-        True,
-        False
-    }
 
     @ManyToOne
     @JoinColumn(name = "user_id")

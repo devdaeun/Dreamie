@@ -36,7 +36,7 @@ public class NoticeController {
         }
 
         // 관리자 체크
-        if (!user.getRole().equals("admin")) {
+        if (!user.getRole().equals(User.UserRole.관리자)) {
             return "redirect:/notice";
         }
 
@@ -48,19 +48,18 @@ public class NoticeController {
     @RequestMapping("/noticeSave")
     public String saveNotice(@ModelAttribute("notice") NoticeList noticeList, HttpSession session) {
         User user = (User) session.getAttribute("user");
+        System.out.println("User from session: " + user);
 
-        if (user == null || !"admin".equals(user.getRole())) {
+        if (user == null || user.getRole() != User.UserRole.관리자) {
             return "redirect:/notice";
         }
 
-        // NoticeList에 User 객체를 설정
         noticeList.setUser(user);
-        noticeList.setShow_type(NoticeList.ShowType.True);
-
         noticeService.saveNotice(noticeList);
 
         return "redirect:/notice";
     }
+
 
     // 공지사항 상세 조회
     @RequestMapping("/notice/{notice_id}")
