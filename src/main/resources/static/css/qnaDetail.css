@@ -11,6 +11,8 @@
 .title {
     height: 150px;
     text-align: right;
+    border-bottom: 3px solid #F46239;
+    margin-bottom: 15px;
 }
 .title h1 {
     padding: 100px 20px 0 0;
@@ -78,5 +80,7 @@
     background-color: #D9D9D9;
 }
 #more {
-    bottom: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
 }

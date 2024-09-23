@@ -11,6 +11,8 @@
 .title {
     height: 150px;
     text-align: right;
+    border-bottom: 3px solid #F46239;
+    margin-bottom: 15px;
 }
 .title h1 {
     padding: 100px 20px 0 0;

@@ -53,44 +53,51 @@
             <h1>문의사항 작성하기</h1>
         </div>
 
-        <form class="qnaForm" action="/qnaSave" method="post">
-            <div class="board">
-                <div class="mb-3 row">
-                    <label for="user_id" class="col-sm-1 col-form-label">아이디</label>
-                    <div class="col-sm-3">
-                        <input type="text" readonly class="form-control-plaintext" id="user_id" value="${sessionScope.user.id}">
-                    </div>
-                </div>
-                <!-- show_type을 사용자가 선택하도록 할 경우 (기본 값 True로 설정됨) -->
-                <div class="mb-3">
-                    <label for="show_type" class="form-label">공개 여부</label>
-                    <select class="form-control" id="show_type" name="show_type">
-                        <option value="True">공개</option>
-                        <option value="False">비공개</option>
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <label for="title" class="form-label">제목</label>
-                    <input type="text" class="form-control" id="title" name="title">
-                </div>
-                <div class="mb-3">
-                    <label for="content" class="form-label">문의 내용</label>
-                    <textarea class="form-control" id="content" name="content" rows="3"></textarea>
-                </div>
-        <%--        <div class="input-group">--%>
-        <%--            <span class="input-group-text">문의 내용</span>--%>
-        <%--            <textarea class="form-control" aria-label="With textarea"></textarea>--%>
-        <%--        </div>--%>
-                <div class="btn_area">
-                    <button type="submit" class="btn btn-warning">저장</button>
-                    <a href="/qna">
-                        <button type="button" class="btn btn-outline-warning">취소</button>
-                    </a>
+        <div class="grid" style="--bs-columns: 10; --bs-gap: 1rem;">
+
+            <div class="category text-center">
+                <h3>카테고리</h3>
+                <div class="list-group list-group-flush">
+                    <a href="#" class="list-group-item">공지사항</a>
+                    <a href="#" class="list-group-item active" aria-current="true">문의사항</a>
+                    <a href="#" class="list-group-item">설정</a>
                 </div>
             </div>
-        </form>
-    </div>
 
+            <form class="qnaForm" action="/qnaSave" method="post">
+                <div class="board">
+                    <div class="mb-3 row">
+                        <label for="user_id" class="userId col-sm-1 col-form-label">아이디</label>
+                        <div class="col-sm-3">
+                            <input type="text" readonly class="form-control-plaintext" id="user_id" value="${sessionScope.user.id}">
+                        </div>
+                    </div>
+                    <!-- show_type을 사용자가 선택하도록 할 경우 (기본 값 True로 설정됨) -->
+                    <div class="mb-3">
+                        <label for="show_type" class="form-label">공개 여부</label>
+                        <select class="form-control" id="show_type" name="show_type">
+                            <option value="True">공개</option>
+                            <option value="False">비공개</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="title" class="form-label">제목</label>
+                        <input type="text" class="form-control" id="title" name="title">
+                    </div>
+                    <div class="mb-3">
+                        <label for="content" class="form-label">문의 내용</label>
+                        <textarea class="form-control" id="content" name="content" rows="3"></textarea>
+                    </div>
+                    <div class="btn_area">
+                        <button type="submit" class="btn btn-warning">저장</button>
+                        <a href="/qna">
+                            <button type="button" class="btn btn-outline-warning">취소</button>
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
     <!-- Footer-->
     <footer class="bg-light py-5">
         <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; 2023 - Company Name</div></div>
