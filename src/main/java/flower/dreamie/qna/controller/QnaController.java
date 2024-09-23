@@ -82,4 +82,46 @@ public class QnaController {
 
         return "qna/qnaDetail";  // 상세 페이지로 이동
     }
+
+    //문의사항 수정 페이지로 이동
+    @RequestMapping("/qna/{question_id}/edit")
+    public String editForm(@PathVariable("question_id") Long question_id, Model model, HttpSession session) {
+        QnaList qna = qnaService.getQnaById(question_id);   //해당 문의사항 가져오기
+        User user = (User) session.getAttribute("user");    //현재 로그인된 사용자 정보
+
+        model.addAttribute("qna", qna); //수정할 글 정보를 모델에 전달
+        return "qna/qnaUpdate"; //수정 페이지로 이동
+    }
+
+    //문의사항 수정 처리
+    @RequestMapping("/qna/{question_id}/update")
+    public String updateQna(@PathVariable("question_id") Long question_id, @ModelAttribute("qna") QnaList qnaList, HttpSession session) {
+        QnaList qna = qnaService.getQnaById(question_id);   //기존 문의사항 가져오기
+        User user = (User) session.getAttribute("user");    // 현재 로그인된 사용자 정보
+
+        //수정
+        qna.setShow_type(QnaList.ShowType.valueOf(qnaList.getShow_type().name()));
+        qna.setTitle(qnaList.getTitle());
+        qna.setContent(qnaList.getContent());
+
+        //문의사항 업데이트
+        qnaService.saveQna((qna));
+
+        return "redirect:/qna/" + question_id;  //수정 후 상세 페이지로 리다이렉트
+    }
+
+    //문의사항 삭제
+    @RequestMapping("/qna/{question_id}/delete")
+    public String deleteQna(@PathVariable("question_id") Long question_id, HttpSession session) {
+        QnaList qna = qnaService.getQnaById(question_id);   // 삭제할 글 가져오기
+        User user = (User) session.getAttribute("user");    // 현재 로그인된 사용자 정보
+
+        // 글 작성자이거나 관리자일 경우에만 삭제 가능
+        if (user == null || (!qna.getUser_id().equals(user.getUser_id()) && !user.getRole().equals("관리자"))) {
+            return "redirect:/qna";  // 권한이 없으면 목록 페이지로 리다이렉트
+        }
+
+        qnaService.deleteQna(question_id);  // 서비스에서 삭제 처리
+        return "redirect:/qna";  // 삭제 후 목록 페이지로 리다이렉트
+    }
 }
