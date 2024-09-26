@@ -82,34 +82,21 @@
                     <!-- 답변 리스트 -->
                     <c:if test="${user == null || user.role != '관리자'}">
                         <!-- 비회원 및 일반 회원은 답변 작성 불가 메시지 -->
-                        <c:if test="${answer == null}">
+                        <c:if test="${empty answer}">
                             <p>아직 작성된 답변이 없습니다.</p>
                         </c:if>
                         <c:forEach var="answer" items="${answer}">
-                            <div class="card mb-3">
-                                <div class="card-body">
+                            <div class="mb-3">
+                                <div class="comment">
                                     <p>${answer.content}</p>
                                 </div>
                             </div>
                         </c:forEach>
                     </c:if>
 
-<%--                    <c:forEach var="answer" items="${answer}">--%>
-<%--                        <div class="card mb-3">--%>
-<%--                            <div class="card-body">--%>
-<%--                                <p>${answer.content}</p>--%>
-
-<%--                                <!-- 관리자 또는 답변 작성자에게만 수정 버튼 표시 -->--%>
-<%--                                <c:if test="${user != null && (user.role == '관리자')}">--%>
-<%--                                    <a href="/qna/${answer.question_id}/answer/${answer.answer_id}/edit" class="btn btn-outline-danger">수정</a>--%>
-<%--                                </c:if>--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                    </c:forEach>--%>
-
                     <!-- 관리자만 답변 작성 폼을 볼 수 있도록 -->
                     <c:if test="${user != null && user.role == '관리자'}">
-                        <c:if test="${answer == null}">
+                        <c:if test="${empty answer}">
                             <form action="/qna/${qna.question_id}/answer" method="post">
                                 <div class="comment mb-3">
                                     <label for="answerContent"></label>
@@ -118,15 +105,15 @@
                                 <button type="submit" class="btn btn-secondary">답변 완료</button>
                             </form>
                         </c:if>
-                        <c:if test="${answer != null}">
+                        <c:if test="${!empty answer}">
                             <c:forEach var="answer" items="${answer}">
-                                <div class="card mb-3">
-                                    <div class="card-body">
+                                <div class="mb-3">
+                                    <div class="comment">
                                         <p>${answer.content}</p>
+                                        <a href="/qna/${answer.question_id}/answer/${answer.answer_id}" class="btn btn-outline-danger">수정하기</a>
                                     </div>
                                 </div>
                             </c:forEach>
-                            <a href="/qna/${answer.question_id}/answer/${answer.answer_id}/edit" class="btn btn-outline-danger">수정하기</a>
                         </c:if>
                     </c:if>
                 </div>
@@ -138,17 +125,12 @@
                 <!-- 글 작성자이거나 관리자일 경우 수정 버튼 표시 -->
                 <c:if test="${user != null && (user.user_id == qna.user_id)}"> <!-- || user.role == 'admin' -->
                     <a href="/qna/${qna.question_id}/edit">
-                        <button class="btn btn-outline-danger">수정</button>
+                        <button class="btn btn-primary">수정</button>
                     </a>
                     <form action="/qna/${qna.question_id}/delete" method="post" onsubmit="return confirm('정말로 삭제하시겠습니까?');">
                         <button type="submit" class="btn btn-outline-danger">삭제</button>
                     </form>
                 </c:if>
-
-                <!-- 비회원일 경우 안내 메시지 -->
-                <%--                    <c:if test="${user == null}">--%>
-                <%--                        <p>로그인 후 사용 가능합니다. <a href="/loginForm">로그인하기</a></p>--%>
-                <%--                    </c:if>--%>
             </div>
         </div>
     </div>

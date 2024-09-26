@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>문의사항 수정</title>
+    <title>문의사항 상세보기</title>
 
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Favicon-->
@@ -21,8 +21,8 @@
     <!-- SimpleLightbox plugin CSS-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="../../css/styles.css" rel="stylesheet" />
-    <link rel="stylesheet" href="../../css/qnaUpdate.css"/>
+    <link href="../../../css/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../../css/qnaDetail.css"/>
 </head>
 <body id="page-top">
 <!-- Navigation-->
@@ -47,10 +47,11 @@
             </ul>
         </div>
     </div>
+    </div>
 </nav>
 <div id="container-qna" class="container">
     <div class="title">
-        <h1>문의사항 수정하기</h1>
+        <h1>답변 수정하기</h1>
     </div>
 
     <div class="grid" style="--bs-columns: 10; --bs-gap: 1rem;">
@@ -58,46 +59,44 @@
         <div class="category text-center">
             <h3>카테고리</h3>
             <div class="list-group list-group-flush">
-                <a href="#" class="list-group-item">공지사항</a>
-                <a href="#" class="list-group-item active" aria-current="true">문의사항</a>
+                <a href="/notice" class="list-group-item">공지사항</a>
+                <a href="/qna" class="list-group-item active" aria-current="true">문의사항</a>
                 <a href="#" class="list-group-item">설정</a>
             </div>
         </div>
 
-        <form class="qnaForm" action="/qna/${qna.question_id}/update" method="post">
-            <div class="board">
-                <div class="mb-3 row">
-                    <label for="user_id" class="userId col-sm-1 col-form-label">아이디</label>
-                    <div class="col-sm-3">
-                        <input type="text" readonly class="form-control-plaintext" id="user_id" value="${sessionScope.user.id}">
-                    </div>
+        <div class="board">
+            <div class="content row-gap-3">
+                <div class="contentTitle"><h4>${qna.title}</h4></div>
+                <div class="contentId">
+                    <h6>작성자</h6>
+                    <p>${qna.user_id}</p>
                 </div>
-                <!-- show_type을 사용자가 선택하도록 할 경우 (기본 값 True로 설정됨) -->
-                <div class="mb-3">
-                    <label for="show_type" class="form-label">공개 여부</label>
-                    <select class="form-control" id="show_type" name="show_type">
-                        <option value="True" <c:if test="${qna.show_type == 'True'}">selected</c:if>>공개</option>
-                        <option value="False" <c:if test="${qna.show_type == 'False'}">selected</c:if>>비공개</option>
-                    </select>
+                <div class="contentAt">
+                    <h6>작성일</h6>
+                    <p>${qna.write_at}</p>
                 </div>
-                <div class="mb-3">
-                    <label for="title" class="form-label">제목</label>
-                    <input type="text" class="form-control" id="title" name="title" value="${qna.title}">
-                </div>
-                <div class="mb-3">
-                    <label for="content" class="form-label">문의 내용</label>
-                    <textarea class="form-control" id="content" name="content" rows="3">${qna.content}</textarea>
-                </div>
-                <div class="btn_area">
-                    <button type="submit" class="btn btn-warning">수정 완료</button>
-                    <a href="/qna/${qna.question_id}">
-                        <button type="button" class="btn btn-outline-warning">취소</button>
-                    </a>
+                <div class="realContent"><p>${qna.content}</p></div>
+
+                <h6>답변 수정</h6>
+                <div id="answers-section" class="mt-5">
+                    <!-- 관리자만 답변 수정 폼을 볼 수 있도록 -->
+                    <c:if test="${user != null && user.role == '관리자'}">
+                        <form action="/qna/${qna.question_id}/answer/${answer.answer_id}/update" method="post">
+                            <div class="comment mb-3">
+                                <label for="answerContent"></label>
+                                <textarea name="content" class="form-control" id="answerContent" rows="3" required>${answer.content}</textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">수정 완료</button>
+                            <a href="/qna/${answer.question_id}" class="btn btn-secondary">취소</a>
+                        </form>
+                    </c:if>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
 </div>
+
 <!-- Footer-->
 <footer class="bg-light py-5">
     <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; 2023 - Company Name</div></div>
@@ -107,7 +106,7 @@
 <!-- SimpleLightbox plugin JS-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
 <!-- Core theme JS-->
-<script src="js/scripts.js"></script>
+<script src="../js/scripts.js"></script>
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
 <!-- * *                               SB Forms JS                               * *-->
 <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
