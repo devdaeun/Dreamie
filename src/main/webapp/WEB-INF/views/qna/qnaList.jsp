@@ -40,7 +40,10 @@
                         <!-- 문의사항 페이지로 이동하는 링크 -->
                     <li class="nav-item"><a class="nav-link" href="/qna">문의사항</a></li>
                     <% if (session.getAttribute("user") != null) { %>
+
+                    <!--로그인 하면 로그아웃 옆에 마이페이지-->
                     <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/mypage">Mypage</a></li>
                     <% } else { %>
                     <li class="nav-item"><a class="nav-link" href="/loginForm">Login</a></li>
                     <% } %>
