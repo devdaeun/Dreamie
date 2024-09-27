@@ -60,8 +60,8 @@
                 <div class="list-group list-group-flush">
                     <label>미션</label>
                     <a href="/challenges" class="list-group-item">미션 추가하기</a>
-                    <a href="/mypage" class="list-group-item list-active">진행중 미션</a>
-                    <a href="#" class="list-group-item">포도알 스티커</a>
+                    <a href="/mypage" class="list-group-item">진행중 미션</a>
+                    <a href="#" class="list-group-item  list-active">포도알 스티커</a>
                 </div>
                 <div class="list-group list-group-flush">
                     <label>고객센터</label>
@@ -78,24 +78,12 @@
             </div>
 
             <div class="missions board">
-                <h1>진행중 미션</h1>
-                <c:choose>
-                    <c:when test="${not empty sessionScope.user}">
-                        <c:forEach var="mission" items="${missions}">
-                            <div class="mission-contents">
-                                <a class="mission-info" href="/challenges/info?challenges_id=${mission.challenge.challenges_id}">
-                                    <p><c:out value="${mission.challenge.title}"/></p>
-                                    <div class="challenge-period">
-                                        <p><c:out value="${mission.challenge.start_at}"/></p>
-                                        <p>~</p>
-                                        <p><c:out value="${mission.challenge.end_at}"/></p>
-                                    </div>
-                                </a>
-                                <a class="btn btn-primary btn-xl" onclick="missionComplete(${mission.mission_id})">미션 완료</a>
-                            </div>
-                        </c:forEach>
-                    </c:when>
-                </c:choose>
+                <h1>포도알 스티커</h1>
+                <div class="stickers">
+                    <img class="sticker" src="../assets/img/empty_sticker.svg" data-mission-id="1" alt="스티커 1">
+                    <img class="sticker" src="../assets/img/empty_sticker.svg" data-mission-id="2" alt="스티커 2">
+                    <img class="sticker" src="../assets/img/empty_sticker.svg" data-mission-id="3" alt="스티커 3">
+                </div>
             </div>
         </div>
     </div>
