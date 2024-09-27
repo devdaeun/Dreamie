@@ -10,7 +10,7 @@
     <title>미션</title>
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"/>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Bootstrap Icons-->
@@ -20,7 +20,7 @@
     <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
     <!-- SimpleLightbox plugin CSS-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
-    <link href="../css/styles.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../css/styles.css"/>
     <link rel="stylesheet" href="../css/challenges.css"/>
     <link rel="stylesheet" href="../css/mypage.css"/>
 </head>
@@ -65,8 +65,8 @@
                 </div>
                 <div class="list-group list-group-flush">
                     <label>고객센터</label>
-                    <a href="#" class="list-group-item">공지사항</a>
-                    <a href="#" class="list-group-item">FAQ</a>
+                    <a href="/notice" class="list-group-item">공지사항</a>
+                    <a href="/qna" class="list-group-item">문의사항</a>
                 </div>
                 <div class="list-group list-group-flush">
                     <label>설정</label>

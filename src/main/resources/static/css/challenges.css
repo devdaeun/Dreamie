@@ -1,11 +1,10 @@
 #container {
     height: 900px;
     padding: 90px;
-    background-color: #D9D9D9;
-    border: 1px solid;
+    background-color: whitesmoke;
 }
 #mainNav {
-    background-color: #af3d1e;
+    background-color: #F46239;
 }
 
 .challenge-label {
