@@ -73,6 +73,7 @@
                     <a href="/challenges" class="list-group-item">프로필 수정</a>
                     <a href="#" class="list-group-item">비밀번호 수정</a>
                     <a href="/logout" class="list-group-item">로그아웃</a>
+                    <a href="#" class="list-group-item">회원탈퇴</a>
                 </div>
             </div>
 
