@@ -57,4 +57,21 @@ public class MissionController {
         return "mypage/mypage";
     }
 
+    @GetMapping("/mypage/grape")
+    public String grape(Model model, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+
+        if (user != null) {
+            long userId = user.getUser_id();
+            // 미션 정보를 가져옴
+            List<Mission> missions = missionService.findByUserId(userId);
+            // 모델에 추가
+            model.addAttribute("missions", missions);
+        }
+
+        return "mypage/myGrape";
+    }
+
+
+
 }

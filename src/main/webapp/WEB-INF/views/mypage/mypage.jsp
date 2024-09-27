@@ -61,7 +61,7 @@
                     <label>미션</label>
                     <a href="/challenges" class="list-group-item">미션 추가하기</a>
                     <a href="/mypage" class="list-group-item list-active">진행중 미션</a>
-                    <a href="#" class="list-group-item">포도알 스티커</a>
+                    <a href="/mypage/grape" class="list-group-item">포도알 스티커</a>
                 </div>
                 <div class="list-group list-group-flush">
                     <label>고객센터</label>
