@@ -78,9 +78,9 @@
                 </div>
                 <div class="realContent"><p>${qna.content}</p></div>
 
-                <h6>답변 수정</h6>
                 <div id="answers-section" class="mt-5">
                     <!-- 관리자만 답변 수정 폼을 볼 수 있도록 -->
+                    <h6>답변 수정</h6>
                     <c:if test="${user != null && user.role == '관리자'}">
                         <form action="/qna/${qna.question_id}/answer/${answer.answer_id}/update" method="post">
                             <div class="comment mb-3">
