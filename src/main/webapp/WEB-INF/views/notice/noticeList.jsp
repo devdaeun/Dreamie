@@ -32,7 +32,7 @@
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
     <div class="container px-4 px-lg-5">
-        <a class="navbar-brand" href="/">Dreamie</a>
+        <a class="navbar-brand" href="/">Notice</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ms-auto my-2 my-lg-0">
@@ -41,10 +41,11 @@
                 <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
                 <li class="nav-item"><a class="nav-link" href="/notice">Notice</a></li>
                 <li class="nav-item"><a class="nav-link" href="/challenges">challenges</a></li>
-                <!-- 문의사항 페이지로 이동하는 링크 -->
                 <li class="nav-item"><a class="nav-link" href="/qna">문의사항</a></li>
                 <% if (session.getAttribute("user") != null) { %>
+                <!--로그인 하면 로그아웃 옆에 마이페이지-->
                 <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+                <li class="nav-item"><a class="nav-link" href="/mypage">Mypage</a></li>
                 <% } else { %>
                 <li class="nav-item"><a class="nav-link" href="/loginForm">Login</a></li>
                 <% } %>
@@ -69,7 +70,6 @@
         </div>
 
         <div class="board">
-            <h1>공지사항 목록</h1>
             <table class="table table-striped">
                 <thead>
                 <tr>
