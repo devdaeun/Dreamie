@@ -9,95 +9,82 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 
 <div class="container">
     <div class="col-6">
         <label><b>채팅방</b></label>
+        <c:forEach var="room" items="${room}">
+            <p>${room.room_name}</p>
+        </c:forEach>
     </div>
     <div>
         <div id="msgArea" class="col"></div>
         <div class="col-6">
             <div class="input-group mb-3">
-                <input type="text" id="msg" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
+                <input type="text" id="msg" class="form-control">
                 <div class="input-group-append">
                     <button class="btn btn-outline-secondary" type="button" id="button-send">전송</button>
                 </div>
             </div>
         </div>
+        <div class="col-6"></div>
     </div>
 </div>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.0/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 <script>
     $(document).ready(function(){
+        const roomName = "${room.room_name}"
+        const roomId = "${room.roomId}"
         const id = "${id}";  // JSP에서 전달된 id 변수
-        console.log("JSP에서 받은 ID:", id);  // ID 값이 출력되는지 확인
 
-        $("#button-send").on("click", function(e) {
-            send();
+        const socket = new SockJS('/stomp/chat'); // SockJS 엔드포인트
+        const stomp = Stomp.over(socket); // STOMP
+
+         //2. connection이 맺어지면 실행
+        stomp.connect({}, function (){
+           console.log("STOMP Connection")
+
+           //4. subscribe(path, callback)으로 메세지를 받을 수 있음
+           stomp.subscribe("/sub/chat/room/" + roomId, function (message) {
+               var content = JSON.parse(message.body);
+               console.log("Received message: ", content);
+               var sender = content.sender;
+               var str = '';
+               if(sender === id){
+                   str = "<div class='col-6'>";
+                   str += "<div class='alert alert-secondary'>";
+                   str += "<b>" + sender + " : " + content.message + "</b>";
+                   str += "</div></div>";
+               }
+               else{
+                   str = "<div class='col-6'>";
+                   str += "<div class='alert alert-warning'>";
+                   str += "<b>" + sender + " : " + content.message + "</b>";
+                   str += "</div></div>";
+               }
+
+               $("#msgArea").append(str);
+           });
+
+           //3. send(path, header, message)로 메세지를 보낼 수 있음
+           stomp.send('/pub/chat/enter', {}, JSON.stringify({chat_room_id: roomId, sender: id}))
         });
 
-        const websocket = new WebSocket("ws://localhost:8090/ws/chat");
-
-        websocket.onmessage = onMessage;
-        websocket.onopen = onOpen;
-        websocket.onclose = onClose;
-
-        function send() {
-            let msg = document.getElementById("msg").value;
-            if (msg.trim() !== "") {
-                let formattedMessage = id + ":" + msg;
-                console.log("Sending message:", formattedMessage);
-                websocket.send(formattedMessage);
-                document.getElementById("msg").value = '';
+        $("#button-send").on("click", function(e){
+            var msg = document.getElementById("msg");
+            if (msg.value.trim() === "") {
+                alert("메시지를 입력하세요.");
+                return;
             }
-        }
-
-        function onClose(evt) {
-            var str = id + ": 님이 방을 나가셨습니다.";
-            console.log("Sending close message:", str);
-            websocket.send(str);
-        }
-
-        function onOpen(evt) {
-            var str = id + ": 님이 입장하셨습니다.";
-            console.log("Sending open message:", str);
-            websocket.send(str);
-        }
-
-        function onMessage(msg) {
-            var data = msg.data;
-            console.log("Received message:", data);
-            var arr = data.split(":", 2); // ":"로 데이터를 나누되, 최대 2개 요소로 분리
-
-            if (arr.length === 2) {
-                var sessionId = arr[0];
-                var message = arr[1];
-
-                var str;
-                if (sessionId === id) {
-                    str = "<div class='col-6'>";
-                    str += "<div class='alert alert-secondary'>";
-                    str += "<b>" + sessionId + " : " + message + "</b>";
-                    str += "</div></div>";
-                } else {
-                    str = "<div class='col-6'>";
-                    str += "<div class='alert alert-warning'>";
-                    str += "<b>" + sessionId + " : " + message + "</b>";
-                    str += "</div></div>";
-                }
-                $("#msgArea").append(str);
-            } else {
-                console.error("Received malformed message:", data);
-            }
-        }
+            console.log(id + ":" + msg.value);
+            stomp.send('/pub/chat/message', {}, JSON.stringify({roomId: roomId, message: msg.value, sender: id}));
+            msg.value = '';
+        });
     });
 </script>
-
-
 </body>
 </html>
