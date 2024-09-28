@@ -27,5 +27,9 @@ public class ChatRoom {
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt; // 생성일 추가
 
+    // 추가한 생성자
+    public ChatRoom(long roomId) {
+        this.roomId = roomId;
+    }
 
 }

@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -16,9 +18,8 @@ public class ChatMessage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long message_id;
 
-    @ManyToOne
-    @JoinColumn(name = "chat_room_id", nullable = false)
-    private ChatRoom chatRoom;
+    @Column(nullable = false)
+    private long chat_room_id;
 
     @Column(nullable = false)
     private String sender;
@@ -27,5 +28,5 @@ public class ChatMessage {
     private String message;
 
     @Column(nullable = false)
-    private Long timestamp; // 메시지 전송 시간
+    private LocalDateTime timestamp; // 메시지 전송 시간
 }

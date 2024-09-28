@@ -20,7 +20,7 @@
     <h3>채팅방 리스트 페이지입니다!</h3>
     <div class="col-6">
         <c:forEach var="room" items="${list}">
-            <a>
+            <a href="/chat/room?roomId=${room.roomId}">
                 <p>${room.roomId}</p>
                 <p>${room.room_name}</p>
             </a>
