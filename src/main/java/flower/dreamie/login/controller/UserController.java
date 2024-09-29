@@ -5,11 +5,12 @@ import flower.dreamie.login.entity.User;
 import flower.dreamie.login.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Collections;
+import java.util.Map;
 
 @Controller
 public class UserController {
@@ -53,4 +54,23 @@ public class UserController {
         return "redirect:/";
     }
 
+    // 아이디 중복 확인 API
+    @PostMapping("/check-id")
+    public ResponseEntity<?> checkId(@RequestBody Map<String, String> body) {
+        String id = body.get("id");  // 요청에서 전달된 아이디 값 추출
+        boolean exists = userService.existsById(id);  // 서비스 계층을 통해 아이디 중복 여부 확인
+
+        // 결과를 JSON 형식으로 반환
+        return ResponseEntity.ok(Collections.singletonMap("exists", exists));
+    }
+
+    // 이메일 중복 확인 API
+    @PostMapping("/check-email")
+    public ResponseEntity<?> checkEmail(@RequestBody Map<String, String> body) {
+        String email = body.get("email");  // 요청에서 전달된 이메일 값 추출
+        boolean exists = userService.existsByEmail(email);  // 서비스 계층을 통해 이메일 중복 여부 확인
+
+        // 결과를 JSON 형식으로 반환
+        return ResponseEntity.ok(Collections.singletonMap("exists", exists));
+    }
 }

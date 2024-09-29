@@ -19,4 +19,14 @@ public class UserService {
     public User findById(String id) {
         return userRepository.findById(id).orElse(null); // id를 String으로 사용
     }
+
+    //아이디 중복 확인
+    public boolean existsById(String id) {
+        return userRepository.existsById(id);  //db에 해당 아이디가 존재하는지 확인
+    }
+
+    //이메일 중복 확인
+    public boolean existsByEmail(String email) {
+        return userRepository.existsByEmail(email);  //db에 해당 이메일이 존재하는지 확인
+    }
 }

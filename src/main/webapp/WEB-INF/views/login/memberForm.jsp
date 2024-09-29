@@ -12,6 +12,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <!-- 나의 스타일 추가 -->
+    <link rel="stylesheet" href="css/styles.css" />
     <link rel="stylesheet" href="css/login.css?v=1234">
 
 </head>
@@ -30,6 +31,8 @@
                 <div class="input-form-box">
                     <span>아이디 </span>
                     <input type="text" name="id" class="form-control" placeholder="아이디">
+                    <button type="button" class="btn btn-primary" onclick="check_id()">중복 확인</button>
+                    <div id="idCheckMessage" style="color: red; font-size: 12px;"></div>
                 </div>
                 <div class="input-form-box">
                     <span>비밀번호 </span>
@@ -42,6 +45,8 @@
                 <div class="input-form-box">
                     <span>이메일 </span>
                     <input type="email" name="email" class="form-control" placeholder="이메일">
+                    <button type="button" class="btn btn-outline-primary" onclick="check_email()">중복 확인</button>
+                    <div id="emailCheckMessage" style="color: red; font-size: 12px;"></div>
                 </div>
                 <div class="input-form-box">
                     <span>이름 </span>
@@ -62,5 +67,6 @@
 
 <!-- Bootstrap Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="../js/memberJoin.js"></script>
 </body>
 </html>
