@@ -81,7 +81,7 @@
                 return;
             }
             console.log(id + ":" + msg.value);
-            stomp.send('/pub/chat/message', {}, JSON.stringify({roomId: roomId, message: msg.value, sender: id}));
+            stomp.send('/pub/chat/message', {}, JSON.stringify({chat_room_id: roomId, message: msg.value, sender: id}));
             msg.value = '';
         });
     });
