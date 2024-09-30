@@ -13,7 +13,7 @@
 
     <!-- 나의 스타일 추가 -->
     <link rel="stylesheet" href="css/styles.css" />
-    <link rel="stylesheet" href="css/login.css?v=1234">
+    <link rel="stylesheet" href="css/memberForm.css" />
 
 </head>
 <body class="text-center">
@@ -27,16 +27,18 @@
         <div id="signUpBoxTitle">회원가입</div>
         <!-- 입력 폼 박스 -->
         <div id="inputBox">
-            <form action="/addmember" method="POST">
+            <form action="/addmember" method="POST" onsubmit="return validateForm()">
                 <div class="input-form-box">
                     <span>아이디 </span>
                     <input type="text" name="id" class="form-control" placeholder="아이디">
                     <button type="button" class="btn btn-primary" onclick="check_id()">중복 확인</button>
-                    <div id="idCheckMessage" style="color: red; font-size: 12px;"></div>
+                    <div id="idCheckMessage"></div>
+                    <div id="idErrorMessage" class="error-message"></div>
                 </div>
                 <div class="input-form-box">
                     <span>비밀번호 </span>
                     <input type="password" name="password" class="form-control" placeholder="비밀번호">
+                    <div id="passwordErrorMessage" class="error-message"></div>
                 </div>
 <%--                <div class="input-form-box">--%>
 <%--                    <span>비밀번호 확인 </span>--%>
@@ -46,18 +48,20 @@
                     <span>이메일 </span>
                     <input type="email" name="email" class="form-control" placeholder="이메일">
                     <button type="button" class="btn btn-outline-primary" onclick="check_email()">중복 확인</button>
-                    <div id="emailCheckMessage" style="color: red; font-size: 12px;"></div>
+                    <div id="emailCheckMessage"></div>
+                    <div id="emailErrorMessage" class="error-message"></div>
                 </div>
                 <div class="input-form-box">
                     <span>이름 </span>
                     <input type="text" name="name" class="form-control" placeholder="이름">
+                    <div id="nameErrorMessage" class="error-message"></div>
                 </div>
                 <div class="input-form-box">
                     <span>직업 </span>
                     <input type="text" name="work" class="form-control" placeholder="직업">
                 </div>
                 <div class="button-login-box">
-                    <button type="submit" class="btn btn-primary btn-xs" style="width:100%">회원가입</button>
+                    <button type="submit" class="btn btn-primary btn-xs">회원가입</button>
                 </div>
             </form>
         </div>
