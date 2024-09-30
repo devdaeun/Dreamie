@@ -37,13 +37,15 @@
                 </div>
                 <div class="input-form-box">
                     <span>비밀번호 </span>
-                    <input type="password" name="password" class="form-control" placeholder="비밀번호">
+                    <input type="password" name="password" class="form-control" placeholder="비밀번호" id="password">
                     <div id="passwordErrorMessage" class="error-message"></div>
                 </div>
-<%--                <div class="input-form-box">--%>
-<%--                    <span>비밀번호 확인 </span>--%>
-<%--                    <input type="password" name="confirmPassword" class="form-control" placeholder="비밀번호 확인">--%>
-<%--                </div>--%>
+                <div class="input-form-box">
+                    <span>비밀번호 확인 </span>
+                    <input type="password" name="confirmPassword" class="form-control" placeholder="비밀번호 확인" id="confirmPassword">
+                    <button type="button" class="btn btn-primary" onclick="checkPassword()">비밀번호 확인</button> <!-- 비밀번호 확인 버튼 -->
+                    <div id="confirmPasswordErrorMessage" class="error-message"></div>
+                </div>
                 <div class="input-form-box">
                     <span>이메일 </span>
                     <input type="email" name="email" class="form-control" placeholder="이메일">
