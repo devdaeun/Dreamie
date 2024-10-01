@@ -1,15 +1,28 @@
 #container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100%;
 }
-
+#mainNav {
+    background-color: #F46239;
+}
+/* 타이틀 */
+.title {
+    height: 60px;
+    text-align: right;
+    border-bottom: 3px solid #F46239;
+    margin-bottom: 15px;
+}
+.title h1 {
+    padding: 0 20px;
+}
 .input-form-box {
     border: 0px solid #ff0000;
     display: flex;
-    margin-bottom: 5px;
+    align-items: center;
+    margin: 15px;
 }
 
 .input-form-box > span {
