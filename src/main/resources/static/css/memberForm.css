@@ -1,0 +1,61 @@
+#container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+#mainNav {
+    background-color: #F46239;
+}
+/* 타이틀 */
+.title {
+    height: 60px;
+    text-align: right;
+    border-bottom: 3px solid #F46239;
+    margin-bottom: 15px;
+}
+.title h1 {
+    padding: 0 20px;
+}
+.input-form-box {
+    border: 0px solid #ff0000;
+    display: flex;
+    align-items: center;
+    margin: 15px;
+}
+
+.input-form-box > span {
+    display: block;
+    text-align: left;
+    padding-top: 5px;
+    min-width: 65px;
+}
+
+#idCheckMessage, #emailCheckMessage {
+    font-size: 12px;
+    color: red;
+}
+
+.button-login-box {
+    margin: 10px 0;
+}
+
+/* 버튼 사이 여백 추가 */
+.button-login-box button {
+    margin: 5px 0; /* 버튼 사이에 5px 여백 추가 */
+    width: 100%;
+}
+
+#inputBox {
+    margin: 10px;
+}
+
+#inputBox button {
+    padding: 3px 5px;
+}
+.error-message {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
