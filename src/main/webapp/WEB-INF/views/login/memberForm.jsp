@@ -12,6 +12,7 @@
     <title>회원가입</title>
 
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Bootstrap Icons-->
@@ -99,24 +100,24 @@
                     <div class="input-form-box">
                         <span>직업 </span>
                         <div class="dropdown">
-                            <button class="workBtn btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            <button class="workBtn btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                                 직업을 선택하세요
                             </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <li><a class="dropdown-item" href="#" onclick="selectJob('기획·전략')">기획·전략</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="selectJob('마케팅·홍보·조사')">마케팅·홍보·조사</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="selectJob('회계·세무·재무')">회계·세무·재무</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="selectJob('인사·노무·HRD')">인사·노무·HRD</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="selectJob('총무·법무·사무')">총무·법무·사무</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="selectJob('IT개발·데이터')">IT개발·데이터</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="selectJob('디자인')">디자인</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="selectJob('서비스')">서비스</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="selectJob('건설·건축')">건설·건축</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="selectJob('의료')">의료</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="selectJob('교육')">교육</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="selectJob('미디어·문화·스포츠')">미디어·문화·스포츠</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="selectJob('금융·보험')">금융·보험</a></li>
-                                <li><a class="dropdown-item" href="#" onclick="selectJob('공공·복지')">공공·복지</a></li>
+                            <ul class="dropdown-menu custom-dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <li><a class="dropdown-item custom-dropdown-item" href="#" onclick="selectWork('기획·전략')">기획·전략</a></li>
+                                <li><a class="dropdown-item custom-dropdown-item" href="#" onclick="selectWork('마케팅·홍보·조사')">마케팅·홍보·조사</a></li>
+                                <li><a class="dropdown-item custom-dropdown-item" href="#" onclick="selectWork('회계·세무·재무')">회계·세무·재무</a></li>
+                                <li><a class="dropdown-item custom-dropdown-item" href="#" onclick="selectWork('인사·노무·HRD')">인사·노무·HRD</a></li>
+                                <li><a class="dropdown-item custom-dropdown-item" href="#" onclick="selectWork('총무·법무·사무')">총무·법무·사무</a></li>
+                                <li><a class="dropdown-item custom-dropdown-item" href="#" onclick="selectWork('IT개발·데이터')">IT개발·데이터</a></li>
+                                <li><a class="dropdown-item custom-dropdown-item" href="#" onclick="selectWork('디자인')">디자인</a></li>
+                                <li><a class="dropdown-item custom-dropdown-item" href="#" onclick="selectWork('서비스')">서비스</a></li>
+                                <li><a class="dropdown-item custom-dropdown-item" href="#" onclick="selectWork('건설·건축')">건설·건축</a></li>
+                                <li><a class="dropdown-item custom-dropdown-item" href="#" onclick="selectWork('의료')">의료</a></li>
+                                <li><a class="dropdown-item custom-dropdown-item" href="#" onclick="selectWork('교육')">교육</a></li>
+                                <li><a class="dropdown-item custom-dropdown-item" href="#" onclick="selectWork('미디어·문화·스포츠')">미디어·문화·스포츠</a></li>
+                                <li><a class="dropdown-item custom-dropdown-item" href="#" onclick="selectWork('금융·보험')">금융·보험</a></li>
+                                <li><a class="dropdown-item custom-dropdown-item" href="#" onclick="selectWork('공공·복지')">공공·복지</a></li>
                             </ul>
                         </div>
                         <input type="hidden" id="work" name="work" class="form-control">
@@ -149,6 +150,10 @@
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <!-- 부트스트랩 JS 및 Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
     <script src="../js/memberJoin.js"></script>
 </body>
 </html>

@@ -48,16 +48,33 @@
 
 #inputBox {
     margin: 10px;
+    width: 600px;
 }
 
 #inputBox button {
-    padding: 5px;
+    padding: 8px;
     margin: 5px 10px;
-    width: 30%;
+    width: 40%;
+}
+.form-control {
+    padding: 5px;
 }
 .input-form-box #dropdownMenuButton {
     width: 100%;
     padding: 5px 10px;
+}
+.dropdown {
+    width: 80%;
+}
+/* 드롭다운 메뉴에 스크롤 추가 */
+.custom-dropdown-menu {
+    max-height: 200px; /* 최대 높이 설정 */
+    overflow-y: auto;  /* 세로 스크롤 허용 */
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 0;
+    margin-top: 10px;
 }
 .error-message {
     color: red;

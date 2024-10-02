@@ -92,9 +92,9 @@ function checkPassword() {
 }
 
 // 사용자가 직업을 선택했을 때 호출되는 함수
-function selectJob(job) {
-    document.getElementById('job').value = job; // 숨겨진 input 필드에 값 설정
-    document.getElementById('dropdownMenuButton').textContent = job; // 드롭다운 버튼 텍스트 업데이트
+function selectWork(work) {
+    document.getElementById('work').value = work; // 숨겨진 input 필드에 값 설정
+    document.getElementById('dropdownMenuButton').textContent = work; // 드롭다운 버튼 텍스트 업데이트
 }
 
 function validateForm() {
