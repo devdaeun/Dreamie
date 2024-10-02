@@ -24,7 +24,7 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="#page-top">Study</a>
+                <a class="navbar-brand" href="#page-top">Dreamie</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto my-2 my-lg-0">
@@ -54,7 +54,7 @@
                         <hr class="divider" />
                     </div>
                     <div class="col-lg-8 align-self-baseline">
-                        <p class="text-white-75 mb-5">"꿈꾸리"는 사용자가 개인 미션을 설정하고 목표를 관리하며,진행 상황을 시각적으로 확인할 수 있는 웹사이트입니다.</p>
+                        <p class="text-white-75 mb-5">"Dreamie"(꿈꾸리)는 사용자가 개인 미션을 설정하고 목표를 관리하며,진행 상황을 시각적으로 확인할 수 있는 웹사이트입니다.</p>
                         <a class="btn btn-primary btn-xl" href="#about">Find Out More</a>
                     </div>
                 </div>
@@ -90,7 +90,7 @@
                         <div class="mt-5">
                             <a href="/challenges">
                                 <div class="mb-2"><i class="bi-laptop fs-1 text-primary"></i></div>
-                                <h3 class="h4 mb-2">미션</h3>
+                                <h3 class="h4 mb-2">미션 선택하기</h3>
                                 <p class="text-muted mb-0">All dependencies are kept current to keep things fresh.</p>
                             </a>
                         </div>
