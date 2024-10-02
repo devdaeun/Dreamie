@@ -70,10 +70,9 @@
                 <form action="/addmember" method="POST" onsubmit="return validateForm()">
                     <div class="input-form-box">
                         <span>아이디 </span>
-                        <input type="text" name="id" class="form-control" placeholder="아이디">
+                        <input type="text" id="id" name="id" class="form-control" placeholder="아이디">
                         <button type="button" class="btn btn-primary" onclick="check_id()">중복 확인</button>
-                        <div id="idCheckMessage"></div>
-                        <div id="idErrorMessage" class="error-message"></div>
+                        <div id="idMessage" class="error-message"></div>
                     </div>
                     <div class="input-form-box">
                         <span>비밀번호 </span>
@@ -88,19 +87,41 @@
                     </div>
                     <div class="input-form-box">
                         <span>이메일 </span>
-                        <input type="email" name="email" class="form-control" placeholder="이메일">
-                        <button type="button" class="btn btn-outline-primary" onclick="check_email()">중복 확인</button>
-                        <div id="emailCheckMessage"></div>
-                        <div id="emailErrorMessage" class="error-message"></div>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="이메일">
+                        <button type="button" class="btn btn-primary" onclick="check_email()">중복 확인</button>
+                        <div id="emailMessage" class="error-message"></div>
                     </div>
                     <div class="input-form-box">
                         <span>이름 </span>
-                        <input type="text" name="name" class="form-control" placeholder="이름">
+                        <input type="text" id="name" name="name" class="form-control" placeholder="이름">
                         <div id="nameErrorMessage" class="error-message"></div>
                     </div>
                     <div class="input-form-box">
                         <span>직업 </span>
-                        <input type="text" name="work" class="form-control" placeholder="직업">
+                        <div class="dropdown">
+                            <button class="workBtn btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                직업을 선택하세요
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <li><a class="dropdown-item" href="#" onclick="selectJob('기획·전략')">기획·전략</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="selectJob('마케팅·홍보·조사')">마케팅·홍보·조사</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="selectJob('회계·세무·재무')">회계·세무·재무</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="selectJob('인사·노무·HRD')">인사·노무·HRD</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="selectJob('총무·법무·사무')">총무·법무·사무</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="selectJob('IT개발·데이터')">IT개발·데이터</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="selectJob('디자인')">디자인</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="selectJob('서비스')">서비스</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="selectJob('건설·건축')">건설·건축</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="selectJob('의료')">의료</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="selectJob('교육')">교육</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="selectJob('미디어·문화·스포츠')">미디어·문화·스포츠</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="selectJob('금융·보험')">금융·보험</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="selectJob('공공·복지')">공공·복지</a></li>
+                            </ul>
+                        </div>
+                        <input type="hidden" id="work" name="work" class="form-control">
+                        <div id="workErrorMessage" class="error-message"></div>
+<%--                        /input type="text" name="work" class="form-control" placeholder="직업">--%>
                     </div>
                     <div class="button-login-box">
                         <button type="submit" class="btn btn-primary btn-xs">회원가입</button>
