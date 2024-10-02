@@ -1,0 +1,39 @@
+#mainNav {
+    background-color: #F46239;
+}
+
+.containers {
+    padding: 100px 0 50px;
+}
+
+.containers  a {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    text-decoration: none;
+    font-size: 25px;
+}
+.col-6 {
+    margin-left: 50%;
+}
+
+.enters {
+    margin-right: 50%;
+    margin-left: 0;
+}
+
+.alert-secondary {
+    display: block;
+}
+
+.alert-warning {
+    display: block;
+}
+
+.room_info{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    margin-left: 10px;
+}
