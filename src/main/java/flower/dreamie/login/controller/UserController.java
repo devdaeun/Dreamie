@@ -2,21 +2,26 @@ package flower.dreamie.login.controller;
 
 
 import flower.dreamie.login.entity.User;
+import flower.dreamie.login.repository.UserRepository;
 import flower.dreamie.login.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 import java.util.Map;
+import java.util.Optional;
 
 @Controller
 public class UserController {
 
     @Autowired
     UserService userService;
+    @Autowired
+    private UserRepository userRepository;
 
     @GetMapping("/loginForm")
     public String loginForm() {
@@ -73,4 +78,20 @@ public class UserController {
         // 결과를 JSON 형식으로 반환
         return ResponseEntity.ok(Collections.singletonMap("exists", exists));
     }
+
+    // 회원탈퇴 처리
+    @PostMapping("/deactivate")
+    public ResponseEntity<String> deactivateUser(@RequestBody Map<String, Long> request) {
+        Long user_id = request.get("user_id");
+
+        boolean isDeactivated = userService.deactivateUser(user_id);
+
+        if (isDeactivated) {
+            return ResponseEntity.ok("탈퇴 처리 완료");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("사용자를 찾을 수 없습니다.");
+        }
+    }
+
+
 }
