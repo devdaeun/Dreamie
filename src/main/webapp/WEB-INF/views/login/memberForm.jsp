@@ -64,6 +64,15 @@
             <h1>회원가입</h1>
         </div>
 
+        <div class="step">
+            <div class="step1">
+                <p>1. 약관 동의</p>
+            </div>
+            <div class="step2">
+                <p>2. 회원 가입</p>
+            </div>
+        </div>
+
         <!--  회원가입 폼 영역을 : signUpBox -->
         <div id="signUpBox">
             <!-- 입력 폼 박스 -->
@@ -129,9 +138,24 @@
                     </div>
                 </form>
             </div>
-
         </div>
     </div>
+
+    <!-- 회원가입 성공 시 알림 -->
+    <%
+        // 회원가입 성공 여부를 파라미터로 전달받음
+        String success = request.getParameter("success");
+        if ("true".equals(success)) {
+    %>
+    <script>
+        // 회원가입 성공 시 팝업 알림
+        alert("회원가입이 완료되었습니다!");
+        // 로그인 페이지로 리다이렉트
+        window.location.href = "loginForm";
+    </script>
+    <%
+        }
+    %>
 
     <!-- Footer-->
     <footer class="bg-light py-5">
