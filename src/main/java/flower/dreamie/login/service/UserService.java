@@ -3,8 +3,11 @@ package flower.dreamie.login.service;
 
 import flower.dreamie.login.entity.User;
 import flower.dreamie.login.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -29,4 +32,15 @@ public class UserService {
     public boolean existsByEmail(String email) {
         return userRepository.existsByEmail(email);  //db에 해당 이메일이 존재하는지 확인
     }
+
+
+    public boolean deactivateUser(Long user_id) {
+        if (userRepository.existsById(user_id)) {
+            userRepository.deleteById(user_id);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

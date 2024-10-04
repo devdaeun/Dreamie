@@ -75,7 +75,9 @@
                     <a href="/modify/profile" class="list-group-item">프로필 수정</a>
                     <a href="/modify/password" class="list-group-item">비밀번호 수정</a>
                     <a href="/logout" class="list-group-item">로그아웃</a>
-                    <a href="#" class="list-group-item">회원탈퇴</a>
+<%--                    <a href="#" class="list-group-item" onclick="drop_check(event, '/admin/delMember.do?id=${User.user_id}')" >회원탈퇴</a>--%>
+                    <button  class="list-group-item" onclick="confirmDeactivation(${user.user_id})">회원탈퇴</button>
+
                 </div>
             </div>
 
