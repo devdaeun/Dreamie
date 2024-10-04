@@ -31,7 +31,7 @@
                 <div class="input-form-box"><span>비밀번호 </span><input type="password" name="pwd" class="form-control"></div>
                 <div class="button-login-box" >
                     <button type="submit" class="btn btn-primary btn-xs" style="width:100%" >로그인</button>
-                    <button type="button" class="btn btn-primary btn-xs" style="width:100%" onclick="location.href='memberForm'">회원가입</button>
+                    <button type="button" class="btn btn-primary btn-xs" style="width:100%" onclick="location.href='terms'">회원가입</button>
                 </div>
             </div>
         </form>

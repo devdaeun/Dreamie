@@ -28,6 +28,9 @@ public class UserController {
         return "login/login";
     }
 
+    @GetMapping("/terms")
+    public String terms() {return "login/terms";}
+
     @GetMapping("/memberForm")
     public String memberForm() {return "login/memberForm";}
 
@@ -38,7 +41,7 @@ public class UserController {
 
         userService.save(login);
 
-        return "redirect:/";
+        return "redirect:/memberForm?success=true";
     }
 
     @PostMapping("/login")
