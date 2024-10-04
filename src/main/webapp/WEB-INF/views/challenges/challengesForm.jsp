@@ -10,8 +10,8 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/challenges.css"/>
     <link href="../css/styles.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../css/challenges.css"/>
 </head>
 <body class="text-center" id="page-top">
     <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
@@ -40,14 +40,23 @@
         </div>
     </nav>
     <div id="container">
-        <h3> 미션 등록 페이지입니다!</h3>
-        <form action="/challenges/add" method="post">
+        <div class="title">
+            <h1>미션 등록</h1>
+        </div>
+        <form action="/challenges/add" method="post" class="mission_form">
+            <label>미션 제목</label>
             <input type="text" name="title">
+            <label>미션 내용</label>
             <textarea name="content" max-length="200"></textarea>
-            <input type="date" name="start_at">
-            <input type="date" name="end_at">
-            <input type="submit" value="등록하기">
-            <input type="reset" value="취소">
+            <label>미션 진행기간</label>
+            <div>
+                <input type="date" name="start_at">
+                <input type="date" name="end_at">
+            </div>
+            <div class="challenge_btns">
+                <input type="submit" value="등록하기">
+                <input type="reset" value="취소">
+            </div>
         </form>
     </div>
     <!-- Footer-->

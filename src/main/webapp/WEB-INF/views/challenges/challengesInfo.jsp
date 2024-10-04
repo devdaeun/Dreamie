@@ -10,8 +10,8 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/challenges.css"/>
     <link href="../css/styles.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="../css/challenges.css"/>
 </head>
 <body class="text-center" id="page-top">
     <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
@@ -40,20 +40,32 @@
         </div>
     </nav>
     <div id="container">
-        <form id="challenge_modify_form" >
+        <div class="title">
+            <h1>미션 상세보기</h1>
+        </div>
+        <form id="challenge_modify_form" class="mission_form">
             <input type="hidden" name="challenges_id" id="challenges_id" value="${challenges.challenges_id}">
+            <label>미션 제목</label>
             <input type="text" name="title" value="${challenges.title}" id="title" readonly>
+            <label>미션 내용</label>
             <textarea type="text" name="content" max-length="200" id="content" readonly>${challenges.content}</textarea>
-            <input type="date" name="start_at" value="${challenges.start_at}" id="start_at" readonly>
-            <input type="date" name="end_at" value="${challenges.end_at}" id="end_at" readonly>
-            <div id="modify_btn">
-                <input type="button" value="수정반영하기" onclick="modify_challenge()">
-                <input type="button" value="취소" onclick="cancle_btn()">
+            <label>미션 진행기간</label>
+            <div>
+                <input type="date" name="start_at" value="${challenges.start_at}" id="start_at" readonly>
+                <input type="date" name="end_at" value="${challenges.end_at}" id="end_at" readonly>
             </div>
-            <div id="motion_btn">
-                <input type="button" value="수정하기" onclick="challenge_btn()">
-                <input type="button" value="삭제하기" onclick="delete_challenge(${challenges.challenges_id})">
-            </div>
+            <c:choose>
+                <c:when test="${not empty sessionScope.user and sessionScope.user.role == '관리자'}">
+                    <div id="modify_btn">
+                        <input type="button" value="수정반영하기" onclick="modify_challenge()">
+                        <input type="button" value="취소" onclick="cancel_btn()">
+                    </div>
+                    <div id="motion_btn">
+                        <input type="button" value="수정하기" onclick="challenge_btn()">
+                        <input type="button" value="삭제하기" onclick="delete_challenge(${challenges.challenges_id})">
+                    </div>
+                </c:when>
+            </c:choose>
         </form>
         <a href="/challenges">리스트로 돌아가기</a>
     </div>
