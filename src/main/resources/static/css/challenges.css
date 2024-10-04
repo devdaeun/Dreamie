@@ -45,6 +45,61 @@
     margin-top: 50px;
 }
 
+.mission_form {
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    font-size: 18px;
+}
+.mission_form label {
+    border: 0;
+    font-size: 25px;
+}
+
+.mission_form > input {
+    width: 100%;
+    padding: 5px;
+}
+
+.mission_form > textarea {
+    height: 300px;
+    width: 100%;
+    resize: none;
+}
+
+.challenge_btns, #modify_btn, #motion_btn {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
 #modify_btn {
     display: none;
+}
+
+.challenge_btns > input, #modify_btn > input, #motion_btn > input {
+    display: inline-block;
+    padding: 8px 15px;
+    font-size: 22px;
+    background-color: #F46239;
+    border: none;
+    border-radius: 7px;
+    color: white;
+}
+
+.title {
+    height: 105px;
+    text-align: right;
+    border-bottom: 3px solid #F46239;
+    margin-bottom: 15px;
+}
+
+.title h1 {
+    padding: 50px 20px 0 0;
 }
