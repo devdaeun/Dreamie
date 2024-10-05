@@ -56,14 +56,19 @@
 .input-form-box {
     border: 0px solid #ff0000;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     margin: 15px;
 }
 
-.input-form-box > span {
+.input-form-box span {
     display: block;
     text-align: center;
     min-width: 80px;
+    margin-right: 5px;
+}
+.inputForm {
+    display: flex;
+    align-items: center;
 }
 
 #idCheckMessage, #emailCheckMessage {
@@ -89,7 +94,7 @@
 #inputBox button {
     padding: 8px;
     margin: 5px 10px;
-    width: 40%;
+    width: 35%;
 }
 .form-control {
     padding: 5px;

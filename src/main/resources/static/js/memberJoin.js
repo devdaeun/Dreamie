@@ -33,6 +33,14 @@ function check_id() {
             }
         });
 }
+
+// 이메일 형식 확인을 위한 정규 표현식
+function validateEmailFormat(email) {
+    var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailPattern.test(email);
+}
+
+
 // 이메일 중복 확인
 function check_email() {
     var email = document.querySelector('input[name="email"]').value;
@@ -42,6 +50,13 @@ function check_email() {
     if (email === "") {
         messageElement.textContent = "이메일을 입력해주세요.";
         return; // 중복 체크 요청 중단
+    }
+
+    // 이메일 형식 검증
+    if (!validateEmailFormat(email)) {
+        messageElement.textContent = "올바른 이메일 형식이 아닙니다. 다시 입력해주세요.";
+        messageElement.style.color = "red";
+        return;
     }
 
     fetch('/check-email', {
