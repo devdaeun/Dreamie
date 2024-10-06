@@ -81,10 +81,33 @@
 
             <div class="missions board">
                 <h1>포도알 스티커</h1>
+                <p>미션 성공개수 : <c:out value="${sessionScope.user.mission}"></c:out>개<p>
                 <div class="stickers">
-                    <img class="sticker" src="../assets/img/empty_sticker.svg" data-mission-id="1" alt="스티커 1">
-                    <img class="sticker" src="../assets/img/empty_sticker.svg" data-mission-id="2" alt="스티커 2">
-                    <img class="sticker" src="../assets/img/empty_sticker.svg" data-mission-id="3" alt="스티커 3">
+                    <div>
+                        <img class="sticker" src="../assets/img/empty_sticker.svg" data-mission-id="1" alt="스티커 1">
+                        <img class="sticker" src="../assets/img/empty_sticker.svg" data-mission-id="2" alt="스티커 2">
+                        <img class="sticker" src="../assets/img/empty_sticker.svg" data-mission-id="3" alt="스티커 3">
+                        <img class="sticker" src="../assets/img/empty_sticker.svg" data-mission-id="4" alt="스티커 4">
+                        <img class="sticker" src="../assets/img/empty_sticker.svg" data-mission-id="5" alt="스티커 5">
+                    </div>
+                    <div>
+                        <img class="sticker" src="../assets/img/empty_sticker.svg" data-mission-id="6" alt="스티커 6">
+                        <img class="sticker" src="../assets/img/empty_sticker.svg" data-mission-id="7" alt="스티커 7">
+                        <img class="sticker" src="../assets/img/empty_sticker.svg" data-mission-id="8" alt="스티커 8">
+                        <img class="sticker" src="../assets/img/empty_sticker.svg" data-mission-id="9" alt="스티커 9">
+                    </div>
+                    <div>
+                        <img class="sticker" src="../assets/img/empty_sticker.svg" data-mission-id="10" alt="스티커 10">
+                        <img class="sticker" src="../assets/img/empty_sticker.svg" data-mission-id="11" alt="스티커 11">
+                        <img class="sticker" src="../assets/img/empty_sticker.svg" data-mission-id="12" alt="스티커 12">
+                    </div>
+                    <div>
+                        <img class="sticker" src="../assets/img/empty_sticker.svg" data-mission-id="13" alt="스티커 13">
+                        <img class="sticker" src="../assets/img/empty_sticker.svg" data-mission-id="14" alt="스티커 14">
+                    </div>
+                    <div>
+                        <img class="sticker" src="../assets/img/empty_sticker.svg" data-mission-id="15" alt="스티커 15">
+                    </div>
                 </div>
             </div>
         </div>

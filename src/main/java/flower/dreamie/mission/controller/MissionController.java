@@ -4,6 +4,7 @@ package flower.dreamie.mission.controller;
 import flower.dreamie.challenges.entity.Challenges;
 import flower.dreamie.challenges.service.ChallengesService;
 import flower.dreamie.login.entity.User;
+import flower.dreamie.login.service.UserService;
 import flower.dreamie.mission.entity.Mission;
 import flower.dreamie.mission.service.MissionService;
 import jakarta.servlet.http.HttpSession;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -22,6 +24,9 @@ public class MissionController {
 
     @Autowired
     MissionService missionService;
+
+    @Autowired
+    UserService userService;
 
     @Autowired
     ChallengesService challengesService;
