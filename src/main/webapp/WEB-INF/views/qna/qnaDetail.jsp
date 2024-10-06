@@ -108,10 +108,11 @@
                         <c:if test="${!empty answer}">
                             <c:forEach var="answer" items="${answer}">
                                 <div class="mb-3">
-                                    <div class="comment">
+                                    <div class="comment mb-3">
                                         <p>${answer.content}</p>
-                                        <a href="/qna/${answer.question_id}/answer/${answer.answer_id}" class="btn btn-outline-danger">수정하기</a>
+<%--                                        <a href="/qna/${answer.question_id}/answer/${answer.answer_id}" class="btn btn-outline-danger">수정하기</a>--%>
                                     </div>
+                                    <a href="/qna/${answer.question_id}/answer/${answer.answer_id}" class="btn btn-outline-primary">수정하기</a>
                                 </div>
                             </c:forEach>
                         </c:if>

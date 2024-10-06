@@ -89,9 +89,9 @@
                     <textarea class="form-control" id="content" name="content" rows="3">${qna.content}</textarea>
                 </div>
                 <div class="btn_area">
-                    <button type="submit" class="btn btn-warning">수정 완료</button>
+                    <button type="submit" class="btn btn-primary">수정 완료</button>
                     <a href="/qna/${qna.question_id}">
-                        <button type="button" class="btn btn-outline-warning">취소</button>
+                        <button type="button" class="btn btn-outline-primary">취소</button>
                     </a>
                 </div>
             </div>

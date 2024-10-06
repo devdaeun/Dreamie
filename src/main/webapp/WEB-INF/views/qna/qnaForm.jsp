@@ -89,9 +89,9 @@
                         <textarea class="form-control" id="content" name="content" rows="3"></textarea>
                     </div>
                     <div class="btn_area">
-                        <button type="submit" class="btn btn-warning">저장</button>
+                        <button type="submit" class="btn btn-primary">저장</button>
                         <a href="/qna">
-                            <button type="button" class="btn btn-outline-warning">취소</button>
+                            <button type="button" class="btn btn-outline-primary">취소</button>
                         </a>
                     </div>
                 </div>
