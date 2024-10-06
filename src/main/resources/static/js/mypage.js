@@ -45,3 +45,4 @@ function deactivateUser(user_id) {
         })
         .catch(error => console.error("Error:", error));
 }
+
