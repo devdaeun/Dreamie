@@ -20,15 +20,15 @@ function missionComplete(mission_id){
     }
 }
 
-function confirmDeactivation(userId) {
+//회원탈퇴
+function confirmDeactivation(user_id) {
     if (confirm("정말로 회원탈퇴를 하시겠습니까?")) {
-        // 탈퇴 확인 시 서버로 user_id 전송
-        deactivateUser(userId);
+        deactivateUser(user_id);
     }
 }
 
 function deactivateUser(user_id) {
-    fetch(`/deactivate`, {
+    fetch(`/deactivate`, { // @RequestMapping("/user")가 없으면 `/deactivate`로 수정
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -45,4 +45,5 @@ function deactivateUser(user_id) {
         })
         .catch(error => console.error("Error:", error));
 }
+
 
