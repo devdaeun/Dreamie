@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>공지사항 상세페이지</title>
+    <title>커뮤니티 상세페이지</title>
 
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
     <link href="css/styles.css" rel="stylesheet" />
-    <link rel="stylesheet" href="../css/noticeDetail.css"/>
+    <link rel="stylesheet" href="../css/communityDetail.css"/>
 
 </head>
 <body id="page-top">
@@ -31,7 +31,7 @@
                 <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
                 <li class="nav-item"><a class="nav-link" href="/notice">Notice</a></li>
                 <li class="nav-item"><a class="nav-link" href="/challenges">challenges</a></li>
-                <li class="nav-item"><a class="nav-link" href="/qna">문의사항</a></li>
+                <li class="nav-item"><a class="nav-link" href="/qna">QnA</a></li>
                 <% if (session.getAttribute("user") != null) { %>
                 <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
                 <% } else { %>
@@ -44,15 +44,15 @@
 
 <div id="container-notice" class="container">
     <div class="title">
-        <h1>공지사항</h1>
+        <h1>커뮤니티</h1>
     </div>
 
     <div class="grid" style="--bs-columns: 10; --bs-gap: 1rem;">
         <div class="category text-center">
             <h3>카테고리</h3>
             <div class="list-group list-group-flush">
-                <a href="/community" class="list-group-item">커뮤니티</a>
-                <a href="/notice" class="list-group-item active" aria-current="true">공지사항</a>
+                <a href="/community" class="list-group-item active" aria-current="true">커뮤니티</a>
+                <a href="/notice" class="list-group-item " >공지사항</a>
                 <a href="/qna" class="list-group-item ">문의사항</a>
             </div>
         </div>
@@ -60,34 +60,30 @@
         <div class="board">
             <div class="content row-gap-3">
                 <div class="contentTitle">
-                    <h5 id="noticeTitle">${notice.title}</h5>
+                    <h5 id="noticeTitle">${community.title}</h5>
                 </div>
                 <div class="contentId">
-                    <p>작성자 | ${notice.user.name}</p>
+                    <p>작성자 | ${community.user_id}</p>
                 </div>
                 <div class="contentAt">
-                    <p>작성일 | ${notice.write_at}</p>
+                    <p>작성일 | ${community.write_at}</p>
+                </div>
+                <div>
+                    <p> 첨부파일 | </p>
                 </div>
                 <div class="realContent">
-                    <div id="noticeContent">${notice.content}</div>
+                    <div id="noticeContent">${community.content}</div>
                     <div id="editContent" class="edit-mode">
-                        <textarea id="editContentText" class="form-control">${notice.content}</textarea>
+                        <textarea id="editContentText" class="form-control">${community.content}</textarea>
                     </div>
+                </div>
+                <div>
+                    <p>댓글</p>
                 </div>
             </div>
 
             <div class="more text-center">
-                <a href="/notice" class="btn btn-secondary">목록으로 돌아가기</a>
-
-                <!-- 글 작성자이거나 관리자일 경우 수정 버튼 표시 -->
-                <c:if test="${sessionScope.user != null && sessionScope.user.role == '관리자'}">
-                    <button id="editButton" class="btn btn-outline-danger">수정</button>
-                    <button id="saveButton" class="btn btn-primary edit-mode">저장</button>
-                    <button id="deleteButton" class="btn btn-danger">삭제</button>
-                </c:if>
-
-                <!-- 공지사항 ID를 hidden input으로 포함 -->
-                <input type="hidden" id="noticeId" value="${notice.notice_id}">
+                <a href="/community" class="btn btn-secondary">목록으로 돌아가기</a>
 
             </div>
         </div>

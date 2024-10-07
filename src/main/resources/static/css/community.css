@@ -1,0 +1,47 @@
+#container-notice {
+    height: 900px;
+    min-height: 40rem;
+    padding-top: 5.5rem;
+    padding-bottom: 0;
+}
+#mainNav {
+    background-color: #F46239;
+}
+/* 타이틀 */
+.title {
+    height: 150px;
+    text-align: right;
+    border-bottom: 3px solid #F46239;
+}
+.title h1 {
+    padding: 100px 20px 0 0;
+}
+/* 내용 */
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+/* 카테고리 */
+.category {
+    margin: 5px;
+}
+.category h3 {
+    padding-bottom: 10px;
+    border-bottom: 2px solid #F46239;
+}
+/* 게시판 */
+.board {
+    margin: 5px;
+    padding-top: 45px;
+    background-color: whitesmoke;
+    height: 600px;
+}
+.board .btn {
+    margin-bottom: 10px;
+}
+
+.table td, .table th {
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
