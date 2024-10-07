@@ -38,9 +38,6 @@
             <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto my-2 my-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a>
                     <li class="nav-item"><a class="nav-link" href="/notice">Notice</a>
                     <li class="nav-item"><a class="nav-link" href="/challenges">challenges</a>
                         <!-- 문의사항 페이지로 이동하는 링크 -->
@@ -141,6 +138,9 @@
                                     <li><a class="dropdown-item custom-dropdown-item" href="#" onclick="selectWork('미디어·문화·스포츠')">미디어·문화·스포츠</a></li>
                                     <li><a class="dropdown-item custom-dropdown-item" href="#" onclick="selectWork('금융·보험')">금융·보험</a></li>
                                     <li><a class="dropdown-item custom-dropdown-item" href="#" onclick="selectWork('공공·복지')">공공·복지</a></li>
+                                    <li><a class="dropdown-item custom-dropdown-item" href="#" onclick="selectWork('학생')">학생</a></li>
+                                    <li><a class="dropdown-item custom-dropdown-item" href="#" onclick="selectWork('무직')">무직</a></li>
+                                    <li><a class="dropdown-item custom-dropdown-item" href="#" onclick="selectWork('기타')">기타</a></li>
                                 </ul>
                             </div>
                             <input type="hidden" id="work" name="work" class="form-control">
