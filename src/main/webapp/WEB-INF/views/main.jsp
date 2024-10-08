@@ -81,9 +81,12 @@
                 <div class="row gx-4 gx-lg-5">
                     <div class="col-lg-3 col-md-6 text-center">
                         <div class="mt-5">
-                            <div class="mb-2"><i class="bi-gem fs-1 text-primary"></i></div>
-                            <h3 class="h4 mb-2">커뮤니티</h3>
-                            <p class="text-muted mb-0">Our themes are updated regularly to keep them bug free!</p>
+                            <a href="/community
+">
+                                <div class="mb-2"><i class="bi-gem fs-1 text-primary"></i></div>
+                                <h3 class="h4 mb-2">커뮤니티</h3>
+                                <p class="text-muted mb-0">Our themes are updated regularly to keep them bug free!</p>
+                            </a>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 text-center">
