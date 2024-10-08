@@ -56,7 +56,7 @@
         <h1>커뮤니티 작성하기</h1>
     </div>
 
-    <form action="/communitySave" method="post">
+    <form action="/communitySave" method="post" enctype="multipart/form-data"> <%--파일 업로드를 위해 추가--%>
         <div class="board">
             <div class="mb-3 row">
                 <label for="user_id" class="col-sm-1 col-form-label">아이디</label>
@@ -66,15 +66,15 @@
             </div>
             <div class="mb-3">
                 <label for="title" class="form-label">제목</label>
-                <input type="text" class="form-control" id="title" name="title">
+                <input type="text" class="form-control" id="title" name="title" required>
             </div>
             <div class="mb-3">
                 <label for="content" class="form-label">커뮤니티내용</label>
-                <textarea class="form-control" id="content" name="content" rows="3"></textarea>
+                <textarea class="form-control" id="content" name="content" rows="3" required></textarea>
             </div>
             <div class="mb-3">
-                <label for="content" class="form-label">첨부파일</label>
-                <textarea class="form-control" id="file" name="content" rows="3"></textarea>
+                <label for="file" class="form-label">첨부파일</label>
+                <input type="file" class="form-control" id="file" name="file" accept="*"> <%-- 파일 업로드를 위한 input 추가 --%>
             </div>
             <div class="btn_area">
                 <button type="submit" class="btn btn-warning">저장</button>
@@ -84,6 +84,7 @@
             </div>
         </div>
     </form>
+
 </div>
 <!-- Footer-->
 <footer class="bg-light py-5">
