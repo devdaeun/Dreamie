@@ -32,9 +32,6 @@
         <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ms-auto my-2 my-lg-0">
-                <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-                <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a>
                 <li class="nav-item"><a class="nav-link" href="/notice">Notice</a>
                 <li class="nav-item"><a class="nav-link" href="/challenges">challenges</a>
                     <!-- 문의사항 페이지로 이동하는 링크 -->
@@ -61,7 +58,6 @@
             <div class="list-group list-group-flush">
                 <a href="/notice" class="list-group-item">공지사항</a>
                 <a href="/qna" class="list-group-item active" aria-current="true">문의사항</a>
-                <a href="#" class="list-group-item">설정</a>
             </div>
         </div>
 

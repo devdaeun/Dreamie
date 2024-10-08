@@ -39,6 +39,9 @@ public class UserController {
         return "login/memberForm";
     }
 
+    @GetMapping("/modifyForm")
+    public String modifyForm() { return  "mypage/modify";}
+
     @PostMapping("/addmember")
     public String addMember(@ModelAttribute User login) {
         login.setRole(User.UserRole.일반);
@@ -111,5 +114,30 @@ public class UserController {
         }
     }
 
+    //회원 정보 수정
+    @RequestMapping("/modify")
+    public String modify(@RequestParam("id") String id,
+                         @RequestParam("password") String password,
+                         @RequestParam("email") String email,
+                         @RequestParam("name") String name,
+                         @RequestParam("work") String work, HttpSession session) {
+        //아이디로 기존 회원 조회
+        User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("사용자를 찾을 수 없습니다."));
+
+        // 비밀번호, 이메일, 이름, 직업만 수정 가능
+        user.setPassword(password);
+        user.setEmail(email);
+        user.setName(name);
+        user.setWork(work);
+
+        // 수정된 정보 저장
+        userRepository.save(user);
+
+        // 세션에 저장된 사용자 정보 업데이트
+        session.setAttribute("user", user);  // 수정된 user 객체를 세션에 저장
+
+//        return "redirect:/mypage"; // 마이페이지로 리다이렉트
+        return "redirect:/modifyForm";
+    }
 
 }
