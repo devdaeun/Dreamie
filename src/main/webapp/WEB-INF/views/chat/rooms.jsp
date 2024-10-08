@@ -47,6 +47,7 @@
                 <a href="/chat/room?roomId=${room.roomId}">
                     <p>${room.roomId}</p>
                     <p>${room.room_name}</p>
+                    <input type="button" onclick="deleteRoom(${room.roomId})" value="채팅방 삭제" class="room_delete_btn">
                 </a>
             </c:forEach>
         </div>
@@ -59,5 +60,6 @@
     <footer class="bg-light py-5">
         <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; 2023 - Company Name</div></div>
     </footer>
+    <script src="../js/chat.js"></script>
 </body>
 </html>

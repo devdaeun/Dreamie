@@ -23,4 +23,8 @@ public class ChatService {
     public List<ChatRoom> getAllRooms() {
         return chatRoomRepository.findAllByOrderByCreatedAtDesc(); // 생성일 기준으로 정렬된 채팅방 리스트
     }
+
+    public void RemoveRooms(String roomId){
+        chatRoomRepository.deleteById(roomId);
+    }
 }
