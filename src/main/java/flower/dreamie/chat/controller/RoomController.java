@@ -67,4 +67,10 @@ public class RoomController {
 
     }
 
+    @PostMapping("/deleteRoom")
+    public String deleteRoom(@RequestParam String roomId){
+        chatService.RemoveRooms(roomId);
+        return "redirect:/chat/rooms";
+    }
+
 }
