@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="../css/styles.css"/>
     <link rel="stylesheet" href="../css/challenges.css"/>
     <link rel="stylesheet" href="../css/mypage.css"/>
+    <link rel="stylesheet" href="../css/modify.css"/>
 </head>
 <body class="text-center" id="page-top">
 <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
@@ -80,7 +81,7 @@
 
         <div class="modifyForm">
             <div class="row justify-content-center">
-                <div class="col-lg-6">
+                <div class="updateForm col-lg-6">
                     <h1 class="text-center mt-5">회원정보 수정</h1>
                     <form action="/modify" method="POST" onsubmit="return validateForm()">
                         <!-- 아이디는 수정 불가 -->
@@ -104,7 +105,10 @@
                             <div class="inputForm">
                                 <span>이메일 </span>
                                 <input type="email" id="email" name="email" class="form-control" placeholder="이메일" value="${user.email}">
+                                <input type="hidden" id="currentEmail" value="${user.email}">
+                                <button type="button" class="btn btn-primary" onclick="email_check()">중복 확인</button>
                             </div>
+                            <div id="emailMessage" class="error-message"></div>
                         </div>
 
                         <!-- 이름 수정 가능 -->
@@ -117,11 +121,24 @@
                         <div class="input-form-box">
                             <div class="inputForm">
                                 <span>직업 </span>
-                                <select id="work" name="work" class="form-control">
+                                <select id="work" name="work" class="form-control" value="${user.work}">
                                     <option value="기획·전략" ${user.work == '기획·전략' ? 'selected' : ''}>기획·전략</option>
                                     <option value="마케팅·홍보·조사" ${user.work == '마케팅·홍보·조사' ? 'selected' : ''}>마케팅·홍보·조사</option>
+                                    <option value="회계·세무·재무" ${user.work == '회계·세무·재무' ? 'selected' : ''}>회계·세무·재무</option>
+                                    <option value="인사·노무·HRD" ${user.work == '인사·노무·HRD' ? 'selected' : ''}>인사·노무·HRD</option>
+                                    <option value="총무·법무·사무" ${user.work == '총무·법무·사무' ? 'selected' : ''}>총무·법무·사무</option>
                                     <option value="IT개발·데이터" ${user.work == 'IT개발·데이터' ? 'selected' : ''}>IT개발·데이터</option>
-                                    <!-- 다른 직업 옵션 추가 -->
+                                    <option value="디자인" ${user.work == '디자인' ? 'selected' : ''}>디자인</option>
+                                    <option value="서비스" ${user.work == '서비스' ? 'selected' : ''}>서비스</option>
+                                    <option value="건설·건축" ${user.work == '건설·건축' ? 'selected' : ''}>건설·건축</option>
+                                    <option value="의료" ${user.work == '의료' ? 'selected' : ''}>의료</option>
+                                    <option value="교육" ${user.work == '교육' ? 'selected' : ''}>교육</option>
+                                    <option value="미디어·문화·스포츠" ${user.work == '미디어·문화·스포츠' ? 'selected' : ''}>미디어·문화·스포츠</option>
+                                    <option value="금융·보험" ${user.work == '금융·보험' ? 'selected' : ''}>금융·보험</option>
+                                    <option value="공공·복지" ${user.work == '공공·복지' ? 'selected' : ''}>공공·복지</option>
+                                    <option value="학생" ${user.work == '학생' ? 'selected' : ''}>학생</option>
+                                    <option value="무직" ${user.work == '무직' ? 'selected' : ''}>무직</option>
+                                    <option value="기타" ${user.work == '기타' ? 'selected' : ''}>기타</option>
                                 </select>
                             </div>
                         </div>
@@ -142,5 +159,6 @@
 <!-- Bootstrap Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src="../js/mypage.js"></script>
+<script src="../js/memberJoin.js"></script>
 </body>
 </html>

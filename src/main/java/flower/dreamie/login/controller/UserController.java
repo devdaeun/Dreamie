@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
@@ -97,6 +98,22 @@ public class UserController {
         boolean exists = userService.existsByEmail(email);  // 서비스 계층을 통해 이메일 중복 여부 확인
 
         // 결과를 JSON 형식으로 반환
+        return ResponseEntity.ok(Collections.singletonMap("exists", exists));
+    }
+
+    // 이메일 중복 확인 API
+    @PostMapping("/email-check")
+    public ResponseEntity<?> emailCheck(@RequestBody Map<String, String> body) {
+        String newEmail = body.get("email");          // 클라이언트에서 입력한 새 이메일
+        String currentEmail = body.get("currentEmail");  // 현재 사용자의 이메일 (수정 시 사용)
+
+        // 현재 이메일과 새 이메일이 다를 때만 중복 체크
+        boolean exists = false;
+        if (!newEmail.equals(currentEmail)) {
+            exists = userService.existsByEmail(newEmail);  // 새 이메일에 대한 중복 여부 확인
+        }
+
+        // JSON 형식으로 중복 여부 결과 반환
         return ResponseEntity.ok(Collections.singletonMap("exists", exists));
     }
 

@@ -79,6 +79,50 @@ function check_email() {
         });
 }
 
+//수정 시 이메일 확인
+function email_check() {
+    var email = document.querySelector('input[name="email"]').value;
+    var currentEmail = document.getElementById("currentEmail").value; // 현재 사용자의 이메일
+    var messageElement = document.getElementById('emailMessage');
+
+    // 입력값이 없는 경우
+    if (email === "") {
+        messageElement.textContent = "이메일을 입력해주세요.";
+        return;
+    }
+
+    // 이메일 형식 검증
+    if (!validateEmailFormat(email)) {
+        messageElement.textContent = "올바른 이메일 형식이 아닙니다. 다시 입력해주세요.";
+        return;
+    }
+
+    // 이메일 중복 확인 요청
+    fetch('/email-check', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email: email, currentEmail: currentEmail }) // 현재 이메일도 함께 전송
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.exists) {
+                messageElement.style.color = "red";
+                messageElement.textContent = "이미 존재하는 이메일 입니다.";
+            } else {
+                messageElement.style.color = "green";
+                messageElement.textContent = "사용 가능한 이메일 입니다.";
+                isEmailChecked = true;
+            }
+        })
+        .catch(error => {
+            console.error("Error during email check:", error);
+            messageElement.textContent = "이메일 확인 중 오류가 발생했습니다.";
+            messageElement.style.color = "red";
+        });
+}
+
 function checkPassword() {
     var password = document.getElementById('password').value;
     var confirmPassword = document.getElementById('confirmPassword').value;
