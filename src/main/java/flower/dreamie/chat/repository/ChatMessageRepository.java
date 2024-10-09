@@ -1,12 +1,12 @@
 package flower.dreamie.chat.repository;
 
+import flower.dreamie.chat.entity.ChatMessage;
 import flower.dreamie.chat.entity.ChatRoom;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository("chatRoomRepository")
-public interface ChatRoomRepository extends JpaRepository<ChatRoom, String> {
-    List<ChatRoom> findAllByOrderByCreatedAtDesc(); // 생성일 기준으로 정렬된 리스트 반환
+@Repository("chatMessageRepository")
+public interface ChatMessageRepository extends JpaRepository<ChatMessage, String> {
 }
