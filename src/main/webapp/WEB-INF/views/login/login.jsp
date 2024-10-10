@@ -34,15 +34,13 @@
                     <button type="button" class="btn btn-primary btn-xs" style="width:100%" onclick="location.href='terms'">회원가입</button>
                 </div>
             </div>
+            <button id="naver-login"><img src="../assets/img/naver.png"></button>
         </form>
-
-
         <c:if test="${param.error == 'true'}">
             <div class="alert alert-danger" role="alert">
                 로그인 실패: 잘못된 아이디 또는 비밀번호입니다.
             </div>
         </c:if>
-
         <c:if test="${param.error == 'deactivated'}">
             <div class="alert alert-danger" role="alert">
                 탈퇴한 회원입니다. 로그인이 불가능합니다.
@@ -64,5 +62,6 @@
 
 <!-- Bootstrap Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="../js/login.js"></script>
 </body>
 </html>
