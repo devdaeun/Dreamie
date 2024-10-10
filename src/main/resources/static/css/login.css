@@ -64,3 +64,10 @@ html, body {
 #inputBox button {
     padding: 3px 5px;
 }
+
+#naver-login {
+    border: 0;
+}
+#naver-login > img {
+    width: 150px;
+}
