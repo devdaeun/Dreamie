@@ -1,6 +1,8 @@
 package flower.dreamie.chat.service;
 
+import flower.dreamie.chat.entity.ChatMessage;
 import flower.dreamie.chat.entity.ChatRoom;
+import flower.dreamie.chat.repository.ChatMessageRepository;
 import flower.dreamie.chat.repository.ChatRoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +13,9 @@ import java.util.List;
 public class ChatService {
     @Autowired
     private ChatRoomRepository chatRoomRepository;
+
+    @Autowired
+    private ChatMessageRepository chatMessageRepository;
 
     public ChatRoom createChatRoom(ChatRoom chatRoom) {
         return chatRoomRepository.save(chatRoom);
@@ -26,5 +31,9 @@ public class ChatService {
 
     public void RemoveRooms(String roomId){
         chatRoomRepository.deleteById(roomId);
+    }
+
+    public ChatMessage saveChatMessage(ChatMessage message){
+        return chatMessageRepository.save(message);
     }
 }
