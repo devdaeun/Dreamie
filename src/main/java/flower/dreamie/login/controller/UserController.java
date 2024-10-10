@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -41,7 +42,10 @@ public class UserController {
     }
 
     @GetMapping("/modifyForm")
-    public String modifyForm() { return  "mypage/modify";}
+    public String modifyForm() { return  "mypage/modify"; }
+
+    @GetMapping("/pwdCheck")
+    public String pwdCheck() { return  "mypage/pwdCheck"; }
 
     @PostMapping("/addmember")
     public String addMember(@ModelAttribute User login) {
@@ -157,4 +161,21 @@ public class UserController {
         return "redirect:/modifyForm";
     }
 
+    //비밀번호 확인
+    @PostMapping("/check-password")
+    public ModelAndView checkPwd(@RequestParam("password") String password, HttpSession session) {
+        User currentUser = (User) session.getAttribute("user");
+
+        // 비밀번호 확인 (Service를 통해 처리)
+        boolean isPasswordCorrect = userService.checkPassword(currentUser.getId(), password);
+
+        if (isPasswordCorrect) {
+            return new ModelAndView("redirect:/modifyForm");
+        }
+        else {
+            ModelAndView modelAndView = new ModelAndView("mypage/pwdCheck");
+            modelAndView.addObject("errorMessage", "비밀번호가 일치하지 않습니다.");
+            return modelAndView;
+        }
+    }
 }
