@@ -71,10 +71,10 @@
     align-items: center;
 }
 
-#idCheckMessage, #emailCheckMessage {
-    font-size: 12px;
-    color: red;
-}
+/*#idMessage, #emailMessage {*/
+/*    font-size: 12px;*/
+/*    color: red;*/
+/*}*/
 
 .button-login-box {
     margin: 10px 0;

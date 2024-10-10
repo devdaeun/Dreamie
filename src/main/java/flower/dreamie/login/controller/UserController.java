@@ -11,8 +11,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
@@ -40,7 +42,10 @@ public class UserController {
     }
 
     @GetMapping("/modifyForm")
-    public String modifyForm() { return  "mypage/modify";}
+    public String modifyForm() { return  "mypage/modify"; }
+
+    @GetMapping("/pwdCheck")
+    public String pwdCheck() { return  "mypage/pwdCheck"; }
 
     @PostMapping("/addmember")
     public String addMember(@ModelAttribute User login) {
@@ -100,6 +105,22 @@ public class UserController {
         return ResponseEntity.ok(Collections.singletonMap("exists", exists));
     }
 
+    // 이메일 중복 확인 API
+    @PostMapping("/email-check")
+    public ResponseEntity<?> emailCheck(@RequestBody Map<String, String> body) {
+        String newEmail = body.get("email");          // 클라이언트에서 입력한 새 이메일
+        String currentEmail = body.get("currentEmail");  // 현재 사용자의 이메일 (수정 시 사용)
+
+        // 현재 이메일과 새 이메일이 다를 때만 중복 체크
+        boolean exists = false;
+        if (!newEmail.equals(currentEmail)) {
+            exists = userService.existsByEmail(newEmail);  // 새 이메일에 대한 중복 여부 확인
+        }
+
+        // JSON 형식으로 중복 여부 결과 반환
+        return ResponseEntity.ok(Collections.singletonMap("exists", exists));
+    }
+
     // 회원탈퇴 처리
     @PostMapping("/deactivate")
     public ResponseEntity<String> deactivateUser(@RequestBody Map<String, Long> requestData) {
@@ -140,4 +161,21 @@ public class UserController {
         return "redirect:/modifyForm";
     }
 
+    //비밀번호 확인
+    @PostMapping("/check-password")
+    public ModelAndView checkPwd(@RequestParam("password") String password, HttpSession session) {
+        User currentUser = (User) session.getAttribute("user");
+
+        // 비밀번호 확인 (Service를 통해 처리)
+        boolean isPasswordCorrect = userService.checkPassword(currentUser.getId(), password);
+
+        if (isPasswordCorrect) {
+            return new ModelAndView("redirect:/modifyForm");
+        }
+        else {
+            ModelAndView modelAndView = new ModelAndView("mypage/pwdCheck");
+            modelAndView.addObject("errorMessage", "비밀번호가 일치하지 않습니다.");
+            return modelAndView;
+        }
+    }
 }
