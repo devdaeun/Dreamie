@@ -65,9 +65,9 @@
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center">
                     <div class="col-lg-8 text-center">
-                        <h2 class="text-white mt-0">Dream big and dare to fail!</h2>
+                        <h2 class="text-white mt-0">${randomMotivationEn}</h2>
                         <hr class="divider divider-light" />
-                        <p class="text-white-75 mb-4">크게 꿈꾸고, 실패를 두려워하지 마라. -  Norman Vaughan </p>
+                        <p class="text-white-75 mb-4">${randomMotivation}</p>
                         <a class="btn btn-light btn-xl" href="#services">Get Started!</a>
                     </div>
                 </div>

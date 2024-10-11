@@ -40,6 +40,7 @@ dependencies {
     implementation 'commons-io:commons-io:2.16.1'
     implementation 'org.springframework.boot:spring-boot-starter'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor' // IDE에서 IntelliSense 지원
+    implementation 'com.h2database:h2'
 }
 
 tasks.named('test') {
