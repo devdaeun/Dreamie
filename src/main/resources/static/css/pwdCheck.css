@@ -1,0 +1,15 @@
+.pwdForm {
+    margin: 5px;
+    padding: 45px;
+    background-color: whitesmoke;
+    height: 600px;
+}
+.form-group p {
+    margin: 25px 5px 15px;
+}
+.pwdForm button {
+    margin-top: 15px;
+}
+.pwdForm p {
+    margin-top: 15px;
+}
