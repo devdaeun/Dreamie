@@ -69,8 +69,7 @@
                 </div>
                 <div class="list-group list-group-flush">
                     <label>설정</label>
-                    <a href="/challenges" class="list-group-item">프로필 수정</a>
-                    <a href="#" class="list-group-item">비밀번호 수정</a>
+                    <a href="/pwdCheck" class="list-group-item">프로필 수정</a>
                     <a href="/logout" class="list-group-item">로그아웃</a>
                     <a href="#" class="list-group-item">회원탈퇴</a>
                 </div>
@@ -79,7 +78,7 @@
             <div class="missions board">
                 <h1>포도알 스티커</h1>
                 <p>미션 성공개수 : <c:out value="${sessionScope.user.mission}"></c:out>개<p>
-                <div class="stickers">
+                <div class="stickers" data-completed-missions="${sessionScope.user.mission}">
                     <div>
                         <img class="sticker" src="../assets/img/empty_sticker.svg" data-mission-id="1" alt="스티커 1">
                         <img class="sticker" src="../assets/img/empty_sticker.svg" data-mission-id="2" alt="스티커 2">
@@ -115,5 +114,6 @@
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="../js/mypage.js"></script>
+     <script src="../js/grape.js"></script>
 </body>
 </html>
