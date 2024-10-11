@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="../css/styles.css"/>
     <link rel="stylesheet" href="../css/challenges.css"/>
     <link rel="stylesheet" href="../css/mypage.css"/>
-    <link rel="stylesheet" href="../css/modify.css"/>
+    <link rel="stylesheet" href="../css/pwdCheck.css"/>
 </head>
 <body class="text-center" id="page-top">
 <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
@@ -82,14 +82,17 @@
             <h2>비밀번호 확인</h2>
             <form action="/check-password" method="POST">
                 <div class="form-group">
-                    <label for="password">비밀번호를 입력하세요:</label>
+                    <p for="password">비밀번호를 입력하세요 </p>
                     <input type="password" id="password" name="password" class="form-control" required>
                 </div>
+                <% if (request.getAttribute("errorMessage") != null) { %>
+                <p style="color: red;"><%= request.getAttribute("errorMessage") %></p>
+                <% } %>
                 <button type="submit" class="btn btn-outline-primary">확인</button>
             </form>
-            <% if (request.getAttribute("errorMessage") != null) { %>
-            <p style="color: red;"><%= request.getAttribute("errorMessage") %></p>
-            <% } %>
+<%--            <% if (request.getAttribute("errorMessage") != null) { %>--%>
+<%--            <p style="color: red;"><%= request.getAttribute("errorMessage") %></p>--%>
+<%--            <% } %>--%>
         </div>
 
     </div>
