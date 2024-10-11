@@ -69,7 +69,11 @@
                     <p>작성일 | ${community.write_at}</p>
                 </div>
                 <div>
-                    <p> 첨부파일 | </p>
+                    <p th:if="${community.uploadFile != null}">첨부파일 |
+                        <span th:text="${community.uploadFile.fileName}"></span>
+                        <a th:href="@{/community/download/{id}(id=${community.uploadFile.upload_file_id})}">다운로드</a>
+                    </p>
+                    <p th:if="${community.uploadFile == null}">첨부파일이 없습니다.</p>
                 </div>
                 <div class="realContent">
                     <div id="noticeContent">${community.content}</div>

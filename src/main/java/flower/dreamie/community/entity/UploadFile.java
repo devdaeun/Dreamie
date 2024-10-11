@@ -12,8 +12,8 @@ public class UploadFile {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false)
-    private Long id;  // 파일의 고유 식별자
+    @Column(name = "upload_file_id")  // 기본 키를 upload_file_id로 설정
+    private Long upload_file_id;
 
     @Column(name = "file_name", nullable = false)
     private String fileName;
@@ -21,17 +21,25 @@ public class UploadFile {
     @Column(name = "size", nullable = false)
     private long size;
 
-    @Column(nullable = false)
+    @Column(name = "insert_date", nullable = false)
     private LocalDateTime insert_date;
-
-    // Community 엔터티와의 관계 (Many-to-One)
-    @ManyToOne
-    @JoinColumn(name = "community_id", nullable = false)  // 외래 키 설정
-    private Community community;
 
     @PrePersist
     public void onCreate() {
         this.insert_date = LocalDateTime.now();
     }
-}
 
+    @ManyToOne
+    @JoinColumn(name = "community_id", nullable = false)  // 외래 키로 사용
+    private Community community;
+
+    @Override
+    public String toString() {
+        return "UploadFile{" +
+                "fileName='" + fileName + '\'' +
+                ", size=" + size +
+                ", insert_date=" + insert_date +
+                '}';
+    }
+
+}

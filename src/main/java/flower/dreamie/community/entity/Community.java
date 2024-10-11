@@ -31,10 +31,10 @@ public class Community {
     @Column(nullable = true)
     private LocalDateTime edit_at;
 
-    // UploadFile과의 관계 설정
-    @OneToOne(cascade = CascadeType.ALL) // 연관된 UploadFile이 삭제될 때 함께 삭제되도록 설정
-    @JoinColumn(name = "upload_file_id") // 외래 키 설정
-    private UploadFile uploadFile; // UploadFile 객체를 참조하는 필드 추가
+    @ManyToOne
+    @JoinColumn(name = "upload_file_id")
+    private UploadFile uploadFile; // UploadFile과의 관계
+
 
     // 글 작성 시 자동으로 작성일과 수정일을 현재 시각으로 설정
     @PrePersist
@@ -49,6 +49,14 @@ public class Community {
         this.edit_at = LocalDateTime.now();
     }
 
-
+    @Override
+    public String toString() {
+        return "Community{" +
+                "community_id=" + community_id +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", write_at=" + write_at +
+                '}';
+    }
 
 }

@@ -38,6 +38,8 @@ dependencies {
     // image upload read
     implementation group: 'commons-fileupload', name: 'commons-fileupload', version: '1.5'
     implementation 'commons-io:commons-io:2.16.1'
+    implementation 'org.springframework.boot:spring-boot-starter'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor' // IDE에서 IntelliSense 지원
 }
 
 tasks.named('test') {
