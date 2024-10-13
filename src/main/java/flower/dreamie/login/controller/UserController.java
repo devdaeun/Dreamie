@@ -2,6 +2,7 @@ package flower.dreamie.login.controller;
 
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonNode;
 import flower.dreamie.login.entity.User;
 import flower.dreamie.login.repository.UserRepository;
 import flower.dreamie.login.service.UserService;
@@ -16,10 +17,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @Controller
 public class UserController {
@@ -28,8 +26,9 @@ public class UserController {
     UserService userService;
     @Autowired
     private UserRepository userRepository;
-
+    @Autowired
     private RestTemplate restTemplate;
+
 
     @GetMapping("/loginForm")
     public String loginForm() {
@@ -186,12 +185,14 @@ public class UserController {
 
     @RequestMapping("/naver-login")
     public String naverLogin(@RequestParam("code") String code, @RequestParam("state") String state) {
-        if (state == "1234"){
+        if (Objects.equals(state, "1234")){
             // 1. 네이버로부터 받은 코드로 액세스 토큰 요청
             String accessToken = getAccessToken(code);
 
             // 2. 액세스 토큰으로 사용자 정보 요청
             Map<String, Object> userInfo = getUserInfo(accessToken);
+            System.out.println(userInfo);
+
         }
 
         return "redirect:/";
@@ -199,8 +200,8 @@ public class UserController {
 
     private String getAccessToken(String code){
         String url = "https://nid.naver.com/oauth2.0/token?";
-        String tokenUrl = url + "client_id=NU4ciXZlz_FhRZKPNN5g&client_secret=LSFsxisf_5&grant_type=authorization_code&state=1234"+
-                "&code" + code;
+        String tokenUrl = url + "grant_type=authorization_code&client_id=NU4ciXZlz_FhRZKPNN5g&client_secret=LSFsxisf_5&grant_type=authorization_code&state=1234"+
+                "&code=" + code;
 
         HttpHeaders headers = new HttpHeaders(); //api 요청을 위해 헤더를 설정합니다.
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED); //url로 보낼거라고 설정
@@ -210,15 +211,25 @@ public class UserController {
 
         // Post 형식으로 요청 전송하기
         ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
-
-        return response.getBody();//응답 값 가져오기
+        System.out.println(response.getBody());
+        // 응답 본문에서 accessToken 추출
+        String accessToken = null;
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            JsonNode jsonNode = objectMapper.readTree(response.getBody());
+            accessToken = jsonNode.get("access_token").asText(); // access_token 필드에서 값 추출
+            return accessToken;//응답 값 가져오기
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "오류나떠";
+        }
     };
 
     private Map<String, Object> getUserInfo(String accessToken){
         String url = "https://openapi.naver.com/v1/nid/me";
 
         HttpHeaders headers = new HttpHeaders();
-        headers.set("Authorization","Barear" + accessToken);
+        headers.set("Authorization","Bearer " + accessToken);
 
         HttpEntity<String> entity = new HttpEntity<>(headers);
 
