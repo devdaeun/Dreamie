@@ -21,8 +21,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-tomcat'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
     // websocket
     implementation 'org.springframework.boot:spring-boot-starter-websocket'
     implementation group: 'org.webjars', name: 'stomp-websocket', version: '2.3.3-1'
@@ -30,15 +29,23 @@ dependencies {
     // lombok
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
+
     // mysql
     runtimeOnly 'com.mysql:mysql-connector-j'
+
     // JSTL 및 Tomcat JSP 설정
     implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:2.0.0'
     implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl:2.0.0'
     implementation 'org.apache.tomcat.embed:tomcat-embed-jasper:10.1.12'
+
     // image upload read
     implementation group: 'commons-fileupload', name: 'commons-fileupload', version: '1.5'
     implementation 'commons-io:commons-io:2.16.1'
+
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor' // IDE에서 IntelliSense 지원
+
+    // H2 database for testing
+    implementation 'com.h2database:h2'
 }
 
 tasks.named('test') {
