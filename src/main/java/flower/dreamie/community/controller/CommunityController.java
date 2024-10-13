@@ -3,6 +3,7 @@ package flower.dreamie.community.controller;
 import flower.dreamie.community.entity.Community;
 import flower.dreamie.community.entity.UploadFile;
 import flower.dreamie.community.repository.UploadFileRepository;
+import flower.dreamie.community.exception.FileDownloadException;
 import flower.dreamie.community.service.CommunityService;
 import flower.dreamie.login.entity.User;
 import jakarta.servlet.http.HttpSession;
@@ -15,8 +16,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.UriUtils;
-
 import java.nio.charset.StandardCharsets;
+import org.apache.commons.fileupload.FileUploadException;
 
 
 @Controller

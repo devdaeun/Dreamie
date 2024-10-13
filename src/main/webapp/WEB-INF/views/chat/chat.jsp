@@ -100,7 +100,6 @@
                    $("#msgArea").append(str);
                });
 
-               //3. send(path, header, message)로 메세지를 보낼 수 있음
                stomp.send('/pub/chat/enter', {}, JSON.stringify({chat_room_id: roomId, sender: id}))
             });
 

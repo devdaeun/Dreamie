@@ -66,5 +66,19 @@ public class UserService {
         }
     }
 
+    // 비밀번호 확인 로직
+//    public boolean checkPassword(Long userId, String rawPassword) {
+//        User user = userRepository.findById(userId).orElseThrow(() -> new IllegalArgumentException("사용자를 찾을 수 없습니다."));
+//        return passwordEncoder.matches(rawPassword, user.getPassword()); //암호화된 비번 비교시
+//    }
+    // 비밀번호 확인 로직 (암호화 없이 문자열 비교)
+    public boolean checkPassword(String id, String rawPassword) {
+        // 사용자 정보 조회
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("사용자를 찾을 수 없습니다."));
+
+        // 입력한 비밀번호와 DB에 저장된 비밀번호 비교
+        return user.getPassword().equals(rawPassword);
+    }
 
 }

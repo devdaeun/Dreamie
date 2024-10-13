@@ -31,13 +31,10 @@
            <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
            <div class="collapse navbar-collapse" id="navbarResponsive">
                <ul class="navbar-nav ms-auto my-2 my-lg-0">
-                   <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                   <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-                   <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a>
                    <li class="nav-item"><a class="nav-link" href="/notice">Notice</a>
                    <li class="nav-item"><a class="nav-link" href="/challenges">challenges</a>
                        <!-- 문의사항 페이지로 이동하는 링크 -->
-                   <li class="nav-item"><a class="nav-link" href="/qna">문의사항</a></li>
+                   <li class="nav-item"><a class="nav-link" href="/qna">Q&A</a></li>
                    <% if (session.getAttribute("user") != null) { %>
 
                    <!--로그인 하면 로그아웃 옆에 마이페이지-->
@@ -72,8 +69,8 @@
                 </div>
                 <div class="list-group list-group-flush">
                     <label>설정</label>
-                    <a href="/modify/profile" class="list-group-item">프로필 수정</a>
-                    <a href="/modify/password" class="list-group-item">비밀번호 수정</a>
+                    <a href="/pwdCheck" class="list-group-item">프로필 수정</a>
+<%--                    <a href="/modify/password" class="list-group-item">비밀번호 수정</a>--%>
                     <a href="/logout" class="list-group-item">로그아웃</a>
 <%--                    <a href="#" class="list-group-item" onclick="drop_check(event, '/admin/delMember.do?id=${User.user_id}')" >회원탈퇴</a>--%>
                     <button  class="list-group-item" onclick="confirmDeactivation(${user.user_id})">회원탈퇴</button>

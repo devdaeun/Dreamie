@@ -34,7 +34,7 @@
                         <li class="nav-item"><a class="nav-link" href="/notice">Notice</a>
                         <li class="nav-item"><a class="nav-link" href="/challenges">challenges</a>
                         <!-- 문의사항 페이지로 이동하는 링크 -->
-                        <li class="nav-item"><a class="nav-link" href="/qna">문의사항</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/qna">Q&A</a></li>
                         <% if (session.getAttribute("user") != null) { %>
                         <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
                         <li class="nav-item"><a class="nav-link" href="/mypage">mypage</a></li>

@@ -1,18 +1,23 @@
 package flower.dreamie.login.controller;
 
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import flower.dreamie.login.entity.User;
 import flower.dreamie.login.repository.UserRepository;
 import flower.dreamie.login.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
+import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.ModelAndView;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
@@ -23,6 +28,8 @@ public class UserController {
     UserService userService;
     @Autowired
     private UserRepository userRepository;
+
+    private RestTemplate restTemplate;
 
     @GetMapping("/loginForm")
     public String loginForm() {
@@ -38,6 +45,12 @@ public class UserController {
     public String memberForm() {
         return "login/memberForm";
     }
+
+    @GetMapping("/modifyForm")
+    public String modifyForm() { return  "mypage/modify"; }
+
+    @GetMapping("/pwdCheck")
+    public String pwdCheck() { return  "mypage/pwdCheck"; }
 
     @PostMapping("/addmember")
     public String addMember(@ModelAttribute User login) {
@@ -97,6 +110,22 @@ public class UserController {
         return ResponseEntity.ok(Collections.singletonMap("exists", exists));
     }
 
+    // 이메일 중복 확인 API
+    @PostMapping("/email-check")
+    public ResponseEntity<?> emailCheck(@RequestBody Map<String, String> body) {
+        String newEmail = body.get("email");          // 클라이언트에서 입력한 새 이메일
+        String currentEmail = body.get("currentEmail");  // 현재 사용자의 이메일 (수정 시 사용)
+
+        // 현재 이메일과 새 이메일이 다를 때만 중복 체크
+        boolean exists = false;
+        if (!newEmail.equals(currentEmail)) {
+            exists = userService.existsByEmail(newEmail);  // 새 이메일에 대한 중복 여부 확인
+        }
+
+        // JSON 형식으로 중복 여부 결과 반환
+        return ResponseEntity.ok(Collections.singletonMap("exists", exists));
+    }
+
     // 회원탈퇴 처리
     @PostMapping("/deactivate")
     public ResponseEntity<String> deactivateUser(@RequestBody Map<String, Long> requestData) {
@@ -111,5 +140,101 @@ public class UserController {
         }
     }
 
+    //회원 정보 수정
+    @RequestMapping("/modify")
+    public String modify(@RequestParam("id") String id,
+                         @RequestParam("password") String password,
+                         @RequestParam("email") String email,
+                         @RequestParam("name") String name,
+                         @RequestParam("work") String work, HttpSession session) {
+        //아이디로 기존 회원 조회
+        User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("사용자를 찾을 수 없습니다."));
+
+        // 비밀번호, 이메일, 이름, 직업만 수정 가능
+        user.setPassword(password);
+        user.setEmail(email);
+        user.setName(name);
+        user.setWork(work);
+
+        // 수정된 정보 저장
+        userRepository.save(user);
+
+        // 세션에 저장된 사용자 정보 업데이트
+        session.setAttribute("user", user);  // 수정된 user 객체를 세션에 저장
+
+//        return "redirect:/mypage"; // 마이페이지로 리다이렉트
+        return "redirect:/modifyForm";
+    }
+
+    //비밀번호 확인
+    @PostMapping("/check-password")
+    public ModelAndView checkPwd(@RequestParam("password") String password, HttpSession session) {
+        User currentUser = (User) session.getAttribute("user");
+
+        // 비밀번호 확인 (Service를 통해 처리)
+        boolean isPasswordCorrect = userService.checkPassword(currentUser.getId(), password);
+
+        if (isPasswordCorrect) {
+            return new ModelAndView("redirect:/modifyForm");
+        }
+        else {
+            ModelAndView modelAndView = new ModelAndView("mypage/pwdCheck");
+            modelAndView.addObject("errorMessage", "비밀번호가 일치하지 않습니다.");
+            return modelAndView;
+        }
+    }
+
+    @RequestMapping("/naver-login")
+    public String naverLogin(@RequestParam("code") String code, @RequestParam("state") String state) {
+        if (state == "1234"){
+            // 1. 네이버로부터 받은 코드로 액세스 토큰 요청
+            String accessToken = getAccessToken(code);
+
+            // 2. 액세스 토큰으로 사용자 정보 요청
+            Map<String, Object> userInfo = getUserInfo(accessToken);
+        }
+
+        return "redirect:/";
+    };
+
+    private String getAccessToken(String code){
+        String url = "https://nid.naver.com/oauth2.0/token?";
+        String tokenUrl = url + "client_id=NU4ciXZlz_FhRZKPNN5g&client_secret=LSFsxisf_5&grant_type=authorization_code&state=1234"+
+                "&code" + code;
+
+        HttpHeaders headers = new HttpHeaders(); //api 요청을 위해 헤더를 설정합니다.
+        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED); //url로 보낼거라고 설정
+
+        //Http 요청 만들기
+        HttpEntity<String> entity = new HttpEntity<>(tokenUrl, headers);
+
+        // Post 형식으로 요청 전송하기
+        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
+
+        return response.getBody();//응답 값 가져오기
+    };
+
+    private Map<String, Object> getUserInfo(String accessToken){
+        String url = "https://openapi.naver.com/v1/nid/me";
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Authorization","Barear" + accessToken);
+
+        HttpEntity<String> entity = new HttpEntity<>(headers);
+
+        ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
+
+        return ResponseToMap(response.getBody());
+    };
+
+    private Map<String, Object> ResponseToMap(String responseBody) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            return objectMapper.readValue(responseBody, new TypeReference<Map<String, Object>>() {}); // JSON을 Map으로 변환
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null; // 예외 처리
+        }
+    }
 
 }
