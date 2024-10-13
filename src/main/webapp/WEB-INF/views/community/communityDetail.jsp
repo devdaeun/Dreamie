@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
@@ -69,12 +69,16 @@
                     <p>작성일 | ${community.write_at}</p>
                 </div>
                 <div>
-                    <p th:if="${community.uploadFile != null}">첨부파일 |
-                        <span th:text="${community.uploadFile.fileName}"></span>
-                        <a th:href="@{/community/download/{id}(id=${community.uploadFile.upload_file_id})}">다운로드</a>
-                    </p>
-                    <p th:if="${community.uploadFile == null}">첨부파일이 없습니다.</p>
+                    <c:if test="${not empty community.uploadFile}">
+                        첨부파일 | ${community.uploadFile.fileName}
+                        <a href="/community/download/${community.uploadFile.upload_file_id}">다운로드</a> |
+                        <a href="/community/preview/${community.uploadFile.upload_file_id}" target="_blank">미리 보기</a>
+                    </c:if>
+                    <c:if test="${empty community.uploadFile}">
+                        첨부파일이 없습니다.
+                    </c:if>
                 </div>
+                <div id="previewArea"></div>
                 <div class="realContent">
                     <div id="noticeContent">${community.content}</div>
                     <div id="editContent" class="edit-mode">
@@ -105,7 +109,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
 <!-- Core theme JS -->
 <script src="js/scripts.js"></script>
-<script src="${pageContext.request.contextPath}/js/notice.js"></script>
+<script src="${pageContext.request.contextPath}/js/community.js"></script>
 
 </body>
 </html>

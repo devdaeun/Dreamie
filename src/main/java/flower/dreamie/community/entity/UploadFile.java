@@ -24,6 +24,9 @@ public class UploadFile {
     @Column(name = "insert_date", nullable = false)
     private LocalDateTime insert_date;
 
+    @Column(name = "file_path", nullable = false)
+    private String filePath;
+
     @PrePersist
     public void onCreate() {
         this.insert_date = LocalDateTime.now();

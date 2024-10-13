@@ -31,7 +31,7 @@ public class Community {
     @Column(nullable = true)
     private LocalDateTime edit_at;
 
-    @ManyToOne
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "upload_file_id")
     private UploadFile uploadFile; // UploadFile과의 관계
 
