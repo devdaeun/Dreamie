@@ -42,8 +42,7 @@ public class User {
     private ActivationStatus activation;
 
     public enum UserRole {
-        naver,
-        google,
+        네이버,
         일반,
         관리자
     }
