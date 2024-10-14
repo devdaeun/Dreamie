@@ -44,5 +44,10 @@ public class UploadFile {
                 ", insert_date=" + insert_date +
                 '}';
     }
+    public void updateFileDetails(String newFileName, String newFilePath) {
+        this.fileName = newFileName;
+        this.filePath = newFilePath;
+    }
+
 
 }
