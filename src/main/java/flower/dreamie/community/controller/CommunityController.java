@@ -1,8 +1,10 @@
 package flower.dreamie.community.controller;
 
+import flower.dreamie.community.entity.Comment;
 import flower.dreamie.community.entity.Community;
 import flower.dreamie.community.entity.UploadFile;
 import flower.dreamie.community.repository.UploadFileRepository;
+import flower.dreamie.community.service.CommentService;
 import flower.dreamie.community.service.CommunityService;
 import flower.dreamie.login.entity.User;
 import jakarta.servlet.http.HttpSession;
@@ -17,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.UriUtils;
 
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 
 @Controller
@@ -24,10 +27,12 @@ public class CommunityController {
 
     private final CommunityService communityService;
     private final UploadFileRepository uploadFileRepository;
+    private final CommentService commentService; // CommentService 주입
 
-    public CommunityController(CommunityService communityService, UploadFileRepository uploadFileRepository) {
+    public CommunityController(CommunityService communityService, UploadFileRepository uploadFileRepository, CommentService commentService) {
         this.communityService = communityService;
         this.uploadFileRepository = uploadFileRepository;
+        this.commentService = commentService;
     }
 
     // 커뮤니티조회
@@ -78,14 +83,29 @@ public class CommunityController {
         return "redirect:/community?success=true"; // 성공 시 리다이렉트
     }
 
-    // 커뮤니티 상세 조회
+//    // 커뮤니티 상세 조회
+//    @RequestMapping("/community/{community_id}")
+//    public String detail(@PathVariable("community_id") Long community_id, Model model, HttpSession session) {
+//        System.out.println("요청된 community_id: " + community_id); // 추가된 로그
+//        Community community = communityService.getCommunityById(community_id);
+//        User user = (User) session.getAttribute("user");
+//        model.addAttribute("community", community);
+//        model.addAttribute("user", user);
+//        return "community/communityDetail";
+//    }
+
+    // 커뮤니티 상세 조회 및 댓글 조회
     @RequestMapping("/community/{community_id}")
     public String detail(@PathVariable("community_id") Long community_id, Model model, HttpSession session) {
-        System.out.println("요청된 community_id: " + community_id); // 추가된 로그
         Community community = communityService.getCommunityById(community_id);
         User user = (User) session.getAttribute("user");
+
+        // 댓글 목록 가져오기
+        List<Comment> comments = commentService.getCommentsByCommunityId(community_id);
+
         model.addAttribute("community", community);
         model.addAttribute("user", user);
+        model.addAttribute("comments", comments);  // 댓글 목록 추가
         return "community/communityDetail";
     }
 
@@ -148,6 +168,40 @@ public class CommunityController {
         } catch (Exception e) {
             e.printStackTrace(); // 예외 출력
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("파일 수정에 실패했습니다.");
+        }
+    }
+
+    // 댓글 저장
+    @PostMapping("/community/{community_id}/comment")
+    public String saveComment(@PathVariable("community_id") Long community_id,
+                              @RequestParam("content") String content, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            return "redirect:/loginForm"; // 로그인 필요 시 로그인 페이지로 리다이렉트
+        }
+
+        Comment comment = new Comment();
+        comment.setCommunity(communityService.getCommunityById(community_id));
+        comment.setUser(user);
+        comment.setContent(content);
+
+        commentService.saveComment(comment);
+
+        // 댓글 저장 후 communityDetail 페이지로 리다이렉트
+        return "redirect:/community/" + community_id; // 수정된 URL
+    }
+
+
+    // 댓글 삭제
+    @PostMapping("/community/comment/delete")
+    @ResponseBody
+    public String deleteComment(@RequestParam("comment_id") Long commentId) {
+        try {
+            commentService.deleteComment(commentId);
+            return "OK";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "ERROR";
         }
     }
 

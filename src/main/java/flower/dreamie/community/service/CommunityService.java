@@ -3,6 +3,7 @@ package flower.dreamie.community.service;
 import flower.dreamie.community.entity.Community;
 import flower.dreamie.community.entity.UploadFile;
 import flower.dreamie.community.exception.FileUploadException;
+import flower.dreamie.community.repository.CommentRepository;
 import flower.dreamie.community.repository.CommunityRepository;
 import flower.dreamie.community.repository.UploadFileRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -21,11 +22,15 @@ import java.util.List;
 public class CommunityService {
 
     private final CommunityRepository communityRepository;
-    private final UploadFileRepository uploadFileRepository; // 추가
+    private final UploadFileRepository uploadFileRepository; //
+    private final CommentRepository commentRepository;
 
-    public CommunityService(CommunityRepository communityRepository, UploadFileRepository uploadFileRepository) {
+    public CommunityService(CommunityRepository communityRepository,
+                            UploadFileRepository uploadFileRepository,
+                            CommentRepository commentRepository) {
         this.communityRepository = communityRepository;
-        this.uploadFileRepository = uploadFileRepository; // 주입
+        this.uploadFileRepository = uploadFileRepository;
+        this.commentRepository = commentRepository;
     }
 
     // 커뮤니티 조회
@@ -74,19 +79,21 @@ public class CommunityService {
         }
     }
 
-    //파일 다운로드
-    public UploadFile downloadFile(long community_id) {
-        return uploadFileRepository.findByCommunityId(community_id);  // 데이터베이스에서 커뮤니티 ID를 사용하여 UploadFile 객체를 가져오는 로직
-    }
+//    //파일 다운로드
+//    public UploadFile downloadFile(long communityId) {
+//        return uploadFileRepository.findByCommunityId(communityId);  // 데이터베이스에서 커뮤니티 ID를 사용하여 UploadFile 객체를 가져오는 로직
+//    }
 
     //커뮤니티 수정하기
     public Community updateCommunity(Long community_id, String content) {
         Community community = getCommunityById(community_id);
         if (community != null) {
             community.setContent(content);
+            return communityRepository.save(community); // 수정된 엔티티 저장
         }
-        return community;
+        return null;
     }
+
 
     // 커뮤니티 삭제
     public void deleteCommunity(Long community_id) throws Exception{

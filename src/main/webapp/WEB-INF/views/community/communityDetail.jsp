@@ -28,7 +28,6 @@
             <ul class="navbar-nav ms-auto my-2 my-lg-0">
                 <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                 <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-                <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
                 <li class="nav-item"><a class="nav-link" href="/notice">Notice</a></li>
                 <li class="nav-item"><a class="nav-link" href="/challenges">challenges</a></li>
                 <li class="nav-item"><a class="nav-link" href="/qna">QnA</a></li>
@@ -89,7 +88,6 @@
                         첨부파일이 없습니다.
                     </c:if>
 
-
                 </div>
                 <div id="previewArea"></div>
                 <div class="realContent">
@@ -100,6 +98,25 @@
                 </div>
 
             </div>
+
+            <!-- 댓글 영역 -->
+            <div class="comment-section">
+                <!-- 댓글 작성 폼 -->
+                <form action="/community/${community.community_id}/comment" method="post" class="comment-form">
+                    <textarea name="content" placeholder="댓글을 입력하세요"></textarea>
+                    <button type="submit">댓글 작성</button>
+                </form>
+
+                <!-- 댓글 목록 -->
+                <div class="comment-list">
+                    <c:forEach var="comment" items="${comments}">
+                        <div class="comment-item">
+                            <span class="comment-author">${comment.user.user_id}</span> <!-- 작성자 ID -->
+                            <span class="comment-separator">|</span> <!-- 구분 기호 -->
+                            <div class="comment-content">${comment.content}</div> <!-- 댓글 내용 -->
+                        </div>
+                    </c:forEach>
+                </div>
 
             <div class="more text-center">
                 <a href="/community" class="btn btn-secondary">목록으로 돌아가기</a>
