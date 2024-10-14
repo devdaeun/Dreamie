@@ -95,8 +95,18 @@
                         <div class="input-form-box">
                             <div class="inputForm">
                                 <span>비밀번호 </span>
-                                <input type="password" name="password" class="form-control" placeholder="비밀번호" value="${user.password}">
+                                <input type="password" name="password" class="form-control" placeholder="비밀번호" value="${user.password}" id="password">
                             </div>
+                        </div>
+
+                        <!-- 비밀번호 확인 필드 -->
+                        <div class="input-form-box">
+                            <div class="inputForm">
+                                <span>비밀번호 확인 </span>
+                                <input type="password" name="confirmPassword" class="form-control" placeholder="비밀번호 확인" id="confirmPassword">
+                                <button type="button" class="btn btn-primary" onclick="checkPassword()">확인</button> <!-- 비밀번호 확인 버튼 -->
+                            </div>
+                            <div id="confirmPasswordErrorMessage" class="error-message"></div>
                         </div>
 
                         <!-- 이메일 수정 가능 -->

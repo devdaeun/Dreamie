@@ -210,6 +210,13 @@ function validateForm() {
         confirmPasswordErrorMessage.textContent = "비밀번호 확인을 눌러주세요.";
         isValid = false;
     }
+    // 비밀번호 수정 여부 확인
+    if (password !== "" && confirmPassword !== "") {
+        if (!isPasswordChecked) {
+            confirmPasswordErrorMessage.textContent = "비밀번호 확인을 눌러주세요.";
+            isValid = false;
+        }
+    }
     if (email === "") {
         emailMessage.textContent = "이메일을 입력해주세요.";
         isValid = false;
@@ -232,6 +239,9 @@ function validateForm() {
     // 모든 필드가 올바르게 입력된 경우 true 반환, 그렇지 않으면 false 반환
     if (!isValid) {
         return false; // 폼 제출을 중단
+    }
+    if (isValid) {
+        alert("회원정보 수정이 완료되었습니다.");
     }
 
     return true; // 모든 검증을 통과했을 때만 true 반환하여 폼 제출 진행
