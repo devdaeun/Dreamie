@@ -3,7 +3,6 @@ package flower.dreamie.community.controller;
 import flower.dreamie.community.entity.Community;
 import flower.dreamie.community.entity.UploadFile;
 import flower.dreamie.community.repository.UploadFileRepository;
-import flower.dreamie.community.exception.FileDownloadException;
 import flower.dreamie.community.service.CommunityService;
 import flower.dreamie.login.entity.User;
 import jakarta.servlet.http.HttpSession;
@@ -16,8 +15,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.UriUtils;
+
 import java.nio.charset.StandardCharsets;
-import org.apache.commons.fileupload.FileUploadException;
 
 
 @Controller
@@ -51,34 +50,6 @@ public class CommunityController {
         return "community/communityForm";
     }
 
-//    // 커뮤니티 저장
-//    @RequestMapping("communitySave")
-//    public String saveCommunity(@ModelAttribute("community") Community community,
-//                                @RequestParam("file") MultipartFile file, // 파일 추가
-//                                HttpSession session) {
-//        User user = (User) session.getAttribute("user");
-//        System.out.println("User from session: " + user);
-//
-//        community.setUser_id(user.getUser_id());
-//
-//        // 파일 저장 로직 호출
-//        if (!file.isEmpty()) {
-//            try {
-//                // community 객체를 먼저 저장하고 ID를 가져옴
-//                communityService.saveCommunity(community); // Community 저장
-//
-//                // 저장된 커뮤니티의 ID를 사용하여 파일 업로드 메서드 호출
-//                UploadFile uploadFile = communityService.saveUploadedFile(file, community.getCommunity_id()); // 수정된 부분
-//                community.setUploadFile(uploadFile);  // Community 객체에 UploadFile 설정
-//            } catch (Exception e) {
-//                return "redirect:/communityForm?error=파일 업로드 실패"; // 에러 처리
-//            }
-//        }
-//
-//        // 파일이 없을 경우에도 커뮤니티를 저장
-//        communityService.saveCommunity(community);
-//        return "redirect:/community";
-//    }
 
     // 커뮤니티 저장
     @RequestMapping("communitySave")
@@ -139,6 +110,46 @@ public class CommunityController {
                 .body(resource);
     }
 
+    // 커뮤니티 수정하기
+    @PostMapping("/community/update")
+    @ResponseBody
+    public String updateCommunity(@RequestParam("community_id") Long community_id,
+                                  @RequestParam("content") String content) {
+
+        Community updatedCommunity = communityService.updateCommunity(community_id, content);
+        if (updatedCommunity != null) {
+            return "OK";
+        }
+        return "FAIL";
+    }
+
+    // 커뮤니티 삭제하기
+    @PostMapping("/community/delete")
+    @ResponseBody
+    public String deleteCommunity(@RequestParam("community_id") Long community_id) {
+        try {
+            communityService.deleteCommunity(community_id);
+            return "OK";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "ERROR";
+        }
+    }
+
+
+    //커뮤니티 파일 수정
+    @PostMapping("/community/uploadFile/update")
+    @ResponseBody
+    public ResponseEntity<String> updateUploadFile(@RequestParam("uploadFileId") Long uploadFileId,
+                                                   @RequestParam("file") MultipartFile file) {
+        try {
+            communityService.updateUploadFile(uploadFileId, file);
+            return ResponseEntity.ok("파일이 성공적으로 수정되었습니다.");
+        } catch (Exception e) {
+            e.printStackTrace(); // 예외 출력
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("파일 수정에 실패했습니다.");
+        }
+    }
 
 }
 

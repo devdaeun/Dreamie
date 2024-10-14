@@ -42,7 +42,7 @@
     </div>
 </nav>
 
-<div id="container-notice" class="container">
+<div id="container-community" class="container">
     <div class="title">
         <h1>커뮤니티</h1>
     </div>
@@ -68,15 +68,28 @@
                 <div class="contentAt">
                     <p>작성일 | ${community.write_at}</p>
                 </div>
-                <div>
+                <div class="contentFile">
                     <c:if test="${not empty community.uploadFile}">
                         첨부파일 | ${community.uploadFile.fileName}
                         <a href="/community/download/${community.uploadFile.upload_file_id}">다운로드</a> |
-                        <a href="/community/preview/${community.uploadFile.upload_file_id}" target="_blank">미리 보기</a>
+                        <c:if test="${sessionScope.user != null && (sessionScope.user.role == '관리자' || sessionScope.user.user_id == community.user_id)}">
+                            <!-- 사용자 권한 확인 후 "파일 수정" 버튼 표시 -->
+                            <button id="editFileButton" onclick="showEditFileContent()">파일 수정</button>
+                            <input type="hidden" id="uploadFileId" value="${community.uploadFile.upload_file_id}"/> <!-- ID 설정 -->
+                        </c:if>
                     </c:if>
+
+                    <!-- 파일 수정 입력 -->
+                    <div id="editFileContent" style="display:none;">
+                        <input type="file" id="fileInput" placeholder="새 파일 선택">
+                        <button id="saveFileButton" onclick="updateFile()">저장</button>
+                    </div>
+
                     <c:if test="${empty community.uploadFile}">
                         첨부파일이 없습니다.
                     </c:if>
+
+
                 </div>
                 <div id="previewArea"></div>
                 <div class="realContent">
@@ -85,14 +98,21 @@
                         <textarea id="editContentText" class="form-control">${community.content}</textarea>
                     </div>
                 </div>
-                <div>
-                    <p>댓글</p>
-                </div>
+
             </div>
 
             <div class="more text-center">
                 <a href="/community" class="btn btn-secondary">목록으로 돌아가기</a>
 
+                <!-- 글 작성자이거나 관리자일 경우 수정 버튼 표시 -->
+                <c:if test="${sessionScope.user != null && (sessionScope.user.role == '관리자' || sessionScope.user.user_id == community.user_id)}">
+                    <button id="editButton" class="btn btn-outline-danger">수정</button>
+                    <button id="saveButton" class="btn btn-primary edit-mode">저장</button>
+                    <button id="deleteButton" class="btn btn-danger">삭제</button>
+                </c:if>
+
+                <!-- 공지사항 ID를 hidden input으로 포함 -->
+                <input type="hidden" id="noticeId" value="${community.community_id}">
             </div>
         </div>
     </div>

@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -34,6 +36,10 @@ public class Community {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "upload_file_id")
     private UploadFile uploadFile; // UploadFile과의 관계
+
+    @OneToMany(mappedBy = "community", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<UploadFile> uploadFiles = new ArrayList<>();
+
 
 
     // 글 작성 시 자동으로 작성일과 수정일을 현재 시각으로 설정

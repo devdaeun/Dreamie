@@ -53,7 +53,7 @@
         </div>
     </div>
 </nav>
-<div id="container-notice" class="container">
+<div id="container-community" class="container">
     <div class="title">
         <h1>커뮤니티</h1>
     </div>
