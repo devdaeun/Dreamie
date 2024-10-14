@@ -154,7 +154,6 @@ public class UserController {
         user.setEmail(email);
         user.setName(name);
         user.setWork(work);
-
         // 수정된 정보 저장
         userRepository.save(user);
 
@@ -184,7 +183,7 @@ public class UserController {
     }
 
     @RequestMapping("/naver-login")
-    public String naverLogin(@RequestParam("code") String code, @RequestParam("state") String state) {
+    public String naverLogin(@RequestParam("code") String code, @RequestParam("state") String state, HttpSession session) {
         if (Objects.equals(state, "1234")){
             // 1. 네이버로부터 받은 코드로 액세스 토큰 요청
             String accessToken = getAccessToken(code);
@@ -192,7 +191,25 @@ public class UserController {
             // 2. 액세스 토큰으로 사용자 정보 요청
             Map<String, Object> userInfo = getUserInfo(accessToken);
             System.out.println(userInfo);
+            Map<String, Object> responseMap = (Map<String, Object>)userInfo.get("response");
 
+            User user = new User();
+            String id = (String) responseMap.get("id");
+            if(userService.findById(id) != null){
+                User saveUser = userService.findById(id);
+                session.setAttribute("user", saveUser);
+            }else {
+                String email = (String) responseMap.get("email");
+                String name = (String) responseMap.get("nickname");
+                user.setId(id);
+                user.setEmail(email);
+                user.setName(name);
+                user.setPassword("socialLogin");
+                user.setRole(User.UserRole.네이버);
+                user.setWork("학생");
+                user.setActivation(User.ActivationStatus.active);
+                userService.save(user);
+            }
         }
 
         return "redirect:/";
