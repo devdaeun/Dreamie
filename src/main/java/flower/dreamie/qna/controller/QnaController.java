@@ -53,11 +53,16 @@ public class QnaController {
         // 세션에서 로그인된 사용자 정보 가져오기
         User user = (User) session.getAttribute("user");
 
-        // QnaList에 로그인된 사용자의 user_id 설정
-        qnaList.setUser_id(user.getUser_id());
+        // QnaList에 로그인된 사용자의 User 객체 설정
+        qnaList.setUser(user);
 
         // 기본적으로 show_type을 True로 설정 (필요시 form에서 값 받아 설정 가능)
-        qnaList.setShow_type(QnaList.ShowType.valueOf(qnaList.getShow_type().name()));  // show_type을 기본적으로 'True'로 설정
+        //qnaList.setShow_type(QnaList.ShowType.valueOf(qnaList.getShow_type().name()));  // show_type을 기본적으로 'True'로 설정
+//        qnaList.setShow_type(QnaList.ShowType.True);
+        // form에서 받은 show_type 값이 없다면 기본적으로 True로 설정
+        if (qnaList.getShow_type() == null) {
+            qnaList.setShow_type(QnaList.ShowType.True);
+        }
 
         // 문의사항 저장
         qnaService.saveQna(qnaList);
@@ -100,7 +105,8 @@ public class QnaController {
         User user = (User) session.getAttribute("user");    // 현재 로그인된 사용자 정보
 
         //수정
-        qna.setShow_type(QnaList.ShowType.valueOf(qnaList.getShow_type().name()));
+//        qna.setShow_type(QnaList.ShowType.valueOf(qnaList.getShow_type().name()));
+        qnaList.setShow_type(QnaList.ShowType.True);
         qna.setTitle(qnaList.getTitle());
         qna.setContent(qnaList.getContent());
 
@@ -117,7 +123,7 @@ public class QnaController {
         User user = (User) session.getAttribute("user");    // 현재 로그인된 사용자 정보
 
         // 글 작성자이거나 관리자일 경우에만 삭제 가능
-        if (user == null || (!qna.getUser_id().equals(user.getUser_id()) && !user.getRole().equals("관리자"))) {
+        if (user == null || (user.getRole() != User.UserRole.관리자)) {
             return "redirect:/qna";  // 권한이 없으면 목록 페이지로 리다이렉트
         }
 

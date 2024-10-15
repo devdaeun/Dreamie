@@ -1,5 +1,6 @@
 package flower.dreamie.qna.entity;
 
+import flower.dreamie.login.entity.User;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -16,8 +17,8 @@ public class QnaList {
     @Column(nullable = false)
     private Long question_id;
 
-    @Column(nullable = false)
-    private Long user_id;
+//    @Column(nullable = false)
+//    private Long user_id;
 
     @Column(nullable = false, length = 20)
     private String title;
@@ -52,4 +53,8 @@ public class QnaList {
         True,
         False
     }
+
+    @ManyToOne  //현재 엔티티와 다른 엔티티들을 연결
+    @JoinColumn(name = "user_id", nullable = false) // 외래 키 user_id로 User와 연결
+    private User user;
 }

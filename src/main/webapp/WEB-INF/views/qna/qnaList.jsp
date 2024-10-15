@@ -84,15 +84,15 @@
                                 <!-- 작성자거나 관리자인 경우 글 제목을 보여줌 -->
                                 <!-- 작성자도 아니고 관리자가 아닐 때는 '비밀글입니다' 표시 -->
                                 <c:choose>
-                                    <c:when test="${qna.show_type == 'False'}">
+                                    <c:when test="${qna.show_type == 'False' or qna.show_type.name() == 'False'}">
 
-                                        <c:if test="${sessionScope.user.user_id == qna.user_id || sessionScope.user.role == '관리자'}">
+                                        <c:if test="${sessionScope.user.user_id == qna.user.user_id || sessionScope.user.role == '관리자'}">
                                             <td><a href="/qna/${qna.question_id}"><i class="bi bi-lock-fill"></i> ${qna.title}</a></td>
-                                            <td>${qna.user_id}</td>
+                                            <td>${qna.user.name}</td>
                                             <td>${qna.write_at}</td>
                                         </c:if>
 
-                                        <c:if test="${sessionScope.user.user_id != qna.user_id && sessionScope.user.role != '관리자'}">
+                                        <c:if test="${sessionScope.user.user_id != qna.user.user_id && sessionScope.user.role != '관리자'}">
                                             <td><i class="bi bi-lock-fill"></i> 비밀글입니다 </td>
                                             <td></td>
                                             <td></td>
@@ -102,7 +102,7 @@
 
                                     <c:otherwise>
                                         <td><a href="/qna/${qna.question_id}">${qna.title}</a></td>
-                                        <td>${qna.user_id}</td>
+                                        <td>${qna.user.name}</td>
                                         <td>${qna.write_at}</td>
                                     </c:otherwise>
                                 </c:choose>
