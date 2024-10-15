@@ -111,7 +111,7 @@
                     </tbody>
                 </table>
                 <a href="/qnaForm">
-                    <button type="button" class="btn btn-outline-secondary">문의하기</button>
+                    <button type="button" class="btn btn-primary">문의하기</button>
                 </a>
             </div>
         </div>
