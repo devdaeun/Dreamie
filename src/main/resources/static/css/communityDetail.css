@@ -33,7 +33,7 @@
     margin: 5px;
     padding-top: 45px;
     background-color: whitesmoke;
-    height: 600px;
+    height: auto;
 }
 .content {
     display: grid;
@@ -86,4 +86,82 @@
     text-decoration: none;
     border: none;
     background: none;
+}
+
+/*댓글부분*/
+/* 댓글 섹션 */
+.comment-section {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f9f9f9; /* 밝은 배경색 */
+    border: 1px solid #ddd; /* 테두리 */
+    border-radius: 10px; /* 모서리 둥글게 */
+}
+
+/* 댓글 작성 폼 스타일 */
+.comment-form {
+    display: flex; /* 가로로 배치 */
+    align-items: center; /* 세로 중앙 정렬 */
+    margin-top: 20px; /* 위쪽 여백 */
+}
+
+.comment-input {
+    flex: 1; /* 남은 공간 모두 차지 */
+    padding: 10px; /* 안쪽 여백 */
+    border: 1px solid #ccc; /* 테두리 */
+    border-radius: 5px; /* 둥근 모서리 */
+    font-size: 16px; /* 글자 크기 */
+    margin-right: 10px; /* 버튼과의 간격 */
+    transition: border-color 0.3s; /* 테두리 색상 전환 효과 */
+}
+/* 댓글 입력창에 포커스 시 테두리 색상 변경 */
+.comment-input:focus {
+    border-color: #F46239; /* 포커스 시 테두리 색상 */
+    outline: none; /* 기본 아웃라인 제거 */
+}
+
+/* 댓글 작성 버튼 스타일 */
+.comment-submit {
+    padding: 10px 20px; /* 버튼 안쪽 여백 */
+    background-color: #F46239; /* 배경색 */
+    color: white; /* 글자색 */
+    border: none; /* 테두리 없음 */
+    border-radius: 5px; /* 둥근 모서리 */
+    cursor: pointer; /* 커서 포인터로 변경 */
+    transition: background-color 0.3s; /* 배경색 전환 효과 */
+}
+
+/* 댓글 작성 버튼에 호버 시 배경색 변경 */
+.comment-submit:hover {
+    background-color: #D75A32; /* 호버 시 배경색 */
+}
+
+/* 댓글 목록 스타일 */
+.comment-list {
+    margin-top: 20px; /* 댓글 목록과 작성 폼 간격 */
+}
+
+.comment-item {
+    border-bottom: 1px solid #eee; /* 각 댓글 간 구분선 */
+    padding: 10px 0; /* 각 댓글 여백 */
+}
+
+/* 댓글 작성자 정보 */
+.comment-author {
+    font-weight: bold; /* 작성자 이름 볼드체 */
+}
+
+/* 구분 기호 스타일 */
+.comment-separator {
+    margin: 0 5px; /* 구분 기호 좌우 간격 */
+}
+
+/* 댓글 내용 */
+.comment-content {
+    margin-top: 5px; /* 작성자와 내용 간격 */
+}
+
+/* 목록으로 돌아가기 버튼 */
+.more .btn {
+    margin-top: 10px; /* 버튼 간격 */
 }
