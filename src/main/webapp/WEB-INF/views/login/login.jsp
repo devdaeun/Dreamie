@@ -36,17 +36,6 @@
             </div>
             <button id="naver-login"><img src="../assets/img/naver.png"></button>
         </form>
-        <c:if test="${param.error == 'true'}">
-            <div class="alert alert-danger" role="alert">
-                로그인 실패: 잘못된 아이디 또는 비밀번호입니다.
-            </div>
-        </c:if>
-        <c:if test="${param.error == 'deactivated'}">
-            <div class="alert alert-danger" role="alert">
-                탈퇴한 회원입니다. 로그인이 불가능합니다.
-            </div>
-        </c:if>
-
 
         <script>
             // 페이지 로드 시 URL에서 error 파라미터 제거
