@@ -159,7 +159,20 @@
                 </div>
             </div>
         </div>
-
+        <%
+            Boolean success = (Boolean) request.getAttribute("success");
+            if (success != null) {
+        %>
+        <script>
+            <% if (success) { %>
+            alert("회원정보 수정이 완료되었습니다.");
+            <% } else { %>
+            alert("회원정보 수정에 실패했습니다. 다시 시도해주세요.");
+            <% } %>
+        </script>
+        <%
+            }
+        %>
     </div>
 </div>
 <footer class="bg-light py-5">
@@ -168,6 +181,6 @@
 <!-- Bootstrap Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src="../js/mypage.js"></script>
-<script src="../js/memberJoin.js"></script>
+<script src="../js/modify.js"></script>
 </body>
 </html>

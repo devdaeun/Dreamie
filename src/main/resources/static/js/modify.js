@@ -1,38 +1,6 @@
 // 버튼이 눌렸는지 추적하는 플래그 변수
-let isIdChecked = false;
 let isEmailChecked = false;
 let isPasswordChecked = false;
-
-function check_id() {
-    var id = document.querySelector('input[name="id"]').value;
-    var messageElement = document.getElementById('idMessage');
-
-    // 입력값이 없는 경우
-    if (id === "") {
-        messageElement.textContent = "아이디를 입력해주세요.";
-        return; // 중복 체크 요청 중단
-    }
-
-    fetch('/check-id', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({id: id})
-    })
-        .then(response => response.json())
-        .then(data => {
-            if (data.exists) {
-                messageElement.style.color = "red";
-                messageElement.textContent = "이미 존재하는 아이디 입니다.";
-            }
-            else {
-                messageElement.style.color = "green";
-                messageElement.textContent = "사용 가능한 아이디 입니다.";
-                isIdChecked = true; // 아이디 중복 확인 완료
-            }
-        });
-}
 
 // 이메일 형식 확인을 위한 정규 표현식
 function validateEmailFormat(email) {
@@ -40,70 +8,30 @@ function validateEmailFormat(email) {
     return emailPattern.test(email);
 }
 
-
 // 이메일 중복 확인
-function check_email() {
-    var email = document.querySelector('input[name="email"]').value;
-    var messageElement = document.getElementById('emailMessage');
-
-    // 입력값이 없는 경우
-    if (email === "") {
-        messageElement.textContent = "이메일을 입력해주세요.";
-        return; // 중복 체크 요청 중단
-    }
-
-    // 이메일 형식 검증
-    if (!validateEmailFormat(email)) {
-        messageElement.textContent = "올바른 이메일 형식이 아닙니다. 다시 입력해주세요.";
-        messageElement.style.color = "red";
-        return;
-    }
-
-    fetch('/check-email', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ email: email })
-    })
-        .then(response => response.json())
-        .then(data => {
-            if (data.exists) {
-                messageElement.style.color = "red";
-                messageElement.textContent = "이미 존재하는 이메일 입니다.";
-            } else {
-                messageElement.style.color = "green";
-                messageElement.textContent = "사용 가능한 이메일 입니다.";
-                isEmailChecked = true; // 이메일 중복 확인 완료
-            }
-        });
-}
-
-//수정 시 이메일 확인
-// function email_check() {
+// function check_email() {
 //     var email = document.querySelector('input[name="email"]').value;
-//     var currentEmail = document.getElementById("currentEmail").value; // 현재 사용자의 이메일
 //     var messageElement = document.getElementById('emailMessage');
 //
 //     // 입력값이 없는 경우
 //     if (email === "") {
 //         messageElement.textContent = "이메일을 입력해주세요.";
-//         return;
+//         return; // 중복 체크 요청 중단
 //     }
 //
 //     // 이메일 형식 검증
 //     if (!validateEmailFormat(email)) {
 //         messageElement.textContent = "올바른 이메일 형식이 아닙니다. 다시 입력해주세요.";
+//         messageElement.style.color = "red";
 //         return;
 //     }
 //
-//     // 이메일 중복 확인 요청
-//     fetch('/email-check', {
+//     fetch('/check-email', {
 //         method: 'POST',
 //         headers: {
 //             'Content-Type': 'application/json'
 //         },
-//         body: JSON.stringify({ email: email, currentEmail: currentEmail }) // 현재 이메일도 함께 전송
+//         body: JSON.stringify({ email: email })
 //     })
 //         .then(response => response.json())
 //         .then(data => {
@@ -113,15 +41,54 @@ function check_email() {
 //             } else {
 //                 messageElement.style.color = "green";
 //                 messageElement.textContent = "사용 가능한 이메일 입니다.";
-//                 isEmailChecked = true;
+//                 isEmailChecked = true; // 이메일 중복 확인 완료
 //             }
-//         })
-//         .catch(error => {
-//             console.error("Error during email check:", error);
-//             messageElement.textContent = "이메일 확인 중 오류가 발생했습니다.";
-//             messageElement.style.color = "red";
 //         });
 // }
+
+//수정 시 이메일 확인
+function email_check() {
+    var email = document.querySelector('input[name="email"]').value;
+    var currentEmail = document.getElementById("currentEmail").value; // 현재 사용자의 이메일
+    var messageElement = document.getElementById('emailMessage');
+
+    // 입력값이 없는 경우
+    if (email === "") {
+        messageElement.textContent = "이메일을 입력해주세요.";
+        return;
+    }
+
+    // 이메일 형식 검증
+    if (!validateEmailFormat(email)) {
+        messageElement.textContent = "올바른 이메일 형식이 아닙니다. 다시 입력해주세요.";
+        return;
+    }
+
+    // 이메일 중복 확인 요청
+    fetch('/email-check', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email: email, currentEmail: currentEmail }) // 현재 이메일도 함께 전송
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.exists) {
+                messageElement.style.color = "red";
+                messageElement.textContent = "이미 존재하는 이메일 입니다.";
+            } else {
+                messageElement.style.color = "green";
+                messageElement.textContent = "사용 가능한 이메일 입니다.";
+                isEmailChecked = true;
+            }
+        })
+        .catch(error => {
+            console.error("Error during email check:", error);
+            messageElement.textContent = "이메일 확인 중 오류가 발생했습니다.";
+            messageElement.style.color = "red";
+        });
+}
 
 function checkPassword() {
     var password = document.getElementById('password').value;
@@ -160,7 +127,6 @@ function validateForm() {
     console.log("validateForm 함수 실행 확인");
 
     // 필드 값 가져오기
-    var id = document.getElementById('id').value;
     var password = document.getElementById('password').value;
     var confirmPassword = document.getElementById('confirmPassword').value;
     var email = document.getElementById('email').value;
@@ -168,8 +134,7 @@ function validateForm() {
     var work = document.getElementById('work').value;
 
     // 오류 메시지를 표시할 엘리먼트 가져오기
-    var idMessage = document.getElementById('idMessage');
-    var passwordErrorMessage = document.getElementById('passwordErrorMessage');
+    // var passwordErrorMessage = document.getElementById('passwordErrorMessage');
     var confirmPasswordErrorMessage = document.getElementById('confirmPasswordErrorMessage');
     var emailMessage = document.getElementById('emailMessage');
     var nameErrorMessage = document.getElementById('nameErrorMessage');
@@ -186,14 +151,6 @@ function validateForm() {
     var isValid = true;
 
     // 빈 값 확인 및 오류 메시지 표시
-    if (id === "") {
-        idMessage.textContent = "아이디를 입력해주세요.";
-        isValid = false;
-    }
-    else if (!isIdChecked) {
-        idMessage.textContent = "아이디 중복 체크를 해주세요.";
-        isValid = false;
-    }
     if (password === "") {
         passwordErrorMessage.textContent = "비밀번호를 입력해주세요.";
         isValid = false;
@@ -201,7 +158,8 @@ function validateForm() {
     if (confirmPassword === "") {
         confirmPasswordErrorMessage.textContent = "비밀번호를 입력해주세요.";
         isValid = false;
-    } else if (password !== confirmPassword) {
+    }
+    else if (password !== confirmPassword) {
         confirmPasswordErrorMessage.textContent = "비밀번호가 일치하지 않습니다.";
         isValid = false;
     }
@@ -210,6 +168,13 @@ function validateForm() {
         confirmPasswordErrorMessage.textContent = "비밀번호 확인을 눌러주세요.";
         isValid = false;
     }
+    // 비밀번호 수정 여부 확인
+    // if (password !== "" && confirmPassword !== "") {
+    //     if (!isPasswordChecked) {
+    //         confirmPasswordErrorMessage.textContent = "비밀번호 확인을 눌러주세요.";
+    //         isValid = false;
+    //     }
+    // }
     if (email === "") {
         emailMessage.textContent = "이메일을 입력해주세요.";
         isValid = false;

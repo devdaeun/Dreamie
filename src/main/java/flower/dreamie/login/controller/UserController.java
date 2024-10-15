@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.*;
 
@@ -143,22 +144,36 @@ public class UserController {
     @RequestMapping("/modify")
     public String modify(@RequestParam("id") String id,
                          @RequestParam("password") String password,
+                         @RequestParam("confirmPassword") String confirmPassword,
                          @RequestParam("email") String email,
                          @RequestParam("name") String name,
-                         @RequestParam("work") String work, HttpSession session) {
-        //아이디로 기존 회원 조회
-        User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("사용자를 찾을 수 없습니다."));
+                         @RequestParam("work") String work,
+                         RedirectAttributes redirectAttributes, HttpSession session) {
+        try {
+            // 비밀번호와 비밀번호 확인이 일치하지 않으면 수정 중단
+            if (!password.equals(confirmPassword)) {
+                redirectAttributes.addFlashAttribute("success", false);  // 실패 플래그 설정
+                redirectAttributes.addFlashAttribute("message", "비밀번호가 일치하지 않습니다."); // 메시지 전달
+                return "redirect:/modifyForm";
+            }
+            //아이디로 기존 회원 조회
+            User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("사용자를 찾을 수 없습니다."));
 
-        // 비밀번호, 이메일, 이름, 직업만 수정 가능
-        user.setPassword(password);
-        user.setEmail(email);
-        user.setName(name);
-        user.setWork(work);
-        // 수정된 정보 저장
-        userRepository.save(user);
+            // 비밀번호, 이메일, 이름, 직업만 수정 가능
+            user.setPassword(password);
+            user.setEmail(email);
+            user.setName(name);
+            user.setWork(work);
+            // 수정된 정보 저장
+            userRepository.save(user);
 
-        // 세션에 저장된 사용자 정보 업데이트
-        session.setAttribute("user", user);  // 수정된 user 객체를 세션에 저장
+            // 세션에 저장된 사용자 정보 업데이트
+            session.setAttribute("user", user);  // 수정된 user 객체를 세션에 저장
+
+            redirectAttributes.addFlashAttribute("success", true);  // 성공 플래그 설정
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("success", false);  // 실패 플래그 설정
+        }
 
 //        return "redirect:/mypage"; // 마이페이지로 리다이렉트
         return "redirect:/modifyForm";
