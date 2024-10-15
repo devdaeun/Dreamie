@@ -55,6 +55,7 @@
             <div class="category text-center">
                 <h3>카테고리</h3>
                 <div class="list-group list-group-flush">
+                    <a href="/community" class="list-group-item">커뮤니티</a>
                     <a href="/notice" class="list-group-item">공지사항</a>
                     <a href="#" class="list-group-item active" aria-current="true">문의사항</a>
                 </div>
