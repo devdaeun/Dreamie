@@ -36,6 +36,10 @@ public class QnaList {
     @Column(nullable = true)
     private LocalDateTime edit_at;
 
+    // 포맷된 날짜를 저장할 임시 필드 (DB에는 저장되지 않음)
+    @Transient
+    private String formattedWriteAt;
+
     // 글 작성 시 자동으로 작성일과 수정일을 현재 시각으로 설정
     @PrePersist
     public void onCreate() {

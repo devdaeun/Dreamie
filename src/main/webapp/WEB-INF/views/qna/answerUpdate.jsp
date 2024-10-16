@@ -71,7 +71,7 @@
                 </div>
                 <div class="contentAt">
                     <h6>작성일</h6>
-                    <p>${qna.write_at}</p>
+                    <p>${qna.formattedWriteAt}</p>
                 </div>
                 <div class="realContent"><p>${qna.content}</p></div>
 

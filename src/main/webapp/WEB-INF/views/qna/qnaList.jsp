@@ -89,7 +89,7 @@
                                         <c:if test="${sessionScope.user.user_id == qna.user.user_id || sessionScope.user.role == '관리자'}">
                                             <td><a href="/qna/${qna.question_id}"><i class="bi bi-lock-fill"></i> ${qna.title}</a></td>
                                             <td>${qna.user.name}</td>
-                                            <td>${qna.write_at}</td>
+                                            <td>${qna.formattedWriteAt}</td>
                                         </c:if>
 
                                         <c:if test="${sessionScope.user.user_id != qna.user.user_id && sessionScope.user.role != '관리자'}">
@@ -103,7 +103,7 @@
                                     <c:otherwise>
                                         <td><a href="/qna/${qna.question_id}">${qna.title}</a></td>
                                         <td>${qna.user.name}</td>
-                                        <td>${qna.write_at}</td>
+                                        <td>${qna.formattedWriteAt}</td>
                                     </c:otherwise>
                                 </c:choose>
                             </tr>
