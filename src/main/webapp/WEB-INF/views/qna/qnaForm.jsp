@@ -66,7 +66,7 @@
                     <div class="mb-3 row">
                         <label for="user_id" class="userId col-sm-1 col-form-label">아이디</label>
                         <div class="col-sm-3">
-                            <input type="text" readonly class="form-control-plaintext" id="user_id" value="${sessionScope.user.id}">
+                            <input type="text" readonly class="form-control-plaintext" id="user_id" value="${sessionScope.user.name}">
                         </div>
                     </div>
                     <!-- show_type을 사용자가 선택하도록 할 경우 (기본 값 True로 설정됨) -->
