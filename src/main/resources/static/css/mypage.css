@@ -60,6 +60,9 @@
     overflow-y: auto;
 }
 .mission-contents {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
     padding: 15px;
     border-bottom: 1px solid #ddd;
 }
