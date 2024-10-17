@@ -67,11 +67,11 @@
                 <div class="contentTitle"><h4>${qna.title}</h4></div>
                 <div class="contentId">
                     <h6>작성자</h6>
-                    <p>${qna.user_id}</p>
+                    <p>${qna.user.name}</p>
                 </div>
                 <div class="contentAt">
                     <h6>작성일</h6>
-                    <p>${qna.write_at}</p>
+                    <p>${qna.formattedWriteAt}</p>
                 </div>
                 <div class="realContent"><p>${qna.content}</p></div>
 

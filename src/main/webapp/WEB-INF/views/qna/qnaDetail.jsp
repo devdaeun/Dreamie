@@ -67,11 +67,11 @@
                 <div class="contentTitle"><h4>${qna.title}</h4></div>
                 <div class="contentId">
                     <h6>작성자</h6>
-                    <p>${qna.user_id}</p>
+                    <p>${qna.user.name}</p>
                 </div>
                 <div class="contentAt">
                     <h6>작성일</h6>
-                    <p>${qna.write_at}</p>
+                    <p>${qna.formattedWriteAt}</p>
                 </div>
                 <div class="realContent"><p>${qna.content}</p></div>
 
@@ -121,7 +121,7 @@
                 <a href="/qna" class="btn btn-secondary">목록으로 돌아가기</a>
 
                 <!-- 글 작성자이거나 관리자일 경우 수정 버튼 표시 -->
-                <c:if test="${user != null && (user.user_id == qna.user_id)}"> <!-- || user.role == 'admin' -->
+                <c:if test="${user != null && (user.user_id == qna.user.user_id)}"> <!-- || user.role == 'admin' -->
                     <a href="/qna/${qna.question_id}/edit">
                         <button class="btn btn-primary">수정</button>
                     </a>
