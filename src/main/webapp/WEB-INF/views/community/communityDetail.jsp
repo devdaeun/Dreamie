@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
     <link href="css/styles.css" rel="stylesheet" />
-    <link rel="stylesheet" href="../css/communityDetail.css"/>
+    <link rel="stylesheet" href="../../css/communityDetail.css"/>
 
 </head>
 <body id="page-top">
@@ -91,7 +91,7 @@
                 </div>
                 <div id="previewArea"></div>
                 <div class="realContent">
-                    <div id="noticeContent">${community.content}</div>
+                    <div id="comment-content">${community.content}</div>
                     <div id="editContent" class="edit-mode">
                         <textarea id="editContentText" class="form-control">${community.content}</textarea>
                     </div>
@@ -102,10 +102,12 @@
             <!-- 댓글 영역 -->
             <div class="comment-section">
                 <!-- 댓글 작성 폼 -->
+                <h4>댓글</h4>
                 <form action="/community/${community.community_id}/comment" method="post" class="comment-form">
-                    <textarea name="content" placeholder="댓글을 입력하세요"></textarea>
-                    <button type="submit">댓글 작성</button>
+                    <input type="text" name="content" placeholder="댓글을 입력하세요" required />
+<%--                    <button type="submit">댓글 작성</button>--%>
                 </form>
+                <button class="btn btn-outline-secondary" type="submit">댓글 작성</button>
 
                 <!-- 댓글 목록 -->
                 <div class="comment-list">

@@ -54,36 +54,46 @@
     <div class="title">
         <h1>커뮤니티 작성하기</h1>
     </div>
+    <div class="grid" style="--bs-columns: 10; --bs-gap: 1rem;">
 
-    <form action="/communitySave" method="post" enctype="multipart/form-data"> <%--파일 업로드를 위해 추가--%>
-        <div class="board">
-            <div class="mb-3 row">
-                <label for="user_id" class="col-sm-1 col-form-label">아이디</label>
-                <div class="col-sm-3">
-                    <input type="text" readonly class="form-control-plaintext" id="user_id" value="${sessionScope.user.id}">
-                </div>
-            </div>
-            <div class="mb-3">
-                <label for="title" class="form-label">제목</label>
-                <input type="text" class="form-control" id="title" name="title" required>
-            </div>
-            <div class="mb-3">
-                <label for="content" class="form-label">커뮤니티내용</label>
-                <textarea class="form-control" id="content" name="content" rows="3" required></textarea>
-            </div>
-            <div class="mb-3">
-                <label for="file" class="form-label">첨부파일</label>
-                <input type="file" class="form-control" id="file" name="file" accept="*"> <%-- 파일 업로드를 위한 input 추가 --%>
-            </div>
-            <div class="btn_area">
-                <button type="submit" class="btn btn-warning">저장</button>
-                <a href="/community">
-                    <button type="button" class="btn btn-outline-warning">취소</button>
-                </a>
+        <div class="category text-center">
+            <h3>카테고리</h3>
+            <div class="list-group list-group-flush">
+                <a href="/community" class="list-group-item">커뮤니티</a>
+                <a href="/notice" class="list-group-item">공지사항</a>
+                <a href="#" class="list-group-item active" aria-current="true">문의사항</a>
             </div>
         </div>
-    </form>
 
+        <form class="communityForm" action="/communitySave" method="post" enctype="multipart/form-data"> <%--파일 업로드를 위해 추가--%>
+            <div class="board">
+                <div class="mb-3 row">
+                    <label for="user_id" class="col-sm-1 col-form-label">아이디</label>
+                    <div class="col-sm-3">
+                        <input type="text" readonly class="form-control-plaintext" id="user_id" value="${sessionScope.user.id}">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="title" class="form-label">제목</label>
+                    <input type="text" class="form-control" id="title" name="title" required>
+                </div>
+                <div class="mb-3">
+                    <label for="content" class="form-label">커뮤니티내용</label>
+                    <textarea class="form-control" id="content" name="content" rows="3" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="file" class="form-label">첨부파일</label>
+                    <input type="file" class="form-control" id="file" name="file" accept="*"> <%-- 파일 업로드를 위한 input 추가 --%>
+                </div>
+                <div class="btn_area">
+                    <button type="submit" class="btn btn-warning">저장</button>
+                    <a href="/community">
+                        <button type="button" class="btn btn-outline-warning">취소</button>
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
 <!-- Footer-->
 <footer class="bg-light py-5">

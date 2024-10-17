@@ -12,11 +12,27 @@
     height: 170px;
     text-align: right;
     border-bottom: 3px solid #F46239;
+    margin-bottom: 15px;
 }
 .title h1 {
     padding: 100px 20px 0 0;
 }
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+/* 카테고리 */
+.category {
+    margin: 5px;
+}
+.category h3 {
+    padding-bottom: 10px;
+    border-bottom: 2px solid #F46239;
+}
 /* 작성하기 */
+.communityForm {
+    background-color: whitesmoke;
+}
 .board {
     margin: 10px;
 }

@@ -55,30 +55,42 @@
         <h1>공지사항 작성하기</h1>
     </div>
 
-    <form action="/noticeSave" method="post">
-        <div class="board">
-            <div class="mb-3 row">
-                <label for="user_id" class="col-sm-1 col-form-label">아이디</label>
-                <div class="col-sm-3">
-                    <input type="text" readonly class="form-control-plaintext" id="user_id" value="${sessionScope.user.id}">
-                </div>
-            </div>
-            <div class="mb-3">
-                <label for="title" class="form-label">제목</label>
-                <input type="text" class="form-control" id="title" name="title">
-            </div>
-            <div class="mb-3">
-                <label for="content" class="form-label">공지내용</label>
-                <textarea class="form-control" id="content" name="content" rows="3"></textarea>
-            </div>
-            <div class="btn_area">
-                <button type="submit" class="btn btn-warning">저장</button>
-                <a href="/notice">
-                    <button type="button" class="btn btn-outline-warning">취소</button>
-                </a>
+    <div class="grid" style="--bs-columns: 10; --bs-gap: 1rem;">
+
+        <div class="category text-center">
+            <h3>카테고리</h3>
+            <div class="list-group list-group-flush">
+                <a href="/community" class="list-group-item">커뮤니티</a>
+                <a href="/notice" class="list-group-item">공지사항</a>
+                <a href="#" class="list-group-item active" aria-current="true">문의사항</a>
             </div>
         </div>
-    </form>
+
+        <form class="noticeForm" action="/noticeSave" method="post">
+            <div class="board">
+                <div class="mb-3 row">
+                    <label for="user_id" class="col-sm-1 col-form-label">아이디</label>
+                    <div class="col-sm-3">
+                        <input type="text" readonly class="form-control-plaintext" id="user_id" value="${sessionScope.user.id}">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="title" class="form-label">제목</label>
+                    <input type="text" class="form-control" id="title" name="title">
+                </div>
+                <div class="mb-3">
+                    <label for="content" class="form-label">공지내용</label>
+                    <textarea class="form-control" id="content" name="content" rows="3"></textarea>
+                </div>
+                <div class="btn_area">
+                    <button type="submit" class="btn btn-warning">저장</button>
+                    <a href="/notice">
+                        <button type="button" class="btn btn-outline-warning">취소</button>
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
 <!-- Footer-->
 <footer class="bg-light py-5">
