@@ -3,6 +3,7 @@ package flower.dreamie.chat.controller;
 import flower.dreamie.chat.entity.ChatRoom;
 import flower.dreamie.chat.repository.ChatRoomRepository;
 import flower.dreamie.chat.service.ChatService;
+import flower.dreamie.login.entity.User;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -44,11 +45,13 @@ public class RoomController {
 
     // 채팅방 개설
     @PostMapping(value = "/createRoom")
-    public String createRoom(@RequestParam String room_name, RedirectAttributes rttr) {
-
+    public String createRoom(@RequestParam String room_name, RedirectAttributes rttr, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        long userId = user.getUser_id();
         ChatRoom room = new ChatRoom();
         room.setRoom_name(room_name);
         room.setCreatedAt(LocalDateTime.now());
+        room.setUserId(userId);
         chatService.createChatRoom(room);
 
         rttr.addFlashAttribute("roomName", room);

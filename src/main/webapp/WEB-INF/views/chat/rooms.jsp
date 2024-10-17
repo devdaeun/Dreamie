@@ -9,8 +9,17 @@
     <title>1:1 채팅방</title>
 
     <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/styles.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico" />
+    <!-- Bootstrap Icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
+    <!-- SimpleLightbox plugin CSS-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
+    <link href="../css/styles.css" rel="stylesheet"/>
     <link rel="stylesheet" href="../css/chat.css"/>
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -47,7 +56,11 @@
                 <a href="/chat/room?roomId=${room.roomId}">
                     <p>${room.roomId}</p>
                     <p>${room.room_name}</p>
-                    <input type="button" onclick="deleteRoom(${room.roomId})" value="채팅방 삭제" class="room_delete_btn">
+                    <c:choose>
+                        <c:when test="${not empty sessionScope.user and sessionScope.user.user_id == room.userId}">
+                            <input type="button" onclick="deleteRoom(${room.roomId})" value="채팅방 삭제" class="room_delete_btn">
+                        </c:when>
+                    </c:choose>
                 </a>
             </c:forEach>
         </div>
