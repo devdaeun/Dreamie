@@ -31,8 +31,10 @@ public class CommentService {
         return commentRepository.save(comment);  // 댓글 저장
     }
 
+
+
     // 댓글 삭제
-    public void deleteComment(Long commentId) {
-        commentRepository.deleteById(commentId);  // 댓글 삭제
+    public void deleteComment(Long comment_id) {
+        commentRepository.deleteById(comment_id);  // 댓글 삭제
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
@@ -22,7 +23,17 @@ public class NoticeController {
     // 공지사항 조회
     @RequestMapping("/notice")
     public String list(Model model) {
-        model.addAttribute("noticeList", noticeService.getAllNoticeList());
+        List<NoticeList> noticeLists = noticeService.getAllNoticeList();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
+
+        for (NoticeList notice : noticeLists) {
+            if (notice.getWrite_at() != null) { // null 체크
+                String formattedDate = notice.getWrite_at().format(formatter);
+                notice.setFormattedWriteAt(formattedDate); // 포맷팅된 날짜 저장
+            }
+        }
+
+        model.addAttribute("noticeList", noticeLists);
         return "notice/noticeList";
     }
 
@@ -66,6 +77,12 @@ public class NoticeController {
     public String detail(@PathVariable("notice_id") Long notice_id, Model model, HttpSession session) {
         NoticeList notice = noticeService.getNoticeById(notice_id);
         User user = (User) session.getAttribute("user");
+
+        if (notice.getWrite_at() != null) { // null 체크
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
+            String formattedDate = notice.getWrite_at().format(formatter);
+            notice.setFormattedWriteAt(formattedDate); // 포맷팅된 날짜 저장
+        }
 
         model.addAttribute("notice", notice);
         if (user != null) {

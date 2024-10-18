@@ -31,6 +31,9 @@ public class NoticeList{
     @Column(nullable = false)
     private LocalDateTime edit_at;
 
+    @Transient
+    private String formattedWriteAt;
+
     @PrePersist
     public void onCreate() {
         this.write_at = LocalDateTime.now();

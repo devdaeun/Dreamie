@@ -32,4 +32,5 @@ public class Comment {
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updated_at;
 
+
 }
