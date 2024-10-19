@@ -14,7 +14,6 @@ public class Community {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     @Column(nullable = false)
     private Long community_id;
 
@@ -33,14 +32,16 @@ public class Community {
     @Column(nullable = true)
     private LocalDateTime edit_at;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "upload_file_id")
-    private UploadFile uploadFile; // UploadFile과의 관계
+    @Transient
+    private String formattedWriteAt; // 데이터베이스에 저장되지 않음
 
+    // UploadFile과의 관계: UploadFile이 연관관계의 주인
     @OneToMany(mappedBy = "community", cascade = CascadeType.REMOVE, orphanRemoval = true)
-    private List<UploadFile> uploadFiles = new ArrayList<>();
+    private List<UploadFile>  uploadFile = new ArrayList<>();
 
-
+    // Comment과의 관계
+    @OneToMany(mappedBy = "community", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<Comment> comments = new ArrayList<>();
 
     // 글 작성 시 자동으로 작성일과 수정일을 현재 시각으로 설정
     @PrePersist
@@ -64,5 +65,4 @@ public class Community {
                 ", write_at=" + write_at +
                 '}';
     }
-
 }

@@ -32,7 +32,7 @@
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
     <div class="container px-4 px-lg-5">
-        <a class="navbar-brand" href="/">Notice</a>
+        <a class="navbar-brand" href="/">Dreamie</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ms-auto my-2 my-lg-0">
@@ -82,13 +82,13 @@
                         <td><a href="/notice/${notice.notice_id}">${notice.title}</a></td>
                         <td>${notice.user.name}</td>
                         <td>${notice.content}</td>
-                        <td>${notice.write_at}</td>
+                        <td>${notice.formattedWriteAt}</td>
                     </tr>
                 </c:forEach>
                 </tbody>
             </table>
             <c:if test="${sessionScope.user != null && sessionScope.user.role == '관리자'}">
-                <a href="/noticeForm" class="btn btn-primary">공지사항 작성하기</a>
+                <a href="/noticeForm" class="btn btn-outline-secondary">공지사항 작성하기</a>
             </c:if>
 
 

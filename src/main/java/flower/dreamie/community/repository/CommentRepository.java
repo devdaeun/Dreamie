@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface CommentRepository extends JpaRepository<Comment, Long> {
     List<Comment> findByCommunity(Community community); // Community 객체를 기준으로 조회
+
 }
