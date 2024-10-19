@@ -7,6 +7,7 @@ import flower.dreamie.community.repository.CommentRepository;
 import flower.dreamie.community.repository.CommunityRepository;
 import flower.dreamie.community.repository.UploadFileRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,6 +20,7 @@ import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 @Service
+@Transactional
 public class CommunityService {
 
     private final CommunityRepository communityRepository;
@@ -50,10 +52,10 @@ public class CommunityService {
     }
 
     // 파일 저장 메서드
-    public UploadFile saveUploadedFile(MultipartFile file, Long community_id) throws FileUploadException {
+    public UploadFile saveUploadedFile(MultipartFile file, Long communityId) throws FileUploadException {
         try {
             // 커뮤니티 객체 조회
-            Community community = communityRepository.findById(community_id)
+            Community community = communityRepository.findById(communityId)
                     .orElseThrow(() -> new IllegalArgumentException("해당 커뮤니티가 존재하지 않습니다."));
 
             // 파일 이름과 크기 설정
@@ -67,9 +69,9 @@ public class CommunityService {
             // UploadFile 객체 생성
             UploadFile uploadFile = new UploadFile();
             uploadFile.setFileName(fileName); // 파일 이름 설정
-            uploadFile.setFilePath(uploadPath.toString()); // 파일 경로 설정 추가
+            uploadFile.setFilePath(uploadPath.toString()); // 파일 경로 설정
             uploadFile.setSize(fileSize); // 파일 크기 설정
-            uploadFile.setCommunity(community); // community 객체 설정
+            uploadFile.setCommunity(community); // 커뮤니티 설정
 
             // UploadFile 저장
             return uploadFileRepository.save(uploadFile); // DB에 저장
@@ -79,6 +81,7 @@ public class CommunityService {
         }
     }
 
+
 //    //파일 다운로드
 //    public UploadFile downloadFile(long communityId) {
 //        return uploadFileRepository.findByCommunityId(communityId);  // 데이터베이스에서 커뮤니티 ID를 사용하여 UploadFile 객체를 가져오는 로직
@@ -87,47 +90,47 @@ public class CommunityService {
     //커뮤니티 수정하기
     public Community updateCommunity(Long community_id, String content) {
         Community community = getCommunityById(community_id);
-        if (community != null) {
-            community.setContent(content);
-            return communityRepository.save(community); // 수정된 엔티티 저장
-        }
-        return null;
+          if (community != null) {
+              community.setContent((content));
+              saveCommunity(community);
+          }
+          return community;
     }
 
 
+
     // 커뮤니티 삭제
-    public void deleteCommunity(Long community_id) throws Exception{
-        try{
+    public void deleteCommunity(Long community_id) throws Exception {
+        try {
             communityRepository.deleteById(community_id);
-        }catch (Exception e) {
+        } catch (Exception e) {
             throw new Exception("삭제 중 오류 발생", e);
         }
     }
 
     // 커뮤니티 파일 수정
     public void updateUploadFile(Long uploadFileId, MultipartFile file) throws Exception {
-        UploadFile uploadFile = uploadFileRepository.findById(uploadFileId)
-                .orElseThrow(() -> new Exception("파일을 찾을 수 없습니다."));
+        UploadFile uploadFile = uploadFileRepository.findById(uploadFileId).orElseThrow(() -> new Exception("파일을 찾을 수 없습니다."));
 
-        // 새로운 파일 정보 설정 (파일 이름 및 경로)
+        //새로운 파일 정보 설정(파일 이름 및 경로)
         String newFileName = file.getOriginalFilename();
-        Path newFilePath = Paths.get("D:\\Yoni\\fileupload3\\" + newFileName); // 파일 저장 경로 설정
+        Path newFilePath = Paths.get("D:\\Yoni\\fileupload3\\" + newFileName);
 
-        try {
-            // 파일이 이미 존재하는지 확인하고 삭제 (옵션에 따라)
-            if (Files.exists(newFilePath)) {
-                Files.delete(newFilePath); // 기존 파일 삭제 (필요시)
+        try{
+            if(Files.exists(newFilePath)){  // 파일이 이미 존재하는지 확인하고 삭제 (옵션에 따라)
+                Files.delete(newFilePath);  // 기존 파일 삭제 (필요시)
             }
-
-            // 파일 저장 로직 (파일 시스템에 저장하는 로직 구현)
-            file.transferTo(newFilePath.toFile()); // 파일 저장
+            //파일 저장 로직
+            file.transferTo(newFilePath.toFile()); //파일저장
 
             uploadFile.setFileName(newFileName);
-            uploadFile.setFilePath(newFilePath.toString()); // 저장된 파일 경로를 문자열로 설정
-            uploadFileRepository.save(uploadFile); // 변경사항 저장
-        } catch (IOException e) {
-            throw new Exception("파일 저장 중 오류 발생", e);
+            uploadFile.setFilePath(newFilePath.toString());
+            uploadFileRepository.save(uploadFile);
+        }catch (IOException e) {
+            throw new Exception();
         }
     }
-
 }
+
+
+

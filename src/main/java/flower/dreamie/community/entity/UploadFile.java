@@ -12,7 +12,7 @@ public class UploadFile {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "upload_file_id")  // 기본 키를 upload_file_id로 설정
+    @Column(name = "upload_file_id")
     private Long upload_file_id;
 
     @Column(name = "file_name", nullable = false)
@@ -33,21 +33,11 @@ public class UploadFile {
     }
 
     @ManyToOne
-    @JoinColumn(name = "community_id", nullable = false)  // 외래 키로 사용
+    @JoinColumn(name = "community_id", nullable = false)
     private Community community;
 
-    @Override
-    public String toString() {
-        return "UploadFile{" +
-                "fileName='" + fileName + '\'' +
-                ", size=" + size +
-                ", insert_date=" + insert_date +
-                '}';
-    }
     public void updateFileDetails(String newFileName, String newFilePath) {
         this.fileName = newFileName;
         this.filePath = newFilePath;
     }
-
-
 }

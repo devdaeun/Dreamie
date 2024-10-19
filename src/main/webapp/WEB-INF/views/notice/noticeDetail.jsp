@@ -65,7 +65,7 @@
                     <p>작성자 | ${notice.user.name}</p>
                 </div>
                 <div class="contentAt">
-                    <p>작성일 | ${notice.write_at}</p>
+                    <p>작성일 | ${notice.formattedWriteAt}</p>
                 </div>
                 <div class="realContent">
                     <div id="noticeContent">${notice.content}</div>

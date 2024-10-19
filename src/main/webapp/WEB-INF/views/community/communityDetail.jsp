@@ -14,7 +14,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
-    <link href="css/styles.css" rel="stylesheet" />
+    <link href="../css/styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/communityDetail.css"/>
 
 </head>
@@ -65,90 +65,85 @@
                     <p>작성자 | ${community.user_id}</p>
                 </div>
                 <div class="contentAt">
-                    <p>작성일 | ${community.write_at}</p>
+                    <p>작성일: ${formattedDate}</p>
                 </div>
-                <div class="contentFile">
-                    <c:if test="${not empty community.uploadFile}">
-                        첨부파일 | ${community.uploadFile.fileName}
-                        <a href="/community/download/${community.uploadFile.upload_file_id}">다운로드</a> |
-                        <c:if test="${sessionScope.user != null && (sessionScope.user.role == '관리자' || sessionScope.user.user_id == community.user_id)}">
-                            <!-- 사용자 권한 확인 후 "파일 수정" 버튼 표시 -->
-                            <button id="editFileButton" onclick="showEditFileContent()">파일 수정</button>
-                            <input type="hidden" id="uploadFileId" value="${community.uploadFile.upload_file_id}"/> <!-- ID 설정 -->
-                        </c:if>
-                    </c:if>
-
-                    <!-- 파일 수정 입력 -->
-                    <div id="editFileContent" style="display:none;">
-                        <input type="file" id="fileInput" placeholder="새 파일 선택">
-                        <button id="saveFileButton" onclick="updateFile()">저장</button>
-                    </div>
-
-                    <c:if test="${empty community.uploadFile}">
-                        첨부파일이 없습니다.
-                    </c:if>
-
-                </div>
-                <div id="previewArea"></div>
                 <div class="realContent">
-                    <div id="comment-content">${community.content}</div>
-                    <div id="editContent" class="edit-mode">
+                    <div id="communityContent">${community.content}</div>
+                    <div id="editContent" style="display:none;"> <!-- 수정할 내용 -->
                         <textarea id="editContentText" class="form-control">${community.content}</textarea>
                     </div>
                 </div>
 
-            </div>
+                <!-- 첨부파일 영역 -->
+                <div class="contentFile">
+                    <c:if test="${not empty community.uploadFile}">
+                        <p>첨부파일 | ${community.uploadFile[0].fileName}
+                            <a href="/community/download/${community.uploadFile[0].upload_file_id}">다운로드</a> |
+                            <c:if test="${sessionScope.user != null && (sessionScope.user.role == '관리자' || sessionScope.user.user_id == community.user_id)}">
+                                <button id="editFileButton" onclick="showEditFileContent()">파일 수정</button>
+                                <input type="hidden" id="uploadFileId" value="${community.uploadFile[0].upload_file_id}"/>
+                            </c:if>
+                        </p>
+                    </c:if>
+                    <c:if test="${empty community.uploadFile}">
+                        <p>첨부파일이 없습니다.</p>
+                    </c:if>
+
+                    <!-- 파일 수정 입력 -->
+                    <div id="editFileContent" style="display:none;">
+                        <input type="file" class="btn btn-outline-secondary" id="fileInput" placeholder="새 파일 선택">
+                        <button id="saveFileButton" class="btn btn-primary" onclick="updateFile()">저장</button>
+                    </div>
+                </div>
 
             <!-- 댓글 영역 -->
             <div class="comment-section">
-                <!-- 댓글 작성 폼 -->
                 <h4>댓글</h4>
                 <form action="/community/${community.community_id}/comment" method="post" class="comment-form">
                     <input type="text" name="content" placeholder="댓글을 입력하세요" required />
-<%--                    <button type="submit">댓글 작성</button>--%>
+                    <button class="btn btn-outline-secondary" type="submit">댓글 작성</button>
                 </form>
-                <button class="btn btn-outline-secondary" type="submit">댓글 작성</button>
 
-                <!-- 댓글 목록 -->
                 <div class="comment-list">
                     <c:forEach var="comment" items="${comments}">
                         <div class="comment-item">
-                            <span class="comment-author">${comment.user.user_id}</span> <!-- 작성자 ID -->
-                            <span class="comment-separator">|</span> <!-- 구분 기호 -->
-                            <div class="comment-content">${comment.content}</div> <!-- 댓글 내용 -->
+                            <span class="comment-author">${comment.user.user_id}</span>
+                            <span class="comment-separator">|</span>
+                            <div class="comment-content">${comment.content}</div>
+<%--                            <button class="btn btn-outline-secondary" onclick="deleteComment(${comment.comment_id})">삭제</button>--%>
                         </div>
                     </c:forEach>
                 </div>
+            </div>
 
-            <div class="more text-center">
-                <a href="/community" class="btn btn-secondary">목록으로 돌아가기</a>
+                <div class="more text-center">
+                    <a href="/community" class="btn btn-secondary">목록으로 돌아가기</a>
 
-                <!-- 글 작성자이거나 관리자일 경우 수정 버튼 표시 -->
-                <c:if test="${sessionScope.user != null && (sessionScope.user.role == '관리자' || sessionScope.user.user_id == community.user_id)}">
-                    <button id="editButton" class="btn btn-outline-danger">수정</button>
-                    <button id="saveButton" class="btn btn-primary edit-mode">저장</button>
-                    <button id="deleteButton" class="btn btn-danger">삭제</button>
-                </c:if>
+                    <!-- 글 작성자이거나 관리자일 경우 수정 버튼 표시 -->
+                    <c:if test="${sessionScope.user != null && (sessionScope.user.role == '관리자' || sessionScope.user.user_id == community.user_id)}">
+                        <button id="editButton" class="btn btn-primary">수정</button>
+                        <button id="saveButton" class="btn btn-primary" style="display:none;">저장</button>
+                        <button id="deleteButton" class="btn btn-outline-danger">삭제</button>
+                    </c:if>
 
-                <!-- 공지사항 ID를 hidden input으로 포함 -->
-                <input type="hidden" id="noticeId" value="${community.community_id}">
+                    <!-- 공지사항 ID를 hidden input으로 포함 -->
+                    <input type="hidden" id="communityId" value="${community.community_id}">
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- Footer -->
-<footer class="bg-light py-5">
-    <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; 2023 - Company Name</div></div>
-</footer>
+    <!-- Footer -->
+    <footer class="bg-light py-5">
+        <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; 2023 - Company Name</div></div>
+    </footer>
 
-<!-- Bootstrap core JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-<!-- SimpleLightbox plugin JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
-<!-- Core theme JS -->
-<script src="js/scripts.js"></script>
-<script src="${pageContext.request.contextPath}/js/community.js"></script>
-
+    <!-- Bootstrap core JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- SimpleLightbox plugin JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
+    <!-- Core theme JS -->
+    <script src="../js/scripts.js"></script>
+    <script src="../js/community.js"></script>
 </body>
 </html>
