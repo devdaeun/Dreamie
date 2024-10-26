@@ -38,5 +38,5 @@ out/
 
 ### my develope ###
 login.js
-login/controller/
-login/config/
+/login/controller/
+/login/config/
