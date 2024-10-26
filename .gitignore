@@ -41,6 +41,7 @@ login.js
 AppConfig.java
 UserController.java
 
+build.gradle
 gradlew
 gradlew.bat
 settings.gradle
