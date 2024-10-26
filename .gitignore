@@ -40,3 +40,7 @@ out/
 login.js
 AppConfig.java
 UserController.java
+
+gradlew
+gradlew.bat
+settings.gradle
